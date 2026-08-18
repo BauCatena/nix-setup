@@ -2,6 +2,10 @@
 # flake.lock is generated locally on first build
 flake.lock
 
-./result
-./modules/result
-./modules/README.md
+.config/atuin
+
+result
+
+modules/result
+
+modules/README.md
