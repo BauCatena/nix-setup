@@ -1,0 +1,9 @@
+// Named special workspaces (always exist, toggled via toggle_special.sh)
+
+workspace "magic" {
+    open-on-output "eDP-1"
+}
+
+workspace "zenbg" {
+    open-on-output "eDP-1"
+}

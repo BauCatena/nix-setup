@@ -1,0 +1,111 @@
+binds {
+    // Niri-only: spawn scripts directly (same pattern as autostart)
+    Super+T { spawn-sh "$HOME/.config/niri/scripts/foot.sh"; }
+    Super+Alt+T { spawn-sh "$HOME/.config/niri/scripts/foot.sh"; }
+    Super+Q { close-window; }
+    Super+M { quit skip-confirmation=true; }
+    Super+F { maximize-column; }
+    Super+Shift+F { fullscreen-window; }
+    Super+Shift+Space { spawn-sh "$HOME/.config/niri/scripts/float_center.sh"; }
+
+    Super+E { spawn-sh "$HOME/.config/niri/scripts/yazi.sh"; }
+    Super+B { spawn-sh "$HOME/.config/niri/scripts/run.sh firefox"; }
+    Super+R repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_app_launcher.sh"; }
+    Super+D repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_app_launcher.sh"; }
+    Super+P { switch-preset-column-width; }
+    Super+J { toggle-column-tabbed-display; }
+    Super+O { spawn-sh "$HOME/.config/niri/scripts/run.sh obsidian"; }
+
+    Super+W repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_wallpaper_picker.sh"; }
+    Super+Shift+W repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_theme_picker.sh"; }
+
+    Super+V repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_clipboard.sh"; }
+    Super+Shift+M repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_mail.sh"; }
+    Super+N repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_power_menu.sh"; }
+    Super+Shift+B { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/battery_mode.sh"; }
+    Super+Space repeat=false allow-inhibiting=false { toggle-overview; }
+    Super+Alt+A { spawn-sh "$HOME/.config/niri/scripts/pack_workspaces.sh"; }
+
+    Super+S repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/screenshot_screen.sh"; }
+    Super+Shift+S repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/wallpaper_region.sh"; }
+
+    Super+F12 { spawn-sh "$HOME/.config/niri/scripts/run.sh swaylock -c $HOME/.config/niri/swaylock.conf"; }
+    Super+Shift+F12 { spawn-sh "$HOME/.config/niri/scripts/run.sh brightnessctl s 0"; }
+    Super+Shift+Print { spawn-sh "$HOME/.config/niri/scripts/screenshot_region.sh"; }
+
+    F2 allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/screenshot_screen.sh"; }
+    F3 allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_brightness.sh down"; }
+    F4 allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_brightness.sh up"; }
+    F5 allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_volume.sh mute"; }
+    F6 allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_volume.sh down"; }
+    F7 allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_volume.sh up"; }
+    F8 allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl previous"; }
+    F9 allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl play-pause"; }
+    F10 allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl next"; }
+    F12 allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/airplane_mode.sh"; }
+
+    Print allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/screenshot_screen.sh"; }
+    XF86MonBrightnessDown allow-when-locked=true allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_brightness.sh down"; }
+    XF86MonBrightnessUp allow-when-locked=true allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_brightness.sh up"; }
+    XF86AudioMute allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_volume.sh mute"; }
+    XF86AudioLowerVolume allow-when-locked=true allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_volume.sh down"; }
+    XF86AudioRaiseVolume allow-when-locked=true allow-inhibiting=false repeat=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_volume.sh up"; }
+    XF86AudioPrev allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl previous"; }
+    XF86AudioPause allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl play-pause"; }
+    XF86AudioPlay allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl play-pause"; }
+    XF86AudioNext allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl next"; }
+    XF86WLAN allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/airplane_mode.sh"; }
+    XF86RFKill allow-when-locked=true allow-inhibiting=false repeat=false { spawn-sh "$HOME/.config/niri/scripts/airplane_mode.sh"; }
+
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/smart_mic.sh"; }
+
+    Super+Left { focus-column-left; }
+    Super+Right { focus-column-right; }
+    Super+Up { focus-window-up; }
+    Super+Down { focus-window-down; }
+
+    Super+Shift+Left { move-column-left; }
+    Super+Shift+Right { move-column-right; }
+    Super+Shift+Up { move-window-up; }
+    Super+Shift+Down { move-window-down; }
+
+    Alt+Right repeat=true { set-column-width "+30"; }
+    Alt+Left repeat=true { set-column-width "-30"; }
+    Alt+Up repeat=true { set-window-height "-30"; }
+    Alt+Down repeat=true { set-window-height "+30"; }
+
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+0 { focus-workspace 10; }
+
+    Super+Shift+1 { move-window-to-workspace 1; }
+    Super+Shift+2 { move-window-to-workspace 2; }
+    Super+Shift+3 { move-window-to-workspace 3; }
+    Super+Shift+4 { move-window-to-workspace 4; }
+    Super+Shift+5 { move-window-to-workspace 5; }
+    Super+Shift+6 { move-window-to-workspace 6; }
+    Super+Shift+7 { move-window-to-workspace 7; }
+    Super+Shift+8 { move-window-to-workspace 8; }
+    Super+Shift+9 { move-window-to-workspace 9; }
+    Super+Shift+0 { move-window-to-workspace 10; }
+
+    Super+Alt+S { spawn-sh "$HOME/.config/niri/scripts/toggle_special.sh magic"; }
+    Super+Alt+Shift+S { move-window-to-workspace "magic"; }
+    Super+Shift+Z { spawn-sh "$HOME/.config/niri/scripts/toggle_special.sh zenbg"; }
+
+    Super+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Super+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+
+    Super+XF86AudioRaiseVolume { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl next"; }
+    Super+XF86AudioLowerVolume { spawn-sh "$HOME/.config/niri/scripts/run.sh playerctl previous"; }
+    Super+XF86AudioMicMute { spawn-sh "$HOME/.config/niri/scripts/run.sh $HOME/.local/bin/spotify_restart.sh"; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}

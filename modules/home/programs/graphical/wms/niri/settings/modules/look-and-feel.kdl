@@ -1,0 +1,9 @@
+// Global animation defaults (battery overrides live in battery.kdl)
+
+layout {
+    background-color "transparent"
+}
+
+animations {
+    on
+}

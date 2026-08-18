@@ -1,0 +1,20 @@
+#! /nix/store/1sr8rmx4v0v994lkbzhwc1f0qr1gxxs9-bash-5.3p9/bin/bash -e
+PATH=${PATH:+':'$PATH':'}
+PATH=${PATH/':''/nix/store/snjmn985gxb5h7s75ah2hc4987nsaqjd-zstd-1.5.7-bin/bin'':'/':'}
+PATH='/nix/store/snjmn985gxb5h7s75ah2hc4987nsaqjd-zstd-1.5.7-bin/bin'$PATH
+PATH=${PATH#':'}
+PATH=${PATH%':'}
+export PATH
+PATH=${PATH:+':'$PATH':'}
+PATH=${PATH/':''/nix/store/nmrwsdjdncfn7n9drhjfah9pp0c80lav-gzip-1.14/bin'':'/':'}
+PATH='/nix/store/nmrwsdjdncfn7n9drhjfah9pp0c80lav-gzip-1.14/bin'$PATH
+PATH=${PATH#':'}
+PATH=${PATH%':'}
+export PATH
+PATH=${PATH:+':'$PATH':'}
+PATH=${PATH/':''/nix/store/pi8l9xbvi7g1830jx0mq8a8ahjyqzdpw-groff-1.24.1/bin'':'/':'}
+PATH='/nix/store/pi8l9xbvi7g1830jx0mq8a8ahjyqzdpw-groff-1.24.1/bin'$PATH
+PATH=${PATH#':'}
+PATH=${PATH%':'}
+export PATH
+exec -a "$0" "/nix/store/56b02psv4vf500b2mvgaixl56khm33my-man-db-2.13.1/bin/.catman-wrapped"  "$@" 

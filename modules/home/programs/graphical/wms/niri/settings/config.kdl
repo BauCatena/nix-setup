@@ -1,0 +1,43 @@
+// Niri main configuration
+// https://niri-wm.github.io/niri/Configuration:-Introduction
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+
+    touchpad {
+        natural-scroll
+        tap
+    }
+
+    mod-key "Super"
+}
+
+include "modules/outputs.kdl"
+include "modules/workspaces.kdl"
+include "modules/look-and-feel.kdl"
+include "modules/battery.kdl"
+include "theme.kdl"
+include "modules/window-rules.kdl"
+include "modules/autostart.kdl"
+include "modules/keybinds.kdl"
+
+switch-events {
+    lid-close { spawn "sh" "-c" "$HOME/.config/niri/scripts/run.sh swaylock -c $HOME/.config/niri/swaylock.conf"; }
+    lid-open { spawn "sh" "-c" "$HOME/.config/niri/scripts/run.sh swaylock -c $HOME/.config/niri/swaylock.conf"; }
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+gestures {
+    // Native: 4-finger vertical swipe → overview (Super+Space also toggles).
+    // Pinch-out (zoom out) → overview via libinput-gestures (see ~/.config/libinput-gestures.conf).
+    hot-corners {
+        top-left
+        bottom-right
+    }
+}

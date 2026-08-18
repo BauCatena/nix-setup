@@ -1,0 +1,12 @@
+{ config, pkgs, lib, ... }:
+
+let
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.bautinix.home.programs.graphical.addons.xwayland-satellite; 
+in
+{
+  options.bautinix.home.programs.graphical.addons.xwayland-satellite = {
+    enable = mkEnableOption "xwayland-satellite";
+  };
+}

@@ -1,0 +1,21 @@
+{
+  imports = [
+    ./addons/grim
+    ./addons/slurp
+    ./addons/libinput-gestures
+    ./addons/cliphist
+    ./addons/wl-clipboard
+    ./addons/playerctl
+    ./addons/libnotify
+    ./addons/xwayland-satellite
+    ./apps/libreoffice
+    ./apps/obsidian
+    ./apps/vesktop
+    ./apps/spotify
+    ./bars/quickshell
+    ./browsers/firefox
+    ./launchers/tofi
+    ./screenlockers/swaylock-effects
+    ./wms/niri
+  ];
+}

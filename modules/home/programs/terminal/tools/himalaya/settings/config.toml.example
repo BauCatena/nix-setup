@@ -1,0 +1,38 @@
+# Copy to ~/.config/himalaya/config.toml and fill credentials.
+# Run `himalaya` once for the setup wizard, or edit manually.
+#
+# Gmail: enable IMAP in Google Account, create an App Password.
+# Outlook: use app password or OAuth (see himalaya docs).
+#
+# Keyring auth (recommended): requires libsecret + gnome-keyring, then:
+#   secret-tool store --label="himalaya imap" account YOUR_EMAIL service himalaya-imap
+#   secret-tool store --label="himalaya smtp" account YOUR_EMAIL service himalaya-smtp
+
+[accounts.default]
+default = true
+email = "you@gmail.com"
+display-name = "You"
+
+backend.type = "imap"
+backend.host = "imap.gmail.com"
+backend.port = 993
+backend.encryption.type = "tls"
+backend.login = "you@gmail.com"
+backend.auth.type = "password"
+backend.auth.cmd = "secret-tool lookup account you@gmail.com service himalaya-imap"
+# Or inline (less secure): backend.auth.raw = "YOUR_APP_PASSWORD"
+
+message.send.backend.type = "smtp"
+message.send.backend.host = "smtp.gmail.com"
+message.send.backend.port = 587
+message.send.backend.encryption.type = "start-tls"
+message.send.backend.login = "you@gmail.com"
+message.send.backend.auth.type = "password"
+message.send.backend.auth.cmd = "secret-tool lookup account you@gmail.com service himalaya-smtp"
+# Or inline: message.send.backend.auth.raw = "YOUR_APP_PASSWORD"
+
+[accounts.default.mailbox-alias]
+inbox = "INBOX"
+sent = "[Gmail]/Sent Mail"
+drafts = "[Gmail]/Drafts"
+trash = "[Gmail]/Trash"

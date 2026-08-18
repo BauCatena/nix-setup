@@ -1,0 +1,60 @@
+window-rule{
+   geometry-corner-radius 12
+   clip-to-geometry true
+
+}
+
+window-rule {
+    match app-id="blueberry.py"
+    open-floating true
+    default-column-width { fixed 410; }
+    default-window-height { fixed 500; }
+    default-floating-position x=-410 y=35 relative-to="top-right"
+}
+
+window-rule {
+    match app-id="org.gnome.Calculator"
+    open-floating true
+    default-column-width { fixed 400; }
+    default-window-height { fixed 500; }
+    default-floating-position x=-410 y=95 relative-to="top-right"
+}
+
+window-rule {
+    match title="^(Apri file|Open File|Salva come|Save As|Sfoglia|Library)$"
+    open-floating true
+    default-column-width { fixed 800; }
+    default-window-height { fixed 500; }
+}
+
+window-rule {
+    match app-id="xdg-desktop-portal-gtk"
+    open-floating true
+    default-column-width { fixed 900; }
+    default-window-height { fixed 600; }
+}
+
+window-rule {
+    match app-id=r#"^(Spotify|spotify)$"#
+    open-floating true
+    default-column-width { fixed 800; }
+    default-window-height { fixed 600; }
+    open-on-workspace "magic"
+}
+
+window-rule {
+    match app-id=r#"^(foot|footclient)$"#
+    open-floating false
+    default-column-width { fixed 880; }
+}
+
+window-rule {
+    match app-id="quickshell"
+    block-out-from "screen-capture"
+}
+
+layer-rule {
+    // Wallpaper in the backdrop; workspace bg must be transparent (see theme.kdl)
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
+}

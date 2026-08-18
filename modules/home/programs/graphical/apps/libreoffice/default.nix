@@ -1,0 +1,19 @@
+{ config, pkgs, lib, ... }:
+
+let
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.bautinix.home.programs.graphical.apps.libreoffice;
+in
+{
+  options.bautinix.home.programs.graphical.apps.libreoffice = {
+    enable = mkEnableOption "libreoffice";
+  };
+
+  config = mkIf cfg.enable {
+    # Paquetes globales que instala el módulo
+    home.packages = with pkgs; [
+      libreoffice
+    ];
+  };
+}

@@ -1,0 +1,15 @@
+// HP laptop internal panel — no VRR support on eDP-1
+
+output "eDP-1" {
+    mode "1920x1080@60.000"
+    scale 1.0
+    position x=0 y=0
+    focus-at-startup
+}
+
+// External monitor (only if connected)
+output "DP-2" {
+    mode "1920x1080@143.980"
+    scale 1.0
+    position x=0 y=0
+}
