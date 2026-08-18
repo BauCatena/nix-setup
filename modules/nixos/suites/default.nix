@@ -29,6 +29,7 @@
 
   bautinix.nixos.services.openssh.enable = true;
   bautinix.nixos.services.udisks2.enable = true;
+  bautinix.nixos.services.logind.enable = true;
 
   bautinix.nixos.hardware.audio.enable = true;
   bautinix.nixos.hardware.bluetooth.enable = true;

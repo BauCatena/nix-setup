@@ -12,7 +12,10 @@ in
   config = mkIf cfg.enable {
     services = {
       logind.settings.Login = {
-        KillUserProcesses = true;
+      KillUserProcesses = true;
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "suspend";
+
       };
     };
   };
