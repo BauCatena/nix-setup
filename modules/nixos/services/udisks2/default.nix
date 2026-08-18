@@ -13,6 +13,8 @@ in
   config = mkIf cfg.enable {
     services.udisks2 = {
       enable = true;
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "suspend";
     };
   };
 }
