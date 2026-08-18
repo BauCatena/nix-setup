@@ -10,7 +10,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.udisks2.enable = true;
 
     services.logind = {
       lidSwitch = "suspend";        # o "lock"
