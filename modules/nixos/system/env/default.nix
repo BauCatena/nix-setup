@@ -8,6 +8,9 @@
     MOZ_ENABLE_WAYLAND = "1";
     EDITOR = "nvim";
     VISUAL = "nvim";
+    XDG_CURRENT_DESKTOP = "niri";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "niri";
   };
 
   environment.interactiveShellInit = ''

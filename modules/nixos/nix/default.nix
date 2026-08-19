@@ -7,14 +7,18 @@
   ...
 }:
 let
-  inherit (lib) mkDefault mkIf;
+  inherit (lib) mkDefault mkIf mkEnableOption;
 
   cfg = config.bautinix.nixos.nix;
-  homeCfg = config.home-manager.users.${config.bautinix.nixos.user.name} or { };
-  anyrunEnabled = homeCfg.bautinix.nixos.programs.graphical.launchers.anyrun.enable or false;
+  userName = config.bautinix.user.name;
+homeCfg = config.home-manager.users.${userName} or { };
+  
+  anyrunEnabled = homeCfg.bautinix.programs.graphical.launchers.anyrun.enable or false;
 in
 {
-  imports = [ (lib.getFile "modules/common/nix/default.nix") ];
+  options.bautinix.nixos.nix = {
+    enable = mkEnableOption "nix settings";
+  };
 
   config = mkIf cfg.enable {
     documentation = {
@@ -59,13 +63,14 @@ in
 
       settings = {
         auto-allocate-uids = true;
-        experimental-features = [ "cgroups" ];
+        experimental-features = [ "cgroups" "auto-allocate-uids" ];
         max-free = lib.mkForce (100 * 1024 * 1024 * 1024);
         min-free = lib.mkForce (20 * 1024 * 1024 * 1024);
         system-features = [
           "ca-derivations"
           "uid-range"
         ];
+
         use-cgroups = true;
 
         substituters = lib.optionals anyrunEnabled [
@@ -77,23 +82,23 @@ in
       };
     };
 
-    services = {
-      fast-nix-gc = {
-        enable = true;
-        package = inputs.fast-nix-gc.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        automatic = true;
-        dates = "weekly";
-        deleteOlderThan = "30d";
-        ensureFree = "100G";
-        keepRecent = "7d";
-        randomizedDelaySec = "45min";
-      };
-
-      fast-nix-optimise = {
-        enable = true;
-        automatic = false;
-        dates = [ "04:00" ];
-      };
-    };
+#    services = {
+#      fast-nix-gc = {
+#        enable = true;
+#        package = inputs.fast-nix-gc.packages.${pkgs.stdenv.hostPlatform.system}.default;
+#        automatic = true;
+#        dates = "weekly";
+#        deleteOlderThan = "30d";
+#        ensureFree = "100G";
+#        keepRecent = "7d";
+#        randomizedDelaySec = "45min";
+#      };
+#
+#      fast-nix-optimise = {
+#        enable = true;
+#        automatic = false;
+#        dates = [ "04:00" ];
+#      };
+#    };
   };
 }

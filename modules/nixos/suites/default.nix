@@ -4,9 +4,14 @@
   imports = [
    ../programs/default.nix
    ../system/fonts/default.nix
+   ../display-managers/sddm/default.nix
    ../services/default.nix
    ../hardware/default.nix
    ../security/default.nix
+   ../user/default.nix
+   ../nix/default.nix
+   ../system/env/default.nix
+   ../home/default.nix
   ];
   bautinix.nixos.programs.graphical.addons.awww.enable = true;
   bautinix.nixos.programs.graphical.addons.polkit_gnome.enable = true;
@@ -44,7 +49,13 @@
   bautinix.nixos.security.sudo.enable = true;
   bautinix.nixos.security.sops.enable = true;
   bautinix.nixos.security.polkit.enable = true;
-  bautinix.nixos.security.usbguard.enable = true;
   bautinix.nixos.security.pam.enable = true;
+  bautinix.nixos.security.usbguard.enable = true;
+  bautinix.nixos.security.keyring.enable = true;
+  bautinix.nixos.security.rtkit.enable = true;
+
+  bautinix.nixos.display-managers.sddm.enable = true;
+
+  bautinix.nixos.nix.enable = true;
 
 }

@@ -61,6 +61,7 @@
       };
       services = {
         awww.enable = true;
+        xdg-portals.enable = true;
       };
     };
   };

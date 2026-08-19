@@ -9,6 +9,10 @@ in
   };
   config = mkIf cfg.enable {
 
+   # NOTE move later to themes.
+   environment.systemPackages = with pkgs; [
+      bibata-cursors
+    ];
       programs.niri.enable = true;
 
     };

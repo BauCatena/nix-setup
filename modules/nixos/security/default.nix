@@ -7,5 +7,6 @@
   ./sops
   ./usbguard
   ./sudo
+  ./rtkit
   ];
 }

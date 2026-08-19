@@ -2,25 +2,26 @@
   config,
   lib,
   pkgs,
-
   ...
 }:
 let
   inherit (lib) types;
-  inherit (lib.khanelinix) mkOpt;
 
-  cfg = config.khanelinix.user;
+  mkOpt = type: default: description:
+    lib.mkOption { inherit type default description; };
+
+  cfg = config.bautinix.user;
 in
 {
-  options.khanelinix.user = with types; {
-    email = mkOpt str "The email of the user.";
+  options.bautinix.user = with types; {
+    email = mkOpt str "" "The email of the user.";
     extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
     extraOptions = mkOpt attrs { } "Extra options passed to <option>users.users.<name></option>.";
-    fullName = mkOpt str "The full name of the user.";
+    fullName = mkOpt str "Bauti" "The full name of the user.";
     initialPassword =
       mkOpt str "password"
         "The initial password to use when the user is first created.";
-    name = mkOpt str "The name to use for the user account.";
+    name = mkOpt str "bauti" "The name to use for the user account.";
   };
 
   config = {

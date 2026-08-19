@@ -8,10 +8,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../../../modules/default.nix
-      ../../../modules/desktop.nix
-      ../../../modules/env.nix
-      ../../../modules/home.nix
       ../../../modules/nixos/suites/default.nix
     ];
 
@@ -55,16 +51,6 @@
     LC_TIME = "es_AR.UTF-8";
   };
 
-  # Turn on generational controll, also tune it.
-  nix = {
-  settings.auto-optimise-store = true;
-  gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-    };
-  }; 
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -75,8 +61,6 @@
   users.users."bauti" = {
     isNormalUser = true;
     description = "bauti";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
-    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
@@ -119,8 +103,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
-  
-  services.default.enable = true;
-  services.desktop.enable = true;
 }
 
