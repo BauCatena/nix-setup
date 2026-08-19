@@ -29,7 +29,7 @@ in
   config = mkIf cfg.enable {
     bautinix.home.file =
       let
-        inherit (config.home-manager.users.${userName}.bautinix.user) icon;
+        icon = config.bautinix.user.icon or null;
       in
       lib.mkIf (icon != null) {
         "sddm/faces/.${userName}".source = icon;

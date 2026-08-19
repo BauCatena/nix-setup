@@ -16,7 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 
-  networking.hostName = "hp-nixos"; # Define your hostname.
+ 
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -26,9 +26,6 @@
   # Enable networking and bluetooth.
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
-
-  #Set ZRAM compression.
-  zramSwap.enable = true;
 
   #Power saving.
   services.power-profiles-daemon.enable = true;

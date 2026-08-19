@@ -29,13 +29,6 @@ in
     agentTimeout = mkOpt int 5 "The amount of time to wait before continuing with shell init.";
     enableSSHSupport = lib.mkEnableOption "SSH support for GPG";
   };
-    options.bautinix.home = {
-      file = lib.mkOption {
-        type = lib.types.attrs;
-        default = {};
-        description = "Custom home files mapping.";
-      };
-    };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [

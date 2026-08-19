@@ -2,18 +2,16 @@
   config,
   lib,
   hostname,
-
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.bautinix) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
   cfg = config.bautinix.nixos.system.hostname;
 in
 {
   options.bautinix.nixos.system.hostname = {
-    enable = mkBoolOpt true "Whether to configure the system hostname.";
+    enable = mkEnableOption "system hostname";
   };
 
   config = mkIf cfg.enable {

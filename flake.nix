@@ -28,6 +28,7 @@
       specialArgs = {
         inherit inputs;
         dotfiles = "/home/bauti/dotfiles";
+        hostname = "hp-nixos";
       };
       modules = [
         ./systems/x86_64-linux/hp-nixos/default.nix

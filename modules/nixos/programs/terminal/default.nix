@@ -11,5 +11,7 @@
     ./tools/net-tools
     ./tools/iw
     ./tools/fzf
+    ./tools/bandwhich
+    ./tools/ssh
   ];
 }
