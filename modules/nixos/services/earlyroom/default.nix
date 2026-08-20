@@ -8,17 +8,17 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.services.earlyroom;
+  cfg = config.bautinix.nixos.services.earlyoom;
 in
 {
-  options.bautinix.nixos.services.earlyroom = {
+  options.bautinix.nixos.services.earlyoom = {
     enable = lib.mkEnableOption "oomd";
   };
 
   config = mkIf cfg.enable {
-    services.earlyroom = {
+    services.earlyoom = {
       # Earlyoom documentation
-      # See: https://github.com/rfjakob/earlyroom
+      # See: https://github.com/rfjakob/earlyoom
       enable = true;
       enableNotifications = true;
 
@@ -81,12 +81,12 @@ in
           "'^(${appsToPrefer})$'"
         ];
 
-      killHook = pkgs.writeShellScript "earlyroom-kill-hook" ''
+      killHook = pkgs.writeShellScript "earlyoom-kill-hook" ''
         echo "Process $EARLYOOM_NAME ($EARLYOOM_PID) was killed"
       '';
     };
 
-    systemd.services.earlyroom.serviceConfig = {
+    systemd.services.earlyoom.serviceConfig = {
       # from upstream
       DynamicUser = true;
       AmbientCapabilities = "CAP_KILL CAP_IPC_LOCK";

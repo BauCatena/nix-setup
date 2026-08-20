@@ -15,7 +15,7 @@ in
     rtkit
     ];
 
-    services.rtkit = {
+    security.rtkit = {
       enable = true;
     };
   };

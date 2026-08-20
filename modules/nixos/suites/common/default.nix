@@ -10,9 +10,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    imports = [
-      ../../programs/terminal
-    ];
+
+     zramSwap.enable = true;
+
+      hardware.ksm = {
+        enable = true;
+        sleep = 100; # ms between scans (lower = more aggressive dedup, slightly more CPU)
+     };
+
     environment = {
 
       # defaultPackages = lib.mkForce [ ];
@@ -42,46 +47,39 @@ in
       ];
     };
 
-      bautinix.nixos = {
-        hardware = {
-          storage.btrfs.enable = true;
-        };
-        programs = {
-          terminal = {
-            tools = {
-              ssh.enable = mkDefault true;
-              bandwhich.enable = true;
-            };
+    bautinix.nixos = {
+      hardware = {
+        storage.btrfs.enable = true;
+      };
+      programs = {
+        terminal = {
+          tools = {
+            ssh.enable = mkDefault true;
+            bandwhich.enable = true;
           };
         };
-        security = {
-          gpg.enable = mkDefault true;
-          sudo.enable = mkDefault true;
-          pam.enable = mkDefault true;
-          usbguard.enable = mkDefault true;
-        };
-
-        services = {
-          openssh.enable = mkDefault true;
-          ddccontrol.enable = mkDefault true;
-          logind.enable = mkDefault true;
-          journald.enable = mkDefault true;
-          oomd.enable = mkDefault true;
-          earlyroom.enable = mkDefault true;
-          logrotate.enable = mkDefault true;
-        };
-
-        system = {
-          hostname.enable = mkDefault true;
-          fonts.enable = mkDefault true;
-        };
       };
-        zram.enable = true;
+      security = {
+        gpg.enable = mkDefault true;
+        sudo.enable = mkDefault true;
+        pam.enable = mkDefault true;
+        usbguard.enable = mkDefault true;
+      };
 
-        hardware.ksm = {
-          enable = true;
-          sleep = 100; # ms between scans (lower = more aggressive dedup, slightly more CPU)
+      services = {
+        openssh.enable = mkDefault true;
+        ddccontrol.enable = mkDefault true;
+        logind.enable = mkDefault true;
+        journald.enable = mkDefault true;
+        oomd.enable = mkDefault true;
+        earlyoom.enable = mkDefault true;
+        logrotate.enable = mkDefault true;
+      };
 
+      system = {
+        # hostname.enable = mkDefault true; it just does not work.
+        fonts.enable = mkDefault true;
+      };
     };
   };
 }

@@ -20,7 +20,7 @@
     ./tools/python3
     ./tools/gcc
     ./tools/cmatrix
-    ./tools/atium
+    ./tools/atuin
     ./tools/libsecret
   ];
 }
