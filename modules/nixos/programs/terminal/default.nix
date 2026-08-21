@@ -13,5 +13,6 @@
     ./tools/fzf
     ./tools/bandwhich
     ./tools/ssh
+    ./tools/gcc
   ];
 }

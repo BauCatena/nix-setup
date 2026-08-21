@@ -20,6 +20,7 @@
   bautinix.nixos.suites.common.enable = true;
 
   bautinix.nixos.programs.graphical.addons.awww.enable = true;
+  bautinix.nixos.programs.graphical.addons.brightnessctl.enable = true;
   bautinix.nixos.programs.graphical.addons.polkit_gnome.enable = true;
   bautinix.nixos.programs.graphical.apps.wireshark.enable = true;
   bautinix.nixos.programs.graphical.apps.burpsuite.enable = true;
@@ -33,6 +34,7 @@
   bautinix.nixos.programs.terminal.tools.powertop.enable = true;
   bautinix.nixos.programs.terminal.tools.net-tools.enable = true;
   bautinix.nixos.programs.terminal.tools.fzf.enable = true;
+  bautinix.nixos.programs.terminal.tools.gcc.enable = true;
   bautinix.nixos.programs.terminal.tools.iw.enable = true;
   bautinix.nixos.programs.graphical.wms.niri.enable = true;
 
