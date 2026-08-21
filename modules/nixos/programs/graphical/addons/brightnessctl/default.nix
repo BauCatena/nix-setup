@@ -3,17 +3,17 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.programs.graphical.addons.btightnessctl;
+  cfg = config.bautinix.nixos.programs.graphical.addons.brightnessctl;
 in
 {
-  options.bautinix.nixos.programs.graphical.addons.btightnessctl = {
-    enable = mkEnableOption "btightnessctl";
+  options.bautinix.nixos.programs.graphical.addons.brightnessctl = {
+    enable = mkEnableOption "brightnessctl";
   };
 
   config = mkIf cfg.enable {
     # Paquetes globales que instala el módulo
     environment.systemPackages = with pkgs; [
-      btightnessctl
+      brightnessctl
     ];
     };
 }

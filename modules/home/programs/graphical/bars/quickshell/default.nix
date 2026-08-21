@@ -12,6 +12,8 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       quickshell
+      qt6.qtbase
+      qt6.declarative
     ];
 
     programs.quickshell.enable = true;

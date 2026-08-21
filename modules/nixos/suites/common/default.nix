@@ -77,7 +77,7 @@ in
       };
 
       system = {
-        # hostname.enable = mkDefault true; it just does not work.
+        hostname.enable = mkDefault true; # it worked
         fonts.enable = mkDefault true;
       };
     };

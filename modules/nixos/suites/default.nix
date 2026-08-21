@@ -4,6 +4,8 @@
   imports = [
    ../programs/default.nix
    ../system/fonts/default.nix
+   ../system/hostname/default.nix
+   ../system/env/default.nix
    ../display-managers/sddm/default.nix
    ../services/default.nix
    ../hardware/default.nix
