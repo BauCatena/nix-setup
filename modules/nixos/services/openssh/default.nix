@@ -52,7 +52,6 @@ in
 
       openFirewall = true;
       ports = [
-        22
         cfg.port
       ];
 

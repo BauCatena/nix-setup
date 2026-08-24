@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./awww
-    ./xdg-portal
-  ];
-
-}
