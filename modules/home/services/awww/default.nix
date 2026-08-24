@@ -24,8 +24,6 @@ in
         Restart = "on-failure";
       };
 
-      #extraArgs = [ "--no-cache" ];
-
       Install = {
         WantedBy = [ "graphical-session.target" ];
       };

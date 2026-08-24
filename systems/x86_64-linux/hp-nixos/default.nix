@@ -2,14 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
-      ../../../modules/nixos/suites/default.nix
-    ];
+    ] ++ lib.file.importModulesRecursive ../../../modules/nixos;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -55,11 +54,11 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."bauti" = {
-    isNormalUser = true;
-    description = "bauti";
-    packages = with pkgs; [];
-  };
+  #  users.users."bauti" = {
+  #  isNormalUser = true;
+  #  description = "bauti";
+  #  packages = with pkgs; [];
+  #};
 
   nixpkgs.config.allowUnfree = true;
 
@@ -88,7 +87,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  # networking.firewall.allowedTCPPorts = [ ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -100,5 +99,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
+  bautinix.nixos.archetypes.laptop.enable = true;
 }
 

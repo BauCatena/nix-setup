@@ -21,6 +21,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      bluez
+    ];
     hardware.bluetooth = {
       enable = true;
 

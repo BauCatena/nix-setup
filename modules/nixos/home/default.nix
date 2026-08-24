@@ -38,9 +38,11 @@ in
   };
 
   config = {
+
     # NixOS system-level config
     environment.pathsToLink = lib.mkAfter [
       "/share/applications"
+      "/share/xdg-desktop-portal"
     ];
 
     # Map our custom bautinix options to standard Home Manager options

@@ -9,6 +9,7 @@ in
     enable = lib.mkEnableOption "common configuration";
   };
 
+
   config = mkIf cfg.enable {
 
      zramSwap.enable = true;

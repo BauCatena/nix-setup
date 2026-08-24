@@ -9,4 +9,10 @@ in
   options.bautinix.home.programs.graphical.addons.xwayland-satellite = {
     enable = mkEnableOption "xwayland-satellite";
   };
+  config = mkIf cfg.enable {
+    # Paquetes globales que instala el módulo
+    home.packages = with pkgs; [
+      xwayland-satellite
+    ];
+  };
 }

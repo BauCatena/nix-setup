@@ -21,21 +21,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+  outputs = { self, nixpkgs, home-manager, stylix, sops-nix, fast-nix-gc, ... }@inputs:
+    let
 
-  outputs = { self, nixpkgs, home-manager, stylix, sops-nix, fast-nix-gc, ... }@inputs: {
-    nixosConfigurations.hp-nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit inputs;
-        dotfiles = "/home/bauti/dotfiles";
-        hostname = "hp-nixos";
+    lib = nixpkgs.lib.extend (final: prev: import ./lib { inherit inputs; });
+
+    in
+    {
+      nixosConfigurations.hp-nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        # 2. Tell nixosSystem to use your extended lib
+        inherit lib; 
+
+        specialArgs = {
+          inherit inputs;
+          dotfiles = "/home/bauti/dotfiles";
+          hostname = "hp-nixos";
+        };
+
+        modules = [
+          ./systems/x86_64-linux/hp-nixos/default.nix
+          home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
+          sops-nix.nixosModules.sops
+        ];
       };
-      modules = [
-        ./systems/x86_64-linux/hp-nixos/default.nix
-        home-manager.nixosModules.home-manager
-        stylix.nixosModules.stylix
-        sops-nix.nixosModules.sops
-      ];
     };
-  };
-}
+  }

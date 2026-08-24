@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, config, dotfiles, ... }: 
 let
 
 niriSettings = "${dotfiles}/nixosConfig/nixosConfig/modules/home/programs/graphical/wm/niri/settings";

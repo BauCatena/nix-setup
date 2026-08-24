@@ -9,4 +9,10 @@ in
   options.bautinix.home.programs.graphical.addons.playerctl = {
     enable = mkEnableOption "playerctl";
   };
+  config = mkIf cfg.enable {
+    # Paquetes globales que instala el módulo
+    home.packages = with pkgs; [
+    playerctl
+    ];
+  };
 }
