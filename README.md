@@ -17,10 +17,15 @@ Down below i will leave a map with the structure of the repo (so far) and the co
 ---
 
 `assets/` -> So far my prefered wallpaper
+
 `ci/` -> A Ci file to check error before compiling
-`lib/` -> Contains lib helpers, currently NOT in use
+
+`lib/` -> Contains lib helpers
+
 `modules/` -> The full life cycle of the packages
+
 `systems/` -> Devices customization, currently only my laptop
+
 `user/` -> A model of user
 
 ---
