@@ -17,7 +17,7 @@ in
         graphical = {
           addons = {
             awww.enable = true;
-            brightnessctl.enable = true
+            brightnessctl.enable = true;
             polkit_gnome.enable = true;
           };
           wms = {

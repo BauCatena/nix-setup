@@ -2,11 +2,11 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.nixos.suites.desktop;
+  cfg = config.bautinix.nixos.suites.common;
 in
 {
-  options.bautinix.nixos.suites.desktop = {
-    enable = lib.mkEnableOption "desktop configuration";
+  options.bautinix.nixos.suites.common = {
+    enable = lib.mkEnableOption "common configuration";
   };
 
 
@@ -56,7 +56,12 @@ in
         terminal = {
           tools = {
             ssh.enable = mkDefault true;
-            bandwhich.enable = true;
+            bandwhich.enable = mkDefault true;
+            powertop.enable = mkDefault true;
+            net-tools.enable = mkDefault true;
+            fzf.enable = true;
+            gcc.enable = mkDefault true;
+            iw.enable = mkDefault true;
           };
         };
       };
