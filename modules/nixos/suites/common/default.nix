@@ -2,11 +2,11 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.nixos.suites.common;
+  cfg = config.bautinix.nixos.suites.desktop;
 in
 {
-  options.bautinix.nixos.suites.common = {
-    enable = lib.mkEnableOption "common configuration";
+  options.bautinix.nixos.suites.desktop = {
+    enable = lib.mkEnableOption "desktop configuration";
   };
 
 
@@ -65,6 +65,9 @@ in
         sudo.enable = mkDefault true;
         pam.enable = mkDefault true;
         usbguard.enable = mkDefault true;
+        keyring.enable = mkDefault true;
+        polkit.enable = mkDefault true;
+        sops.enable = mkDefault true;
       };
 
       services = {
@@ -75,6 +78,7 @@ in
         oomd.enable = mkDefault true;
         earlyoom.enable = mkDefault true;
         logrotate.enable = mkDefault true;
+        udisks2.enable = mkDefault true;
       };
 
       system = {

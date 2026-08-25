@@ -11,7 +11,7 @@ in
 
   config = mkIf cfg.enable {
 
-  bautinix.nixos.suites.common.enable = true;
+  bautinix.nixos.suites.desktop.enable = true;
 
     bautinix = {
       nixos = {
