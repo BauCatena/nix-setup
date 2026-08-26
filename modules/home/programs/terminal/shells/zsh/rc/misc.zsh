@@ -13,6 +13,8 @@
 # - "%W swaps": The number of times the process was swapped.
 TIMEFMT=$'\033[1m[%J]\033[0m: %uU user | %uS system | %uE/%*E elapsed | %P CPU\n> (%X avgtext + %D avgdata + %M maxresident)k used\n> [%I inputs / %O outputs] | (%Fmajor + %Rminor) pagefaults | %W swaps'
 
+eval "$(starship init zsh)"
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm* | rxvt* | Eterm | aterm | kterm | gnome* | alacritty | kitty*)

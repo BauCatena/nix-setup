@@ -23,6 +23,9 @@
             cmatrix.enable = true;
             atuin.enable = true;
             libsecret.enable = true;
+            starship.enable = true;
+            bat.enable = true;
+            zoxide.enable = true;
           };
           editors = {
             neovim.enable = true;
