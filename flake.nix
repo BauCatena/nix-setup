@@ -15,24 +15,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Pin to release branch — tracking master pulled inputs incompatible with 26.05
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = { self, nixpkgs, home-manager, stylix, sops-nix, fast-nix-gc, ... }@inputs:
     let
+      lib = nixpkgs.lib.extend (final: prev: import ./lib { inherit inputs; });
 
-    lib = nixpkgs.lib.extend (final: prev: import ./lib { inherit inputs; });
+      # Automatically parse your homes directory using your lib function
+      allHomes = lib.file.parseHomeConfigurations ./homes;
 
+      generateHomeConfiguration = _name: args@{ system, username, userAtHost, hostname, ... }: {
+        name = userAtHost;
+        value = lib.system.mkHome {
+          inherit inputs system hostname username;
+          modules = [ args.path ];
+        };
+      };
     in
     {
       nixosConfigurations.hp-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
-        # 2. Tell nixosSystem to use your extended lib
-        inherit lib; 
+        inherit lib;
 
         specialArgs = {
           inherit inputs;
@@ -47,5 +54,7 @@
           sops-nix.nixosModules.sops
         ];
       };
+
+      homeConfigurations = lib.attrsets.mapAttrs' generateHomeConfiguration allHomes;
     };
-  }
+}

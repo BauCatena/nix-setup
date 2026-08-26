@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
     ] ++ lib.file.importModulesRecursive ../../../modules/nixos;
 
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -53,12 +54,10 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  #  users.users."bauti" = {
-  #  isNormalUser = true;
-  #  description = "bauti";
-  #  packages = with pkgs; [];
-  #};
+  bautinix.user = {
+    name = "bauti";
+    fullName = "Bautista";
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -99,6 +98,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
+  
   bautinix.nixos.archetypes.laptop.enable = true;
 }
 

@@ -6,13 +6,20 @@
   ...
 }:
 {
+  imports = [
+  ] ++ lib.file.importModulesRecursive ../../../modules/home;
 
-  bautinix.nixos.user = {
-      
-      enable = true;
-      name = "bauti";
+  # 1. Native Home Manager options (Required)
+  home.stateVersion = "26.05";
+  home.username = "bauti";
+  home.homeDirectory = "/home/bauti";
 
+  # 2. Your custom framework options
+  bautinix = {
+    home = {
+      roles = {
+        desktop.enable = true;
+      };
     };
-
+  };
 }
-

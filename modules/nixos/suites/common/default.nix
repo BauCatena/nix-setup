@@ -42,6 +42,7 @@ in
         dnsutils
         btop
         tldr
+	tree
         unzip
         wget
         xclip

@@ -1,20 +1,15 @@
 {
-  config,
   lib,
-  hostname,
+  hostname ? null,
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) types;
 
-  cfg = config.bautinix.home.system.hostname;
-in
+  mkOpt = (type: default: description: lib.mkOption { inherit type default description; });
+ in
 {
-  options.bautinix.home.system.hostname = {
-    enable = mkEnableOption "system hostname";
-  };
-
-  config = mkIf cfg.enable {
-    networking.hostName = hostname;
+  options.bautinix.host = {
+    name = mkOpt (types.nullOr types.str) hostname "The host name.";
   };
 }

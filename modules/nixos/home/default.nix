@@ -66,11 +66,10 @@ in
         
         # Bring in your modular imports and our custom aliases
         imports = [
+
           (mkAliasDefinitions options.bautinix.home.extraOptions)
-          ../../home/suites/temporly-all.nix
           ]
-          ++ lib.file.importModulesRecursive ../../home/programs
-          ++ lib.file.importModulesRecursive ../../home/services;
+          ++ lib.file.importModulesRecursive ../../home;
 
         home.sessionPath = [
           "/run/wrappers/bin"

@@ -7,6 +7,9 @@ in
     lib.mkEnableOption "starship";
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.starship ];
+    programs.starship = {
+      enable = true;
+      enableZshIntegration = true;       
+    };
   };
 }
