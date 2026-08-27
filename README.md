@@ -8,37 +8,29 @@ Currently I only support a hybrid config system. Every program has its own setti
 
 For purirst people i decided to not use AI for this proyect, yes i took someone else's code but i did not copy-paste AI. The idea of nix is to have everything declared and that YOU decide which pkgs you have.
 
----
-
 ## Map
-
----
 
 Down below i will leave a map with the structure of the repo (so far) and the contents inside every directory
 
----
+- `assets/` -> So far my prefered wallpaper
 
-`assets/` -> So far my prefered wallpaper
+- `ci/` -> A Ci file to check error before compiling
 
-`ci/` -> A Ci file to check error before compiling
+- `lib/` -> Contains lib helpers
 
-`lib/` -> Contains lib helpers
+- `modules/` -> The full life cycle of the packages
 
-`modules/` -> The full life cycle of the packages
+- `systems/` -> Devices customization, currently only my laptop
 
-`systems/` -> Devices customization, currently only my laptop
-
-`user/` -> A model of user
+- `user/` -> A model of user
 
 ---
 
-`flake.nix` -> The flake itself
+- `flake.nix` -> The flake itself
 
-`switch.sh` -> My own bash script to rebuild
+- `switch.sh` -> My own bash script to rebuild
 
----
-
-# Resources
+## Resources
 
 I took a lot of inspiration from snowfall lib convention but mainly from [Khaneliman](https://github.com/khaneliman/khanelinix/blob/main)
 

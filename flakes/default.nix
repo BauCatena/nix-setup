@@ -6,6 +6,7 @@ in
   imports = [
     ../lib
     ./home.nix
+    ./config.nix
     inputs.flake-parts.flakeModules.partitions
   ];
 
