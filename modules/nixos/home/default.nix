@@ -69,7 +69,8 @@ in
 
           (mkAliasDefinitions options.bautinix.home.extraOptions)
           ]
-          ++ lib.file.importModulesRecursive ../../home;
+          ++ lib.file.importModulesRecursive ../../home
+	  ++ [ (../../../homes/x86_64-linux + "/bauti@hp-nixos") ];
 
         home.sessionPath = [
           "/run/wrappers/bin"
