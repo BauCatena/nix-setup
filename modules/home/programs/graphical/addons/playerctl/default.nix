@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.addons.playerctl; 
+  cfg = config.bautinix.programs.graphical.addons.playerctl; 
 in
 {
-  options.bautinix.home.programs.graphical.addons.playerctl = {
+  options.bautinix.programs.graphical.addons.playerctl = {
     enable = mkEnableOption "playerctl";
   };
   config = mkIf cfg.enable {

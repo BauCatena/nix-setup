@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.services.journald;
+  cfg = config.bautinix.services.journald;
 in
 {
-  options.bautinix.nixos.services.journald = {
+  options.bautinix.services.journald = {
     enable = mkEnableOption "journald storage limits";
   };
 

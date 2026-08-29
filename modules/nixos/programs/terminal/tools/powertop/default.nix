@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.bautinix.nixos.programs.terminal.tools.powertop;
+  cfg = config.bautinix.programs.terminal.tools.powertop;
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.powertop.enable =
+  options.bautinix.programs.terminal.tools.powertop.enable =
     lib.mkEnableOption "powertop";
 
   config = lib.mkIf cfg.enable {

@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.services.xdg-portals;
+  cfg = config.bautinix.services.xdg-portals;
 in
 {
-  options.bautinix.home.services.xdg-portals = {
+  options.bautinix.services.xdg-portals = {
     enable = mkEnableOption "xdg compatibility portals";
   };
 

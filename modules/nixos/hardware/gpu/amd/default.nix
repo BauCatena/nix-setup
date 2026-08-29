@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.hardware.gpu.amd;
+  cfg = config.bautinix.hardware.gpu.amd;
 in
 {
-  options.bautinix.nixos.hardware.gpu.amd = {
+  options.bautinix.hardware.gpu.amd = {
     enable = lib.mkEnableOption "support for amdgpu";
     enableRocmSupport = lib.mkEnableOption "support for rocm";
     enableNvtop = lib.mkEnableOption "install nvtop for amd";

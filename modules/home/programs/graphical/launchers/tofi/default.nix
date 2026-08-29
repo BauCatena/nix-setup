@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.graphical.launchers.tofi;
+  cfg = config.bautinix.programs.graphical.launchers.tofi;
 in
 {
-  options.bautinix.home.programs.graphical.launchers.tofi = {
+  options.bautinix.programs.graphical.launchers.tofi = {
     enable = mkEnableOption "tofi";
   };
 

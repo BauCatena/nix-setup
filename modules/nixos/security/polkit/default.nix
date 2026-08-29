@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.bautinix.nixos.security.polkit;
+  cfg = config.bautinix.security.polkit;
 in
 {
-  options.bautinix.nixos.security.polkit = {
+  options.bautinix.security.polkit = {
     enable = lib.mkEnableOption "polkit";
     debug = lib.mkOption {
       type = lib.types.bool;

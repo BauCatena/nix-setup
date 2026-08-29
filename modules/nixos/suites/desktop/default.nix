@@ -2,17 +2,17 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.nixos.suites.desktop;
+  cfg = config.bautinix.suites.desktop;
 in
 {
-  options.bautinix.nixos.suites.desktop = {
+  options.bautinix.suites.desktop = {
     enable = lib.mkEnableOption "desktop enviorment";
   };
 
 
   config = mkIf cfg.enable {
 
-    bautinix.nixos = {
+    bautinix = {
       programs = {
         graphical = {
           addons = {
@@ -26,7 +26,9 @@ in
         };
       };
       display-managers = {
-        sddm.enable = true;
+        sddm = {
+          enable = true;
+        };
       };
     };
   };

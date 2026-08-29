@@ -6,10 +6,10 @@
 }:
 let
 
-  cfg = config.bautinix.nixos.security.pam;
+  cfg = config.bautinix.security.pam;
 in
 {
-  options.bautinix.nixos.security.pam = {
+  options.bautinix.security.pam = {
     enable = lib.mkEnableOption "pam";
   };
 

@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.bautinix.nixos.programs.terminal.tools.metasploit;
+  cfg = config.bautinix.programs.terminal.tools.metasploit;
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.metasploit.enable =
+  options.bautinix.programs.terminal.tools.metasploit.enable =
     lib.mkEnableOption "metasploit";
 
   config = lib.mkIf cfg.enable {

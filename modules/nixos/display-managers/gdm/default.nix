@@ -1,0 +1,58 @@
+{
+  config,
+  lib,
+  pkgs,
+
+  ...
+}:
+let
+  inherit (lib)
+    types
+    mkIf
+    getExe'
+    stringAfter
+    ;
+  inherit (lib.bautinix) mkBoolOpt mkOpt;
+
+  cfg = config.bautinix.display-managers.gdm;
+  gdmHome = config.users.users.gdm.home;
+in
+{
+  options.bautinix.display-managers.gdm = with types; {
+    enable = lib.mkEnableOption "gdm";
+    autoSuspend = mkBoolOpt true "Whether or not to suspend the machine after inactivity.";
+    defaultSession = mkOpt (nullOr str) null "The default session to use.";
+    monitors = mkOpt (nullOr path) null "The monitors.xml file to create.";
+  };
+
+  config = mkIf cfg.enable {
+    systemd.tmpfiles.rules = [
+      "d ${gdmHome}/.config 0711 gdm gdm"
+    ]
+    ++ (
+      # "./monitors.xml" comes from ~/.config/monitors.xml when GNOME
+      # display information is updated.
+      lib.optional (cfg.monitors != null) "L+ ${gdmHome}/.config/monitors.xml - - - - ${cfg.monitors}"
+    );
+
+    services = {
+      displayManager = {
+        inherit (cfg) defaultSession;
+        gdm = {
+          # GDM documentation
+          # See: https://wiki.gnome.org/Projects/GDM
+          inherit (cfg) enable autoSuspend;
+        };
+        # Keep SDDM disabled because this module manages the GDM session directly.
+        sddm.enable = lib.mkForce false;
+      };
+      libinput.enable = true;
+      xserver.enable = true;
+    };
+
+    system.activationScripts.postInstallGdm = stringAfter [ "users" ] /* bash */ ''
+      echo "Setting gdm permissions for user icon"
+      ${getExe' pkgs.acl "setfacl"} -m u:gdm:x /home/${config.bautinix.user.name}
+    '';
+  };
+}

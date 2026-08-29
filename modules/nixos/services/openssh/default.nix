@@ -12,15 +12,15 @@ let
     mkOption
     ;
 
-  cfg = config.bautinix.nixos.services.openssh;
+  cfg = config.bautinix.services.openssh;
 
-  # Local helper for cleaner options (replaces lib.bautinix.nixos.mkOpt)
+  # Local helper for cleaner options (replaces lib.bautinix.mkOpt)
   mkOpt = type: default: description: mkOption {
     inherit type default description;
   };
 in
 {
-  options.bautinix.nixos.services.openssh = with types; {
+  options.bautinix.services.openssh = with types; {
     enable = lib.mkEnableOption "OpenSSH support";
     startAgent = lib.mkEnableOption "starting openssh agent";
     

@@ -13,10 +13,10 @@ let
   };
   mkBoolOpt = default: description: mkOpt lib.types.bool default description;
 
-  cfg = config.bautinix.nixos.hardware.storage;
+  cfg = config.bautinix.hardware.storage;
 in
 {
-  options.bautinix.nixos.hardware.storage = {
+  options.bautinix.hardware.storage = {
     enable = lib.mkEnableOption "support for extra storage devices";
     ssdEnable = mkBoolOpt true "Whether or not to enable support for SSD storage devices.";
     nvmeMaxLatencyUs =

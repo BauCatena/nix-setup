@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.addons.slurp; 
+  cfg = config.bautinix.programs.graphical.addons.slurp; 
 in
 {
-  options.bautinix.home.programs.graphical.addons.slurp = {
+  options.bautinix.programs.graphical.addons.slurp = {
     enable = mkEnableOption "slurp";
   };
   config = mkIf cfg.enable {

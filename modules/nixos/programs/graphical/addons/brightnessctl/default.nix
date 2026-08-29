@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.programs.graphical.addons.brightnessctl;
+  cfg = config.bautinix.programs.graphical.addons.brightnessctl;
 in
 {
-  options.bautinix.nixos.programs.graphical.addons.brightnessctl = {
+  options.bautinix.programs.graphical.addons.brightnessctl = {
     enable = mkEnableOption "brightnessctl";
   };
 

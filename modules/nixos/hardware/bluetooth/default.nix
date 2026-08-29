@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.hardware.bluetooth;
+  cfg = config.bautinix.hardware.bluetooth;
 in
 {
-  options.bautinix.nixos.hardware.bluetooth = {
+  options.bautinix.hardware.bluetooth = {
     enable = lib.mkEnableOption "support for extra bluetooth devices";
     autoConnect = lib.mkOption {
       type = lib.types.bool;

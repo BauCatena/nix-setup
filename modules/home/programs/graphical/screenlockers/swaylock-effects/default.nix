@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.graphical.screenlockers.swaylock-effects;
+  cfg = config.bautinix.programs.graphical.screenlockers.swaylock-effects;
 in
 {
-  options.bautinix.home.programs.graphical.screenlockers.swaylock-effects = {
+  options.bautinix.programs.graphical.screenlockers.swaylock-effects = {
     enable = mkEnableOption "swaylock-effects";
   };
 

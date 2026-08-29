@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.services.awww;
+  cfg = config.bautinix.services.awww;
 in
 {
-  options.bautinix.home.services.awww = {
+  options.bautinix.services.awww = {
     enable = mkEnableOption "awww wallpaper daemon";
   };
 

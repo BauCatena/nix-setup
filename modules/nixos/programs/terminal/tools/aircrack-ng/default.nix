@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.bautinix.nixos.programs.terminal.tools.aircrack-ng;
+  cfg = config.bautinix.programs.terminal.tools.aircrack-ng;
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.aircrack-ng.enable =
+  options.bautinix.programs.terminal.tools.aircrack-ng.enable =
     lib.mkEnableOption "aircrack-ng";
 
   config = lib.mkIf cfg.enable {

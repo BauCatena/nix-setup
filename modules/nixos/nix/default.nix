@@ -9,14 +9,14 @@
 let
   inherit (lib) mkDefault mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.nix;
+  cfg = config.bautinix.nix;
   userName = config.bautinix.user.name;
   homeCfg = config.home-manager.users.${userName} or { };
   
   anyrunEnabled = homeCfg.bautinix.programs.graphical.launchers.anyrun.enable or false;
 in
 {
-  options.bautinix.nixos.nix = {
+  options.bautinix.nix = {
     enable = mkEnableOption "nix settings";
   };
 

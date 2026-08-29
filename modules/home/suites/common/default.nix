@@ -2,15 +2,15 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.home.suites.common;
+  cfg = config.bautinix.suites.common;
 in
 {
-  options.bautinix.home.suites.common = {
+  options.bautinix.suites.common = {
     enable = lib.mkEnableOption "common terminal suite";
   };
 
   config = mkIf cfg.enable {
-    bautinix.home = {
+    bautinix = {
       programs = {
         terminal = {
           tools = {

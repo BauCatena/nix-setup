@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.bautinix.nixos.programs.terminal.tools.fzf;
+  cfg = config.bautinix.programs.terminal.tools.fzf;
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.fzf.enable =
+  options.bautinix.programs.terminal.tools.fzf.enable =
     lib.mkEnableOption "fzf";
 
   config = lib.mkIf cfg.enable {

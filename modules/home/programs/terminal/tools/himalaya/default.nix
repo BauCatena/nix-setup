@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.tools.himalaya;
+  cfg = config.bautinix.programs.terminal.tools.himalaya;
 in
 {
-  options.bautinix.home.programs.terminal.tools.himalaya = {
+  options.bautinix.programs.terminal.tools.himalaya = {
     enable = mkEnableOption "himalaya";
   };
 

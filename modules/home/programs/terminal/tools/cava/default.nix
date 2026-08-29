@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.tools.cava;
+  cfg = config.bautinix.programs.terminal.tools.cava;
 in
 {
-  options.bautinix.home.programs.terminal.tools.cava = {
+  options.bautinix.programs.terminal.tools.cava = {
     enable = mkEnableOption "cava";
   };
 

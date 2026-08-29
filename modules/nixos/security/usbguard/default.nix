@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.bautinix.nixos.security.usbguard;
+  cfg = config.bautinix.security.usbguard;
 in
 {
-  options.bautinix.nixos.security.usbguard = {
+  options.bautinix.security.usbguard = {
     enable = lib.mkEnableOption "default usbguard configuration";
   };
 
@@ -16,7 +16,7 @@ in
     services.usbguard = {
       IPCAllowedUsers = [
         "root"
-        "${config.bautinix.nixos.user.name}"
+        "${config.bautinix.user.name}"
       ];
       presentDevicePolicy = "allow";
       rules = ''

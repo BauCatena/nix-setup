@@ -15,11 +15,9 @@ let
     getExe
     getExe'
     ;
-  # ✅ Updated to bautinix namespace
   inherit (lib.bautinix) mkOpt enabled;
 
-  # ✅ Added .home. to match Snowfall Lib's modules/home/user/ path
-  cfg = config.bautinix.home.user;
+  cfg = config.bautinix.user;
 
   fastNixGcPackage =
     let
@@ -61,9 +59,8 @@ let
       default;
 in
 {
-  # ✅ Option path matches the physical directory: options.bautinix.home.user
-  options.bautinix.home.user = {
-    enable = mkOpt types.bool false "Whether to configure the user account.";
+  options.bautinix.user = {
+    enable = mkOpt types.bool true "Whether to configure the user account.";
     email = mkOpt types.str "bauti@example.com" "The email of the user.";
     fullName = mkOpt types.str "Bauti" "The full name of the user.";
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
@@ -78,11 +75,11 @@ in
       assertions = [
         {
           assertion = cfg.name != null;
-          message = "bautinix.home.user.name must be set";
+          message = "bautinix.user.name must be set";
         }
         {
           assertion = cfg.home != null;
-          message = "bautinix.home.user.home must be set";
+          message = "bautinix.user.home must be set";
         }
       ];
 
@@ -100,9 +97,8 @@ in
             ".face".source = cfg.icon;
             ".face.icon".source = cfg.icon;
             "${getDir config.xdg.userDirs.pictures "Pictures"}/${
-              cfg.icon.fileName or (baseNameOf cfg.icon)
-            }".source =
-              cfg.icon;
+              cfg.icon.fileName or (baseNameOf "${cfg.icon}")
+              }".source = cfg.icon;
           };
 
         homeDirectory = mkIf (cfg.home != null) (mkDefault cfg.home);
@@ -152,8 +148,7 @@ in
           flake = "nix flake";
           nix = "nix -vL";
           gsed = "${getExe pkgs.gnused}";
-          # ✅ Updated to match bautinix namespace
-          hmvar-reload = ''unset __HM_SESS_VARS_SOURCED; source "/etc/profiles/per-user/${config.bautinix.home.user.name}/etc/profile.d/hm-session-vars.sh"'';
+          hmvar-reload = ''unset __HM_SESS_VARS_SOURCED; source "/etc/profiles/per-user/${config.bautinix.user.name}/etc/profile.d/hm-session-vars.sh"'';
 
           rcp = "${getExe pkgs.rsync} -rahP --mkpath --modify-window=1";
           rmv = "${getExe pkgs.rsync} -rahP --mkpath --modify-window=1 --remove-sent-files";
@@ -185,7 +180,7 @@ in
           psg = "${getExe pkgs.ps} aux | grep";
           myip = "${getExe pkgs.curl} ifconfig.me";
 
-          genpass = "${getExe pkgs.openssl} rand - base64 20";
+          genpass = "${getExe pkgs.openssl} rand -base64 20";
           sha = "shasum -a 256";
         };
 

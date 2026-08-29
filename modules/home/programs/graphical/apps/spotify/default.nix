@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.apps.spotify;
+  cfg = config.bautinix.programs.graphical.apps.spotify;
 in
 {
-  options.bautinix.home.programs.graphical.apps.spotify = {
+  options.bautinix.programs.graphical.apps.spotify = {
     enable = mkEnableOption "spotify";
   };
 

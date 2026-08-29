@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.bautinix.nixos.programs.terminal.tools.snort;
+  cfg = config.bautinix.programs.terminal.tools.snort;
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.snort.enable =
+  options.bautinix.programs.terminal.tools.snort.enable =
     lib.mkEnableOption "snort";
 
   config = lib.mkIf cfg.enable {

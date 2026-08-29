@@ -4,10 +4,10 @@ with lib;
 
 let
 
-  cfg = config.bautinix.nixos.services.udisks2;
+  cfg = config.bautinix.services.udisks2;
 in
 {
-  options.bautinix.nixos.services.udisks2 = {
+  options.bautinix.services.udisks2 = {
     enable = mkEnableOption "enable udisks2 service";
   };
 

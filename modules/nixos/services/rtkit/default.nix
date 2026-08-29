@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.services.rtkit;
+  cfg = config.bautinix.services.rtkit;
 in
 {
-  options.bautinix.nixos.services.rtkit = {
+  options.bautinix.services.rtkit = {
     enable = lib.mkEnableOption "rtkit";
   };
 

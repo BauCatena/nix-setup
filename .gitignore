@@ -1,6 +1,5 @@
 # Machine-specific — committed for hp-nixos flake (pure eval requires git-tracked paths)
 # flake.lock is generated locally on first build
-flake.lock
 
 .config/atuin
 

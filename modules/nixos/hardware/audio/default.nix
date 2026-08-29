@@ -10,7 +10,7 @@ let
   mkOpt = type: default: description: lib.mkOption {
   inherit type default description;
 };
-  cfg = config.bautinix.nixos.hardware.audio;
+  cfg = config.bautinix.hardware.audio;
 
   profileSettings = {
     desktop = {
@@ -28,7 +28,7 @@ let
   };
 in
 {
-  options.bautinix.nixos.hardware.audio = {
+  options.bautinix.hardware.audio = {
     enable = lib.mkEnableOption "audio support";
     alsa-monitor = mkOpt types.attrs { } "Alsa monitor properties to pass to WirePlumber.";
     extra-packages = mkOpt (types.listOf types.package) [

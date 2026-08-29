@@ -7,10 +7,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.system.hostname;
+  cfg = config.bautinix.system.hostname;
 in
 {
-  options.bautinix.nixos.system.hostname = {
+  options.bautinix.system.hostname = {
     enable = mkEnableOption "system hostname";
   };
 

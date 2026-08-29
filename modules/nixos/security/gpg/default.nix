@@ -11,10 +11,8 @@ let
     mkIf
     getExe'
     ;
-  mkOpt = type: default: description: lib.mkOption {
-    inherit type default description;
-  };
-  cfg = config.bautinix.nixos.security.gpg;
+  inherit (lib.modules) mkOpt;
+  cfg = config.bautinix.security.gpg;
 
   gpgAgentConf = ''
     enable-ssh-support
@@ -24,7 +22,7 @@ let
   '';
 in
 {
-  options.bautinix.nixos.security.gpg = with types; {
+  options.bautinix.security.gpg = with types; {
     enable = lib.mkEnableOption "GPG";
     agentTimeout = mkOpt int 5 "The amount of time to wait before continuing with shell init.";
     enableSSHSupport = lib.mkEnableOption "SSH support for GPG";

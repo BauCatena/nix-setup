@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.addons.cliphist; 
+  cfg = config.bautinix.programs.graphical.addons.cliphist; 
 in
 {
-  options.bautinix.home.programs.graphical.addons.cliphist = {
+  options.bautinix.programs.graphical.addons.cliphist = {
     enable = mkEnableOption "cliphist";
   };
   config = mkIf cfg.enable {

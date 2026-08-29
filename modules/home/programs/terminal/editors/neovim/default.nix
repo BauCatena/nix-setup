@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.editors.neovim;
+  cfg = config.bautinix.programs.terminal.editors.neovim;
 in
 {
-  options.bautinix.home.programs.terminal.editors.neovim = {
+  options.bautinix.programs.terminal.editors.neovim = {
     enable = mkEnableOption "neovim";
   };
 

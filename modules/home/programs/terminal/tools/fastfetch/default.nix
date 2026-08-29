@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.tools.fastfetch;
+  cfg = config.bautinix.programs.terminal.tools.fastfetch;
 in
 {
-  options.bautinix.home.programs.terminal.tools.fastfetch = {
+  options.bautinix.programs.terminal.tools.fastfetch = {
     enable = mkEnableOption "fastfetch";
   };
 

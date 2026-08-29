@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.programs.terminal.tools.bandwhich;
+  cfg = config.bautinix.programs.terminal.tools.bandwhich;
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.bandwhich = {
+  options.bautinix.programs.terminal.tools.bandwhich = {
     enable = lib.mkEnableOption "bandwhich";
   };
 

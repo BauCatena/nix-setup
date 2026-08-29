@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.apps.libreoffice;
+  cfg = config.bautinix.programs.graphical.apps.libreoffice;
 in
 {
-  options.bautinix.home.programs.graphical.apps.libreoffice = {
+  options.bautinix.programs.graphical.apps.libreoffice = {
     enable = mkEnableOption "libreoffice";
   };
 

@@ -8,10 +8,10 @@
 let
   inherit (lib) getExe mkIf;
 
-  cfg = config.bautinix.home.programs.terminal.tools.bat;
+  cfg = config.bautinix.programs.terminal.tools.bat;
 in
 {
-  options.bautinix.home.programs.terminal.tools.bat = {
+  options.bautinix.programs.terminal.tools.bat = {
     enable = lib.mkEnableOption "bat";
   };
 

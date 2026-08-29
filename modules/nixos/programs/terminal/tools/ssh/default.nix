@@ -7,10 +7,10 @@ let
   mkOpt = type: default: description:
     lib.mkOption { inherit type default description; };
 
-  cfg = config.bautinix.nixos.programs.terminal.tools.ssh;
+  cfg = config.bautinix.programs.terminal.tools.ssh;
 
   # Get local user info
-  user = config.users.users.${config.bautinix.nixos.user.name};
+  user = config.users.users.${config.bautinix.user.name};
   user-id = toString user.uid;
 
   # Load companion hosts file
@@ -59,7 +59,7 @@ let
   ) (builtins.attrNames other-hosts);
 in
 {
-  options.bautinix.nixos.programs.terminal.tools.ssh = {
+  options.bautinix.programs.terminal.tools.ssh = {
     enable = lib.mkEnableOption "ssh support";
     extraConfig = mkOpt lib.types.str "" "Extra configuration to apply.";
     port = mkOpt lib.types.port 2222 "The port to listen on.";

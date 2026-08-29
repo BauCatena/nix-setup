@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,42 +20,23 @@
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, sops-nix, fast-nix-gc, ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, flake-parts, ... }:
     let
       lib = nixpkgs.lib.extend (final: prev: import ./lib { inherit inputs; });
-
-      # Automatically parse your homes directory using your lib function
-      allHomes = lib.file.parseHomeConfigurations ./homes;
-
-      generateHomeConfiguration = _name: args@{ system, username, userAtHost, hostname, ... }: {
-        name = userAtHost;
-        value = lib.system.mkHome {
-          inherit inputs system hostname username;
-          modules = [ args.path ];
-        };
-      };
     in
-    {
-      nixosConfigurations.hp-nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        inherit lib;
-
-        specialArgs = {
-          inherit inputs;
-          dotfiles = "/home/bauti/dotfiles";
-          hostname = "hp-nixos";
-        };
-
-        modules = [
-          ./systems/x86_64-linux/hp-nixos/default.nix
-          home-manager.nixosModules.home-manager
-          stylix.nixosModules.stylix
-          sops-nix.nixosModules.sops
-        ];
-      };
-
-      homeConfigurations = lib.attrsets.mapAttrs' generateHomeConfiguration allHomes;
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+      specialArgs = { inherit lib; };
+    } {
+      imports = [
+        ./flake
+      ];
     };
 }

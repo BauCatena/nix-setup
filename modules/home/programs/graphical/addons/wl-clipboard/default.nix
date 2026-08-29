@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.addons.wl-clipboard; 
+  cfg = config.bautinix.programs.graphical.addons.wl-clipboard; 
 in
 {
-  options.bautinix.home.programs.graphical.addons.wl-clipboard = {
+  options.bautinix.programs.graphical.addons.wl-clipboard = {
     enable = mkEnableOption "wl-clipboard";
   };
     config = mkIf cfg.enable {

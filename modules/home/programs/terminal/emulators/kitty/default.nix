@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.emulators.kitty;
+  cfg = config.bautinix.programs.terminal.emulators.kitty;
 in
 {
-  options.bautinix.home.programs.terminal.emulators.kitty = {
+  options.bautinix.programs.terminal.emulators.kitty = {
     enable = mkEnableOption "kitty";
   };
 

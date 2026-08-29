@@ -7,10 +7,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.security.keyring;
+  cfg = config.bautinix.security.keyring;
 in
 {
-  options.bautinix.nixos.security.keyring = {
+  options.bautinix.security.keyring = {
     enable = lib.mkEnableOption "gnome keyring";
   };
 

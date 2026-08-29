@@ -3,11 +3,11 @@ let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.strings) fileContents;
 
-  cfg = config.bautinix.home.programs.terminal.shells.zsh;
+  cfg = config.bautinix.programs.terminal.shells.zsh;
   hasSystemZsh = osConfig.programs.zsh.enable or false;
 in
 {
-  options.bautinix.home.programs.terminal.shells.zsh = {
+  options.bautinix.programs.terminal.shells.zsh = {
     enable = mkEnableOption "zsh";
   };
 
@@ -43,7 +43,7 @@ in
           "NO_NOMATCH" # enable "no matches found" check
         ]
         # History options - only when Atuin is disabled
-        ++ lib.optionals (!config.bautinix.home.programs.terminal.tools.atuin.enable) [
+        ++ lib.optionals (!config.bautinix.programs.terminal.tools.atuin.enable) [
           "HIST_VERIFY" # don't execute the line directly; instead perform history expansion and reload the line into the editing buffer
           "NO_HIST_BEEP" # don't beep in ZLE when a widget attempts to access a history entry which isn't there
         ];
@@ -92,7 +92,7 @@ in
           setopt no_global_rcs
         '';
 
-        history = lib.mkIf (!config.bautinix.home.programs.terminal.tools.atuin.enable) {
+        history = lib.mkIf (!config.bautinix.programs.terminal.tools.atuin.enable) {
           # avoid cluttering $HOME with the histfile
           path = "${config.xdg.dataHome}/zsh/zsh_history";
 
@@ -141,7 +141,7 @@ in
             fi
           '')
           (lib.mkOrder 450 (
-            lib.optionalString (!config.bautinix.home.programs.terminal.tools.atuin.enable) ''
+            lib.optionalString (!config.bautinix.programs.terminal.tools.atuin.enable) ''
               # Prevent the command from being written to history before it's
               # executed; save it to LASTHIST instead.  Write it to history
               # in precmd.
@@ -191,7 +191,7 @@ in
             ${fileContents ./rc/misc.zsh}
 
             # Conditional autosuggest history filtering
-            ${lib.optionalString (!config.bautinix.home.programs.terminal.tools.atuin.enable) ''
+            ${lib.optionalString (!config.bautinix.programs.terminal.tools.atuin.enable) ''
               # Ignore multiline commands in autosuggestions when using native zsh history
               ZSH_AUTOSUGGEST_HISTORY_IGNORE=$'*\n*'
             ''}

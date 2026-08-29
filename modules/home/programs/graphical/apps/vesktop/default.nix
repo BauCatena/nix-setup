@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.apps.vesktop;
+  cfg = config.bautinix.programs.graphical.apps.vesktop;
 in
 {
-  options.bautinix.home.programs.graphical.apps.vesktop = {
+  options.bautinix.programs.graphical.apps.vesktop = {
     enable = mkEnableOption "vesktop";
   };
 

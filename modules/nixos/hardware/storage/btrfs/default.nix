@@ -17,7 +17,7 @@ let
     inherit type default description;
   };
 
-  cfg = config.bautinix.nixos.hardware.storage.btrfs;
+  cfg = config.bautinix.hardware.storage.btrfs;
   dedupeFilesystems = cfg.dedupeFilesystems;
 
   dedupeFilesystemsAttrSets = genAttrs dedupeFilesystems (name: {
@@ -91,7 +91,7 @@ let
     };
 in
 {
-  options.bautinix.nixos.hardware.storage.btrfs = with types; {
+  options.bautinix.hardware.storage.btrfs = with types; {
     enable = lib.mkEnableOption "support for btrfs devices";
     autoScrub = lib.mkEnableOption "btrfs autoScrub;";
     dedupe = lib.mkEnableOption "btrfs deduplication;";

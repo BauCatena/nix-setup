@@ -7,10 +7,10 @@
 }:
 let
 
-  cfg = config.bautinix.nixos.security.sudo;
+  cfg = config.bautinix.security.sudo;
 in
 {
-  options.bautinix.nixos.security.sudo = {
+  options.bautinix.security.sudo = {
     enable = lib.mkEnableOption "sudo";
   };
   config = lib.mkIf cfg.enable {

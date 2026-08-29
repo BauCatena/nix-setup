@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.apps.obsidian;
+  cfg = config.bautinix.programs.graphical.apps.obsidian;
 in
 {
-  options.bautinix.home.programs.graphical.apps.obsidian = {
+  options.bautinix.programs.graphical.apps.obsidian = {
     enable = mkEnableOption "obsidian";
   };
 

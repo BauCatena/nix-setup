@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.home.programs.terminal.tools.zoxide;
+  cfg = config.bautinix.programs.terminal.tools.zoxide;
 in
 {
-  options.bautinix.home.programs.terminal.tools.zoxide = {
+  options.bautinix.programs.terminal.tools.zoxide = {
     enable = lib.mkEnableOption "zoxide";
   };
 

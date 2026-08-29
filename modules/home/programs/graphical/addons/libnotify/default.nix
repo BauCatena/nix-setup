@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.addons.libnotify; 
+  cfg = config.bautinix.programs.graphical.addons.libnotify; 
 in
 {
-  options.bautinix.home.programs.graphical.addons.libnotify = {
+  options.bautinix.programs.graphical.addons.libnotify = {
     enable = mkEnableOption "libnotify";
   };
   config = mkIf cfg.enable {

@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.programs.graphical.addons.awww;
+  cfg = config.bautinix.programs.graphical.addons.awww;
 in
 {
-  options.bautinix.nixos.programs.graphical.addons.awww = {
+  options.bautinix.programs.graphical.addons.awww = {
     enable = mkEnableOption "awww";
   };
 

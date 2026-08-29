@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.programs.graphical.addons.polkit_gnome;
+  cfg = config.bautinix.programs.graphical.addons.polkit_gnome;
 in
 {
-  options.bautinix.nixos.programs.graphical.addons.polkit_gnome = {
+  options.bautinix.programs.graphical.addons.polkit_gnome = {
     enable = mkEnableOption "polkit_gnome";
   };
 

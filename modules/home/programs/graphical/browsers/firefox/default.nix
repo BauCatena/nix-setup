@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.graphical.browsers.firefox; 
+  cfg = config.bautinix.programs.graphical.browsers.firefox; 
 in
 {
-  options.bautinix.home.programs.graphical.browsers.firefox = {
+  options.bautinix.programs.graphical.browsers.firefox = {
     enable = mkEnableOption "firefox";
   };
 

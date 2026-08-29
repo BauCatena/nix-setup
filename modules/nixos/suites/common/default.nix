@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.nixos.suites.common;
+  cfg = config.bautinix.suites.common;
 in
 {
-  options.bautinix.nixos.suites.common = {
+  options.bautinix.suites.common = {
     enable = lib.mkEnableOption "common configuration";
   };
 
@@ -42,17 +42,14 @@ in
         dnsutils
         btop
         tldr
-	tree
+    	  tree
         unzip
         wget
         xclip
       ];
     };
 
-    bautinix.nixos = {
-      hardware = {
-        storage.btrfs.enable = true;
-      };
+    bautinix = {
       programs = {
         terminal = {
           tools = {

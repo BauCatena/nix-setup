@@ -6,7 +6,6 @@
 }:
 let
   inherit (self.lib.file)
-    filterDarwinSystems
     filterNixOSSystems
     parseHomeConfigurations
     parseSystemConfigurations
@@ -17,7 +16,6 @@ let
   allSystems = parseSystemConfigurations systemsPath;
   allHomes = parseHomeConfigurations homesPath;
   allNixosModules = self.lib.file.importModulesRecursive ../modules/nixos;
-  allDarwinModules = self.lib.file.importModulesRecursive ../modules/darwin;
   matchingHomes =
     system: hostname:
     lib.filterAttrs (
@@ -39,20 +37,6 @@ in
         };
       }
     ) (filterNixOSSystems allSystems);
-
-    darwinConfigurations = lib.mapAttrs' (
-      _name:
-      { system, hostname, ... }:
-      {
-        name = hostname;
-        value = self.lib.system.mkDarwin {
-          inherit inputs system hostname;
-          username = "khaneliman";
-          darwinModules = allDarwinModules;
-          matchingHomes = matchingHomes system hostname;
-        };
-      }
-    ) (filterDarwinSystems allSystems);
 
     # NOTE: Home Manager configurations are now handled by flake/home.nix
   };

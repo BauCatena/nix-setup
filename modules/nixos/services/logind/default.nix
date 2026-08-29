@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.services.logind;
+  cfg = config.bautinix.services.logind;
 in
 {
-  options.bautinix.nixos.services.logind = {
+  options.bautinix.services.logind = {
     enable = mkEnableOption "logind";
   };
 

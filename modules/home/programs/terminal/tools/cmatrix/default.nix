@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.terminal.tools.cmatrix; 
+  cfg = config.bautinix.programs.terminal.tools.cmatrix; 
 in
 {
-  options.bautinix.home.programs.terminal.tools.cmatrix = {
+  options.bautinix.programs.terminal.tools.cmatrix = {
     enable = mkEnableOption "cmatrix";
   };
 }

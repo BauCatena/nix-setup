@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.terminal.tools.atuin; 
+  cfg = config.bautinix.programs.terminal.tools.atuin; 
 in
 {
-  options.bautinix.home.programs.terminal.tools.atuin = {
+  options.bautinix.programs.terminal.tools.atuin = {
     enable = mkEnableOption "atuin";
   };
 

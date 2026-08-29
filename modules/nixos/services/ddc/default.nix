@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.services.ddccontrol;
+  cfg = config.bautinix.services.ddccontrol;
 in
 {
-  options.bautinix.nixos.services.ddccontrol = {
+  options.bautinix.services.ddccontrol = {
     enable = lib.mkEnableOption "ddccontrol";
   };
 

@@ -8,10 +8,10 @@ let
    mkOpt = type: default: description: lib.mkOption {
     inherit type default description;
   };
-  cfg = config.bautinix.nixos.security.sops;
+  cfg = config.bautinix.security.sops;
 in
 {
-  options.bautinix.nixos.security.sops = {
+  options.bautinix.security.sops = {
     enable = lib.mkEnableOption "sops";
     defaultSopsFile = mkOpt lib.types.path null "Default sops file.";
     sshKeyPaths = mkOpt (with lib.types; listOf path) [
@@ -26,7 +26,7 @@ in
       age = {
         inherit (cfg) sshKeyPaths;
 
-        keyFile = "${config.users.users.${config.bautinix.nixos.user.name}.home}/.config/sops/age/keys.txt";
+        keyFile = "${config.users.users.${config.bautinix.user.name}.home}/.config/sops/age/keys.txt";
       };
     };
   };

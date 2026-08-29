@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.services.earlyoom;
+  cfg = config.bautinix.services.earlyoom;
 in
 {
-  options.bautinix.nixos.services.earlyoom = {
+  options.bautinix.services.earlyoom = {
     enable = lib.mkEnableOption "oomd";
   };
 

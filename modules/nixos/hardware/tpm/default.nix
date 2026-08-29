@@ -7,10 +7,10 @@
 let
   inherit (lib) mkDefault mkIf;
 
-  cfg = config.bautinix.nixos.hardware.tpm;
+  cfg = config.bautinix.hardware.tpm;
 in
 {
-  options.bautinix.nixos.hardware.tpm = {
+  options.bautinix.hardware.tpm = {
     enable = lib.mkEnableOption "Trusted Platform Module 2 (TPM2)";
   };
 

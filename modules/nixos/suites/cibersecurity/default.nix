@@ -2,19 +2,18 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.nixos.suites.cibersecurity;
+  cfg = config.bautinix.suites.cibersecurity;
 in
 {
-  options.bautinix.nixos.suites.cibersecurity = {
+  options.bautinix.suites.cibersecurity = {
     enable = lib.mkEnableOption "cibersecurity configuration";
   };
 
   config = mkIf cfg.enable {
 
-  bautinix.nixos.suites.desktop.enable = true;
+  bautinix.suites.desktop.enable = true;
 
     bautinix = {
-      nixos = {
         programs = {
           terminal = {
             tools = {
@@ -34,7 +33,6 @@ in
             };
           };
         };
-      };
     };
   };
 }

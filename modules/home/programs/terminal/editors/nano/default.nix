@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.editors.nano;
+  cfg = config.bautinix.programs.terminal.editors.nano;
 in
 {
-  options.bautinix.home.programs.terminal.editors.nano = {
+  options.bautinix.programs.terminal.editors.nano = {
     enable = mkEnableOption "nano";
   };
 

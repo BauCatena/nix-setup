@@ -6,19 +6,18 @@
 }:
 let
   inherit (lib) mkIf;
-  # NOTE: idk why is it here and how to fix it inherit (lib.bautinix.home) enabled;
 
-  cfg = config.bautinix.home.roles.desktop;
+  cfg = config.bautinix.roles.desktop;
 in
 {
-  options.bautinix.home.roles.desktop = {
+  options.bautinix.roles.desktop = {
     enable = lib.mkEnableOption "desktop role";
   };
 
   config = mkIf cfg.enable {
-    bautinix.home.suites = {
+    bautinix.suites = {
       common = {
-	enable = true;
+      	enable = true;
       };
       desktop = {
         enable = true;

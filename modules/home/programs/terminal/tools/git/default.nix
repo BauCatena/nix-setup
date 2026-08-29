@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.terminal.tools.git; 
+  cfg = config.bautinix.programs.terminal.tools.git; 
 in
 {
-  options.bautinix.home.programs.terminal.tools.git = {
+  options.bautinix.programs.terminal.tools.git = {
     enable = mkEnableOption "git";
   };
 

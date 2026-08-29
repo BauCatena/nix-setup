@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.hardware.cpu.amd;
+  cfg = config.bautinix.hardware.cpu.amd;
 in
 {
-  options.bautinix.nixos.hardware.cpu.amd = {
+  options.bautinix.hardware.cpu.amd = {
     enable = lib.mkEnableOption "support for amd cpu";
   };
 

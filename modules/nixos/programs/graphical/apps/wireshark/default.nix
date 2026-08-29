@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.programs.graphical.apps.wireshark;
+  cfg = config.bautinix.programs.graphical.apps.wireshark;
 in
 {
-  options.bautinix.nixos.programs.graphical.apps.wireshark = {
+  options.bautinix.programs.graphical.apps.wireshark = {
     enable = mkEnableOption "wireshark";
   };
 

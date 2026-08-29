@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  cfg = config.bautinix.home.programs.terminal.tools.btop;
+  cfg = config.bautinix.programs.terminal.tools.btop;
 in
 {
-  options.bautinix.home.programs.terminal.tools.btop = {
+  options.bautinix.programs.terminal.tools.btop = {
     enable = lib.mkEnableOption "btop";
   };
 

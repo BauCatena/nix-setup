@@ -1,36 +1,32 @@
 {
   config,
   lib,
+  pkgs,
 
   ...
 }:
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.archetypes.laptop;
+  cfg = config.bautinix.archetypes.laptop;
 in
 {
-  options.bautinix.nixos.archetypes.laptop = {
+  options.bautinix.archetypes.laptop = {
     enable = lib.mkEnableOption "the laptop archetype";
   };
 
   config = mkIf cfg.enable {
-    bautinix.nixos = {
+
+    environment.systemPackages = with pkgs; [
+      networkmanager
+    ];
+    bautinix = {
       suites = {
         common.enable = true;
         cibersecurity.enable = true;
         desktop.enable = true;
       };
 
-      hardware = {
-        audio.enable = true;
-        bluetooth.enable = true;
-        cpu.amd.enable = true;
-        opengl.enable = true;
-        power.enable = true;
-        storage.enable = true;
-        tpm.enable = true;
-      };
     };
   };
 }

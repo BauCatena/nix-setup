@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.nixos.programs.graphical.apps.burpsuite;
+  cfg = config.bautinix.programs.graphical.apps.burpsuite;
 in
 {
-  options.bautinix.nixos.programs.graphical.apps.burpsuite = {
+  options.bautinix.programs.graphical.apps.burpsuite = {
     enable = mkEnableOption "burpsuite";
   };
 

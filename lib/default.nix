@@ -1,24 +1,15 @@
 { inputs, ... }:
-let
-  lib = inputs.nixpkgs.lib;
-in
 {
-  file = import ./file {
-    inherit inputs;
-    self = ../.;
-  };
-  system = import ./system { inherit inputs; };
-
-  bautinix = {
-    mkOpt = type: default: description:
-      lib.mkOption { inherit type default description; };
-    
-    enabled = {
-      enable = true;
+  flake.lib = {
+    # keep-sorted start block=yes newline_separated=yes
+    base64 = import ./base64 { inherit inputs; };
+    file = import ./file {
+      inherit inputs;
+      self = ../.;
     };
-    
-    disabled = {
-      enable = false;
-    };
+    module = import ./module { inherit inputs; };
+    overlay = import ./overlay.nix { inherit inputs; };
+    system = import ./system { inherit inputs; };
+    # keep-sorted end
   };
 }

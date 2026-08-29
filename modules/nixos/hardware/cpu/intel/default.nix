@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.hardware.cpu.intel;
+  cfg = config.bautinix.hardware.cpu.intel;
 in
 {
-  options.bautinix.nixos.hardware.cpu.intel = {
+  options.bautinix.hardware.cpu.intel = {
     enable = lib.mkEnableOption "support for intel cpu";
   };
 

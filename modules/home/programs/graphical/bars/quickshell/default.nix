@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.graphical.bars.quickshell;
+  cfg = config.bautinix.programs.graphical.bars.quickshell;
 in
 {
-  options.bautinix.home.programs.graphical.bars.quickshell = {
+  options.bautinix.programs.graphical.bars.quickshell = {
     enable = mkEnableOption "quickshell";
   };
 

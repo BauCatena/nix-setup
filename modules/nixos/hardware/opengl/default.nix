@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.hardware.opengl;
+  cfg = config.bautinix.hardware.opengl;
 in
 {
-  options.bautinix.nixos.hardware.opengl = {
+  options.bautinix.hardware.opengl = {
     enable = lib.mkEnableOption "support for opengl";
   };
 

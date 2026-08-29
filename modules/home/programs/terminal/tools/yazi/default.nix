@@ -2,10 +2,10 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.bautinix.home.programs.terminal.tools.yazi;
+  cfg = config.bautinix.programs.terminal.tools.yazi;
 in
 {
-  options.bautinix.home.programs.terminal.tools.yazi = {
+  options.bautinix.programs.terminal.tools.yazi = {
     enable = mkEnableOption "yazi";
   };
 

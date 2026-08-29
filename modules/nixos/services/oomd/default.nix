@@ -7,10 +7,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.services.oomd;
+  cfg = config.bautinix.services.oomd;
 in
 {
-  options.bautinix.nixos.services.oomd = {
+  options.bautinix.services.oomd = {
     enable = lib.mkEnableOption "oomd";
   };
 

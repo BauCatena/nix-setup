@@ -3,10 +3,10 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.bautinix.home.programs.terminal.tools.ssh; 
+  cfg = config.bautinix.programs.terminal.tools.ssh; 
 in
 {
-  options.bautinix.home.programs.terminal.tools.ssh = {
+  options.bautinix.programs.terminal.tools.ssh = {
     enable = mkEnableOption "openssh";
   };
 

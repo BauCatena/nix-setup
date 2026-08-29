@@ -7,10 +7,10 @@
 let
   inherit (lib) mkIf;
 
-  cfg = config.bautinix.nixos.hardware.power;
+  cfg = config.bautinix.hardware.power;
 in
 {
-  options.bautinix.nixos.hardware.power = {
+  options.bautinix.hardware.power = {
     enable = lib.mkEnableOption "support for extra power devices";
   };
 

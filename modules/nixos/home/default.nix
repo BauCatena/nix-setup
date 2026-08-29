@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   options,
   pkgs,
@@ -7,26 +8,9 @@
 }:
 let
   inherit (lib) types mkAliasDefinitions;
-
-  # Helper for defining options cleanly
-  mkOpt = type: default: description:
-    lib.mkOption { inherit type default description; };
-
-  # Dynamically get the dotfiles path based on the modular user name
+  inherit (lib.bautinix) mkAfter mkOpt;
+  
   dotfiles = "/home/${config.bautinix.user.name}/dotfiles";
-
-  # Custom backup script from your original home.nix
-  hmBackupScript = pkgs.writeShellScript "hm-backup" ''
-    set -eu
-    path="$1"
-    ext="''${HOME_MANAGER_BACKUP_EXT:-hm-bak}"
-    for old in "$path.$ext"*; do
-      if [ -e "$old" ]; then
-        rm -f "$old"
-      fi
-    done
-    mv "$path" "$path.$ext"
-  '';
 in
 {
   options.bautinix.home = with types; {
@@ -38,14 +22,11 @@ in
   };
 
   config = {
-
-    # NixOS system-level config
     environment.pathsToLink = lib.mkAfter [
       "/share/applications"
       "/share/xdg-desktop-portal"
     ];
 
-    # Map our custom bautinix options to standard Home Manager options
     bautinix.home.extraOptions = {
       home.file = mkAliasDefinitions options.bautinix.home.file;
       xdg.configFile = mkAliasDefinitions options.bautinix.home.configFile; 
@@ -53,51 +34,35 @@ in
       home.stateVersion = lib.mkOptionDefault config.system.stateVersion;
     };
 
-    # The main Home Manager setup
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
       backupFileExtension = "hm-bak";
-      extraSpecialArgs = { inherit dotfiles; };
+      extraSpecialArgs = {
+        inherit inputs dotfiles;
+        username = config.bautinix.user.name;
+      };
       verbose = true;
 
-      # Define the user-specific Home Manager environment dynamically
-      users.${config.bautinix.user.name} = { config, ... }: {
-        
-        # Bring in your modular imports and our custom aliases
-        imports = [
+      users.${config.bautinix.user.name} = lib.mkMerge [
+        config.bautinix.home.extraOptions
+        {
+          imports = 
+            lib.file.importModulesRecursive ../../home
+            ++ [ (../../../homes/x86_64-linux + "/bauti@hp-nixos") ];
 
-          (mkAliasDefinitions options.bautinix.home.extraOptions)
-          ]
-          ++ lib.file.importModulesRecursive ../../home
-	  ++ [ (../../../homes/x86_64-linux + "/bauti@hp-nixos") ];
+          home.sessionPath = [
+            "/run/wrappers/bin"
+            "/run/current-system/sw/bin"
+            "${dotfiles}/bin"
+          ];
 
-        home.sessionPath = [
-          "/run/wrappers/bin"
-          "/run/current-system/sw/bin"
-          "${dotfiles}/bin"
-        ];
-
-        home.sessionVariables = {
-          EDITOR = "nvim";
-          VISUAL = "nvim";
-        };
-
-        # Out-of-store symlinks
-        home.file.".local/bin" = {
-          source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bin";
-          recursive = true;
-        };
-
-        # Global cursor configuration
-        home.pointerCursor = {
-          name = "Bibata-Modern-Ice";
-          package = pkgs.bibata-cursors;
-          size = 22;
-          gtk.enable = true;
-          x11.enable = true;
-        };
-      };
+          home.sessionVariables = {
+            EDITOR = "nvim";
+            VISUAL = "nvim";
+          };
+        }
+      ];
     };
   };
 }

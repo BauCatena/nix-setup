@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkDefault;
 
-  cfg = config.bautinix.home.suites.desktop;
+  cfg = config.bautinix.suites.desktop;
 in
 {
-  options.bautinix.home.suites.desktop = {
+  options.bautinix.suites.desktop = {
     enable = lib.mkEnableOption "desktop terminal suite";
   };
 
@@ -13,7 +13,7 @@ in
 
     home.packages = with pkgs; [ drawio ];
 
-    bautinix.home = {
+    bautinix = {
       programs = {
         terminal = {
           tools = {
@@ -49,7 +49,7 @@ in
         };
       };
       services = {
-        awww.enable = true;
+        awww.enable = false;
         xdg-portals.enable = true;
       };
     };

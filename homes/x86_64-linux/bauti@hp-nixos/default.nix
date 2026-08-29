@@ -13,13 +13,14 @@
   home.stateVersion = "26.05";
   home.username = "bauti";
   home.homeDirectory = "/home/bauti";
-
+  home.file.".local/bin" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bin";
+    recursive = true;
+  };
   # 2. Your custom framework options
   bautinix = {
-    home = {
       roles = {
         desktop.enable = true;
       };
-    };
   };
 }

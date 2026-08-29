@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.bautinix.home.programs.terminal.tools.ripgrep;
+  cfg = config.bautinix.programs.terminal.tools.ripgrep;
 in
 {
-  options.bautinix.home.programs.terminal.tools.ripgrep.enable =
+  options.bautinix.programs.terminal.tools.ripgrep.enable =
     lib.mkEnableOption "ripgrep";
 
   config = lib.mkIf cfg.enable {
