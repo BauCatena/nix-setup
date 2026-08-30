@@ -27,7 +27,7 @@ in
       };
       display-managers = {
         sddm = {
-          enable = true;
+          enable = false;
         };
       };
     };
