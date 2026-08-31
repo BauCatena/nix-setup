@@ -20,9 +20,5 @@ in
       enable = true;
     };
 
-#    xdg.configFile."firefox" = {
-#      source = ./settings;
-#      force = true;
-#    };
   };
 }

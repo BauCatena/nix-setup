@@ -32,7 +32,7 @@ in
     importDirPlain
     importSubdirs
     importModulesRecursive
-    mergeAttrs
+    customMergeAttrs
     ;
 
   inherit (moduleLib)

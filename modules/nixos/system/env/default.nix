@@ -5,7 +5,7 @@
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";
-    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_ENABLE_WAYLAND = "0";
     EDITOR = "nvim";
     VISUAL = "nvim";
     XDG_CURRENT_DESKTOP = "niri";

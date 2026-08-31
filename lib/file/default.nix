@@ -158,7 +158,7 @@ in
 
     : 1\. Function argument
   */
-  mergeAttrs = mergeAttrs';
+  customMergeAttrs = mergeAttrs';
 
   /**
     Import all .nix files from a directory.

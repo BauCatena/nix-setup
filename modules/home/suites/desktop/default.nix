@@ -50,8 +50,8 @@ in
       };
       services = {
         awww.enable = false;
-        xdg-portals.enable = true;
       };
+      system = { xdg.enable = true; };
     };
   };
 }

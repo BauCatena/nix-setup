@@ -35,17 +35,9 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^(Spotify|spotify)$"#
-    open-floating true
-    default-column-width { fixed 800; }
-    default-window-height { fixed 600; }
-    open-on-workspace "magic"
-}
-
-window-rule {
     match app-id=r#"^(foot|footclient)$"#
     open-floating false
-    default-column-width { fixed 880; }
+    default-column-width { fixed 1000; }
 }
 
 window-rule {

@@ -22,7 +22,7 @@ config = mkIf cfg.enable {
             enable = true;
             wayland.enable = true;
           };
-          sessionPackages = [ pkgs.niri ];
+          sessionPackages = lib.mkForce[ pkgs.niri ];
           defaultSession = "niri";
           autoLogin = {
               enable = true;
