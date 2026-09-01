@@ -1,0 +1,230 @@
+{
+  config,
+  lib,
+  osConfig ? { },
+  pkgs,
+  # Prefer shared font namespace when HM evaluates standalone.
+  # `osConfig` remains optional for compatibility.
+
+  ...
+}:
+let
+  inherit (lib)
+    mkIf
+    mkDefault
+    types
+    ;
+  inherit (lib.bautinix) mkOpt boolToNum nested-default-attrs;
+
+  cfg = config.bautinix.theme.gtk;
+in
+{
+  options.bautinix.theme.gtk = {
+    enable = lib.mkEnableOption "customizing GTK and apply themes";
+    usePortal = lib.mkEnableOption "using the GTK Portal";
+
+    cursor = {
+      name = mkOpt (types.nullOr types.str) null "The name of the cursor theme to apply.";
+      package = mkOpt types.package pkgs.emptyDirectory "The package to use for the cursor theme.";
+      size = mkOpt types.int 32 "The size of the cursor.";
+    };
+
+    icon = {
+      name = mkOpt (types.nullOr types.str) null "The name of the icon theme to apply.";
+      package = mkOpt types.package pkgs.emptyDirectory "The package to use for the icon theme.";
+    };
+
+    theme = {
+      name = mkOpt (types.nullOr types.str) null "The name of the theme to apply";
+      package = mkOpt types.package pkgs.emptyDirectory "The package to use for the theme";
+    };
+  };
+
+  config =
+    let
+      themeName = if cfg.theme.name != null then cfg.theme.name else "default";
+      themeDir = "${cfg.theme.package}/share/themes/${themeName}";
+      themeExport = pkgs.runCommand "gtk-theme-${themeName}" { } /* Bash */ ''
+        cp -a ${themeDir} "$out"
+
+        # Tokyonight's GTK3 theme currently ships `border-spacing`, which GTK3
+        # warns about in several tray/util apps at startup. Strip the invalid
+        # declaration when present instead of patching the package globally.
+        patchedInodes="|"
+        for css in "$out/gtk-3.0/gtk.css" "$out/gtk-3.0/gtk-dark.css"; do
+          if [ ! -f "$css" ]; then
+            continue
+          fi
+
+          inode=$(stat -c '%d:%i' "$css")
+          case "$patchedInodes" in
+            *"|$inode|"*) continue ;;
+          esac
+
+          patchedInodes="''${patchedInodes}''${inode}|"
+          if grep -Fq "  border-spacing: 6px;" "$css"; then
+            substituteInPlace "$css" --replace-fail "  border-spacing: 6px;" ""
+          fi
+        done
+      '';
+      gtk4Dir = "${themeExport}/gtk-4.0";
+
+      # Some GTK themes only partially ship GTK4 assets (or omit gtk-dark.css).
+      # Build-time checks keep evaluation pure and avoid HM activation failures.
+      gtk4Export = pkgs.runCommand "gtk4-theme-${themeName}" { } /* Bash */ ''
+        mkdir -p "$out"
+
+        if [ -d "${gtk4Dir}/assets" ]; then
+          ln -s "${gtk4Dir}/assets" "$out/assets"
+        else
+          mkdir -p "$out/assets"
+        fi
+
+        if [ -f "${gtk4Dir}/gtk.css" ]; then
+          ln -s "${gtk4Dir}/gtk.css" "$out/gtk.css"
+        else
+          : > "$out/gtk.css"
+        fi
+
+        if [ -f "${gtk4Dir}/gtk-dark.css" ]; then
+          ln -s "${gtk4Dir}/gtk-dark.css" "$out/gtk-dark.css"
+        else
+          ln -s "$out/gtk.css" "$out/gtk-dark.css"
+        fi
+      '';
+    in
+    mkIf (cfg.enable) (
+      lib.mkMerge [
+        {
+          home = {
+            packages =
+              (lib.optionals (!(osConfig.programs.dconf.enable or false)) [
+                # NOTE: required explicitly with noXlibs and standalone home-manager
+                pkgs.dconf
+              ])
+              ++ (with pkgs; [
+                glib # gsettings
+                gtk3.out # for gtk-launch
+                libayatana-appindicator
+              ]);
+
+            pointerCursor = mkIf (cfg.cursor.name != null) (mkDefault {
+              enable = true;
+              name = mkDefault cfg.cursor.name;
+              package = mkDefault cfg.cursor.package;
+              size = mkDefault cfg.cursor.size;
+              gtk.enable = true;
+              x11.enable = true;
+            });
+
+            sessionVariables = lib.mkMerge [
+              {
+                GTK_USE_PORTAL = "${toString (boolToNum cfg.usePortal)}";
+              }
+              (lib.mkIf (cfg.theme.name != null) {
+                GTK_THEME = mkDefault cfg.theme.name;
+              })
+              (lib.mkIf (cfg.cursor.name != null) {
+                CURSOR_THEME = mkDefault cfg.cursor.name;
+              })
+            ];
+          };
+
+          systemd.user.sessionVariables = lib.mkIf (cfg.theme.name != null) {
+            GTK_THEME = cfg.theme.name;
+          };
+          dconf = {
+            enable = true;
+
+            settings = nested-default-attrs (
+              lib.optionalAttrs (cfg.cursor.name != null) {
+                cursor-size = cfg.cursor.size;
+                cursor-theme = cfg.cursor.name;
+              } // lib.optionalAttrs (cfg.theme.name != null) {
+                gtk-theme = cfg.theme.name;
+              } // lib.optionalAttrs (cfg.icon.name != null) {
+                icon-theme = cfg.icon.name;
+              }
+            );
+          };
+
+          gtk = {
+            enable = true;
+
+            font = {
+              name = mkDefault config.bautinix.home.fonts.default;
+              size = mkDefault config.bautinix.home.fonts.size;
+            };
+
+            gtk2 = {
+              configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+              extraConfig = ''
+                gtk-xft-antialias=1
+                gtk-xft-hinting=1
+                gtk-xft-hintstyle="hintslight"
+                gtk-xft-rgba="rgb"
+              '';
+            };
+
+            gtk3.extraConfig = {
+              # Handy-WARNING **: Using GtkSettings:gtk-application-prefer-dark-theme together with HdyStyleManager is unsupported.
+              # Please use HdyStyleManager:color-scheme instead.
+              # gtk-application-prefer-dark-theme = true;
+              gtk-button-images = 1;
+              gtk-decoration-layout = "appmenu:none";
+              gtk-enable-event-sounds = 0;
+              gtk-enable-input-feedback-sounds = 0;
+              gtk-error-bell = 0;
+              gtk-menu-images = 1;
+              gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+              gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
+              gtk-xft-antialias = 1;
+              gtk-xft-hinting = 1;
+              gtk-xft-hintstyle = "hintslight";
+            };
+
+            gtk4 = {
+              inherit (config.gtk) theme;
+              extraConfig = {
+                gtk-decoration-layout = "appmenu:none";
+                gtk-enable-event-sounds = 0;
+                gtk-enable-input-feedback-sounds = 0;
+                gtk-error-bell = 0;
+                gtk-xft-antialias = 1;
+                gtk-xft-hinting = 1;
+                gtk-xft-hintstyle = "hintslight";
+              };
+            };
+
+            iconTheme = mkIf (cfg.icon.name != null) {
+              name = mkDefault cfg.icon.name;
+              package = mkDefault cfg.icon.package;
+            };
+
+            theme = mkIf (cfg.theme.name != null) {
+              name = mkDefault cfg.theme.name;
+              package = mkDefault cfg.theme.package;
+            };
+          };
+        }
+        (lib.mkIf (cfg.theme.name != null) {
+          # GTK3 theme discovery (some apps still consult ~/.themes).
+          home.file.".themes/${cfg.theme.name}".source = themeExport;
+          xdg = {
+            dataFile."themes/${cfg.theme.name}".source = themeExport;
+            # GTK4 CSS/assets live in ~/.config/gtk-4.0.
+            configFile = {
+              "gtk-4.0/assets".source = "${gtk4Export}/assets";
+              "gtk-4.0/gtk.css".source = "${gtk4Export}/gtk.css";
+              "gtk-4.0/gtk-dark.css".source = "${gtk4Export}/gtk-dark.css";
+            };
+            systemDirs.data =
+              let
+                schema = pkgs.gsettings-desktop-schemas;
+              in
+              [ "${schema}/share/gsettings-schemas/${schema.name}" ];
+          };
+        })
+      ]
+    );
+}

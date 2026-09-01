@@ -17,11 +17,11 @@ in
     programs.yazi = {
       enable = true;
 
-      flavors = {
-        nord = pkgs.yaziPlugins.nord; 
-      };
+#      flavors = {
+ #       nord = pkgs.yaziPlugins.nord; 
+ #     };
 
-      theme = lib.importTOML ./theme.toml;
+  #    theme = lib.importTOML ./theme.toml;
     };
   };
 }

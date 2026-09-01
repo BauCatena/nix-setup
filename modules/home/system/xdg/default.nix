@@ -227,13 +227,13 @@ in
             # "x-scheme-handler/chrome" = ["chromium-browser.desktop"];
           };
         in
-        lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+        {
           enable = true;
           defaultApplications = associations;
           associations.added = associations;
         };
 
-      userDirs = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+      userDirs = {
         enable = true;
         createDirectories = true;
         setSessionVariables = true;

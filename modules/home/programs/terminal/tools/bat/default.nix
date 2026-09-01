@@ -22,8 +22,7 @@ in
         style = "auto,header-filesize";
       };
 
-      extraPackages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
-        with pkgs.bat-extras;
+      extraPackages = with pkgs.bat-extras;
         [
           batdiff
           batgrep
@@ -31,8 +30,7 @@ in
           batpipe
           batwatch
           prettybat
-        ]
-      );
+        ];
     };
 
     home.shellAliases = {

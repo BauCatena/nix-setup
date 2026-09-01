@@ -24,10 +24,6 @@ config = mkIf cfg.enable {
           };
           sessionPackages = lib.mkForce[ pkgs.niri ];
           defaultSession = "niri";
-          autoLogin = {
-              enable = true;
-              user = "bauti";
-            };
         };
       };
   };

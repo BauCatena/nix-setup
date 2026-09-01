@@ -20,7 +20,13 @@
     archetypes = {
       laptop.enable = true;
     };
-
+    theme = {
+      stylix = {
+          enable = true;
+          theme = "nord";
+        };
+      nord.enable = true;
+    };
     suites = {
         common.enable = true;
         desktop.enable = true;

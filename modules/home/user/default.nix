@@ -33,21 +33,13 @@ let
     else
       package.overrideAttrs (old: {
         checkFlags =
-          (old.checkFlags or [ ])
-          ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
-            "--skip"
-            "gc_deletes_non_utf8_store_entry"
-            "--skip"
-            "gc_does_not_hang_on_tmp_fifo"
-          ];
+          (old.checkFlags or [ ]);
       });
   gcCommand = if fastNixGcPackage != null then "fast-nix-gc" else "nix-collect-garbage";
 
   home-directory =
     if cfg.name == null then
       null
-    else if pkgs.stdenv.hostPlatform.isDarwin then
-      "/Users/${cfg.name}"
     else
       "/home/${cfg.name}";
 
@@ -109,13 +101,6 @@ in
 
         shellAliases = {
           cleanup =
-            if pkgs.stdenv.hostPlatform.isDarwin then
-              ''
-                sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate off
-                sudo ${gcCommand} --delete-older-than 3d && ${gcCommand} -d
-                sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-              ''
-            else
               ''
                 sudo ${gcCommand} --delete-older-than 3d && ${gcCommand} -d
               '';
@@ -123,13 +108,6 @@ in
           curgen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           gc-check = "nix-store --gc --print-roots | egrep -v \"^(/nix/var|/run/\\w+-system|\\{memory|/proc)\"";
           repair =
-            if pkgs.stdenv.hostPlatform.isDarwin then
-              ''
-                sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate off
-                nix-store --verify --check-contents --repair
-                sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-              ''
-            else
               ''
                 nix-store --verify --check-contents --repair
               '';
@@ -139,10 +117,7 @@ in
               sudo kill -9 "$pid" 2>/dev/null || true
             done
             ${
-              if pkgs.stdenv.hostPlatform.isDarwin then
-                "sudo launchctl kickstart -k system/org.nixos.nix-daemon"
-              else
-                "sudo systemctl restart nix-daemon.service"
+               "sudo systemctl restart nix-daemon.service"
             }
           '';
           flake = "nix flake";
@@ -162,11 +137,10 @@ in
           usage = "${getExe' pkgs.coreutils "du"} -ah -d1 | sort -rn 2>/dev/null";
 
           home = "cd ~";
-          ".." = "cd ..";
-          "..." = "cd ../..";
-          "...." = "cd ../../..";
-          "....." = "cd ../../../..";
-          "......" = "cd ../../../../..";
+          "cd ..." = "cd ../..";
+          "cd ...." = "cd ../../..";
+          "cd ....." = "cd ../../../..";
+          "cd ......" = "cd ../../../../..";
 
           dir = "${getExe' pkgs.coreutils "dir"} --color=auto";
           egrep = "${getExe' pkgs.gnugrep "egrep"} --color=auto";
@@ -174,9 +148,6 @@ in
           grep = "${getExe pkgs.gnugrep} --color=auto";
           vdir = "${getExe' pkgs.coreutils "vdir"} --color=auto";
 
-          clear = "clear && ${getExe config.programs.fastfetch.package}";
-          clr = "clear";
-          pls = "sudo";
           psg = "${getExe pkgs.ps} aux | grep";
           myip = "${getExe pkgs.curl} ifconfig.me";
 
