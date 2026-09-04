@@ -20,6 +20,7 @@ let
 
   themeApps = {
     catppuccin = [
+      "starship"
       "bat"
       "btop"
       "cava"
@@ -39,6 +40,7 @@ let
       "qt"
     ];
     nord = [
+      "starship"
       "ghostty"
       "helix"
       "kitty"
@@ -48,6 +50,7 @@ let
       "yazi"
     ];
     tokyonight = [
+      "starship"
       "alacritty"
       "bat"
       "btop"
@@ -82,8 +85,8 @@ in
 
     cursor = {
       name = mkOpt types.str "Bibata-Modern-Ice" "The name of the cursor theme to apply.";
-      package = mkOpt types.package pkgs.bibata-cursor-ice "The package to use for the cursor theme.";
-      size = mkOpt types.int 32 "The size of the cursor.";
+      package = mkOpt types.package pkgs.bibata-cursors "The package to use for the cursor theme.";
+      size = mkOpt types.int 24 "The size of the cursor.";
     };
 
     icon = {

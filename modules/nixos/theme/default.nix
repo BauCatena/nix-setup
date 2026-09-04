@@ -29,12 +29,12 @@ in
     cursor = {
       name = mkOpt (types.nullOr types.str) null "The name of the cursor theme to apply.";
       package = mkOpt types.package pkgs.emptyDirectory "The package to use for the cursor theme.";
-      size = mkOpt types.int 32 "The size of the cursor.";
+      size = mkOpt types.int 24 "The size of the cursor.";
     };
 
     icon = {
       name = mkOpt (types.nullOr types.str) null "The name of the icon theme to apply.";
-      package = mkOpt types.package pkgs.emptyDirectory "The package to use for the icon theme.";
+      package = mkOpt types.package pkgs.bibata-cursors "The package to use for the icon theme.";
     };
 
     package = mkOption {

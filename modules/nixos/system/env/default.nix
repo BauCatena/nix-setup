@@ -1,22 +1,78 @@
-{ ... }:
-
 {
-  environment.sessionVariables = {
-    XCURSOR_THEME = "Bibata-Modern-Ice";
-    XCURSOR_SIZE = "24";
-    NIXOS_OZONE_WL = "1";
-    MOZ_ENABLE_WAYLAND = "0";
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-    XDG_CURRENT_DESKTOP = "niri";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "niri";
+  config,
+  lib,
+
+  ...
+}:
+let
+  cfg = config.bautinix.system.env;
+in
+{
+  options.bautinix.system.env = lib.mkOption {
+    apply = lib.mapAttrs (
+      _n: v: if lib.isList v then lib.concatMapStringsSep ":" toString v else (toString v)
+    );
+    default = { };
+    description = "A set of environment variables to set.";
+    type =
+      with lib.types;
+      attrsOf (oneOf [
+        str
+        path
+        (listOf (either str path))
+      ]);
   };
 
-  environment.interactiveShellInit = ''
-    export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
-    if [ -z "''${KITTY_WINDOW_ID:-}" ] && [ "''${TERM:-}" = "xterm-kitty" ]; then
-      export TERM=xterm-256color
-    fi
-  '';
+  config = {
+    environment = {
+      extraInit = lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (n: v: /* bash */ ''
+          export ${n}="${v}"
+        '') cfg
+      );
+
+      extraOutputsToInstall = [
+        "bin"
+        "dev"
+        "doc"
+        "include"
+        "info"
+        "share"
+      ];
+
+      pathsToLink = [
+        "/bin"
+        "/doc"
+        "/etc"
+        "/info"
+        "/share"
+        "/share/doc"
+        "/usr/bin"
+      ];
+
+      variables =
+        let
+          pagerArgs = [
+            "--RAW-CONTROL-CHARS" # Only allow colors.
+            "--wheel-lines=5"
+            "--LONG-PROMPT"
+            "--no-vbell"
+            " --wordwrap" # Wrap lines at spaces.
+          ];
+        in
+        {
+          SYSTEMD_PAGERSECURE = "true";
+          PAGER = "less -FR";
+          LESS = lib.concatStringsSep " " pagerArgs;
+          SYSTEMD_LESS = lib.concatStringsSep " " (
+            pagerArgs
+            ++ [
+              "--quit-if-one-screen"
+              "--chop-long-lines"
+              "--no-init" # Keep content after quit.
+            ]
+          );
+        };
+    };
+  };
 }

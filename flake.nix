@@ -25,18 +25,36 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    yazi-flavors = {
+      url = "github:yazi-rs/flavors";
+      flake = false;
+    };
+
+    hyprfm = {
+      url = "github:soyeb-jim285/hyprfm";
+      flake = false;
+    };
+
+    tokyonight = {
+      flake = false;
+      url = "github:folke/tokyonight.nvim";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-parts, ... }:
-    let
-      lib = nixpkgs.lib.extend (final: prev: import ./lib { inherit inputs; });
-    in
-    flake-parts.lib.mkFlake {
-      inherit inputs;
-      specialArgs = { inherit lib; };
-    } {
+   outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+      ];
       imports = [
         ./flake
       ];
     };
-}
+  }

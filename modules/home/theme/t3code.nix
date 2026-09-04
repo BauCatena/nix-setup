@@ -17,6 +17,7 @@
   text,
   textMuted,
   warning,
+  ...
 }:
 {
   appearanceMode = appearance;
@@ -29,7 +30,7 @@
       ;
     collection = {
       id = "bautinix";
-      label = "Khanelinix";
+      label = "Bautinix";
     };
     colors = {
       inherit

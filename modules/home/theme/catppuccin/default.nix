@@ -87,6 +87,7 @@ let
     ./gtk.nix
     ./starship.nix
     ./qt.nix
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   options.bautinix.theme.catppuccin = {
@@ -228,7 +229,7 @@ let
             zsh-syntax-highlighting = enabled;
             # keep-sorted end
           }
-          // lib.optionalAttrs {
+          // lib.optionalAttrs ( true ) {
             foot = enabled;
             hyprland = mkIf config.bautinix.programs.graphical.wms.hyprland.enable {
               enable = true;

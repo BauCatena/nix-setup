@@ -76,7 +76,7 @@ in
           theme = {
             wallpaper = {
               theme = mkDefault "nord";
-              primary = mkDefault "arctic-landscape.png";
+              primary = mkDefault "nixos.png";
               secondary = mkDefault "Abstract-Nord.png";
               lock = mkDefault "Abstract-Nord.png";
               list = mkDefault [
@@ -94,6 +94,12 @@ in
               enable = true;
               theme = "nord";
 
+              cursor = {
+                name = "Bibata-Modern-Ice";
+                package = pkgs.bibata-cursors;
+                size = 24;
+              };
+
               icon = {
                 name = "Nordzy-dark";
                 package = pkgs.nordzy-icon-theme;
@@ -103,11 +109,6 @@ in
         };
 
         home = {
-          pointerCursor = {
-            enable = true;
-            inherit (config.bautinix.theme.gtk.cursor) name package size;
-          };
-
           sessionVariables = {
             CURSOR_THEME = config.bautinix.theme.gtk.cursor.name;
           };

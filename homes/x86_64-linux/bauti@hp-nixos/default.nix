@@ -5,9 +5,12 @@
   dotfiles,
   ...
 }:
+let
+  wallpaperCfg = config.bautinix.theme.wallpaper;
+  wallpaperPath = name: lib.bautinix.theme.wallpaperPath { inherit config pkgs name; };
+  wallpaperPaths = names: lib.bautinix.theme.wallpaperPaths { inherit config pkgs names; };
+in
 {
-  imports = [
-  ] ++ lib.file.importModulesRecursive ../../../modules/home;
 
   # 1. Native Home Manager options (Required)
   home.stateVersion = "26.05";
@@ -19,6 +22,17 @@
   };
   # 2. Your custom framework options
   bautinix = {
+
+    user = {
+      name = "bauti";
+      fullName = "Bautista";
+    };
+
+    theme = {
+        stylix.enable = true;
+        nord.enable = true;
+      };
+
       roles = {
         desktop.enable = true;
       };

@@ -10,11 +10,6 @@
     ];
 
   bautinix = {
-    user = {
-      name = "bauti";
-      fullName = "Bautista";
-    };
-
     nix.enable = true;
 
     archetypes = {
@@ -25,7 +20,10 @@
           enable = true;
           theme = "nord";
         };
-      nord.enable = true;
+      nord = {
+        enable = true;
+        variant.type = "default";
+      };
     };
     suites = {
         common.enable = true;

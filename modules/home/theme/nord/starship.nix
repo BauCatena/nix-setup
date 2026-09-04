@@ -10,13 +10,14 @@ in
 {
   config = lib.mkIf cfg.enable {
     programs.starship = {
-      settings = {
-        format = "$directory[](fg:${nord.palette.nord9.hex} bg:${nord.palette.nord3.hex})$git_branch$git_status[](fg:${nord.palette.nord3.hex} bg:${nord.palette.nord2.hex})$nodejs$bun$rust$golang$php[](fg:${nord.palette.nord2.hex} bg:${nord.palette.nord1.hex})$time[ ](fg:${nord.palette.nord1.hex}\n$character";
+      enable = true;
+      settings = lib.mkForce {
+        format = "$username$hostname[](bg:${nord.palette.nord9.hex} fg:${nord.palette.nord10.hex})$directory[](fg:${nord.palette.nord9.hex} bg:${nord.palette.nord3.hex})$git_branch$git_status[](fg:${nord.palette.nord3.hex} bg:${nord.palette.nord2.hex})$nodejs$bun$rust$golang$php[](fg:${nord.palette.nord2.hex} bg:${nord.palette.nord1.hex})$time[ ](fg:${nord.palette.nord1.hex})\n$character";
 
         directory = {
           style = "fg:${nord.palette.nord4.hex} bg:${nord.palette.nord9.hex}";
-          format = "[ $path ]($style)";
-          truncation_length = 3;
+          format = "[  $path  ]($style)";
+          truncation_length = 4;
           truncation_symbol = "…/";
           substitutions = {
             "Documents" = "󰈙 ";
@@ -26,10 +27,24 @@ in
           };
         };
 
+        hostname = {
+          ssh_only = false;
+          disabled = false;
+          style = "bg:${nord.palette.nord10.hex} fg:${nord.palette.nord4.hex}";
+          format = "[@$hostname  ]($style)";
+        };
+
+        username = {
+          show_always = true;
+          disabled = false;
+          style_user = "bg:${nord.palette.nord10.hex} fg:${nord.palette.nord4.hex}";
+          format = "[    $user]($style)";
+        };
+
         git_branch = {
           symbol = "";
           style = "bg:${nord.palette.nord3.hex}";
-          format = "[[ $symbol $branch ](fg:${nord.palette.nord9.hex} bg:${nord.palette.nord3.hex})]($style)";
+          format = "[[  $symbol  ](fg:${nord.palette.nord9.hex} bg:${nord.palette.nord3.hex})]($style)";
         };
 
         git_status = {
@@ -68,7 +83,7 @@ in
         };
 
         time = {
-          disabled = false;
+          disabled = true;
           time_format = "%R";
           style = "bg:${nord.palette.nord1.hex}";
         };

@@ -25,10 +25,12 @@ in
         name = gtkThemeName;
         package = pkgs.nordic;
       };
-      iconTheme = {
-        name = "Nordzy-dark";
-        package = pkgs.nordzy-icon-theme;
+      cursorTheme = {
+        name = "Bibata-Modern-Ice";
+        package = pkgs.bibata-cursors;
+        size = 24;
       };
     };
+
   };
 }

@@ -68,6 +68,26 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786696832,
+        "narHash": "sha256-wjdfX+jCJCJsteGD75xEfsDR3yATFFEx4mwelhlDXdU=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "35d78c213b65e38789bcb359aae2380fcb4dc3e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1787326676,
@@ -230,6 +250,22 @@
         "type": "github"
       }
     },
+    "hyprfm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788214579,
+        "narHash": "sha256-XLtuK4sTfYuKUKKmR7B1FI+RY0SCNVwZ6Ifhn0PVL2E=",
+        "owner": "soyeb-jim285",
+        "repo": "hyprfm",
+        "rev": "c0287fe6666add4e794a67db24e8dc97d0c563a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soyeb-jim285",
+        "repo": "hyprfm",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -354,13 +390,17 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "fast-nix-gc": "fast-nix-gc",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "hyprfm": "hyprfm",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "tokyonight": "tokyonight",
+        "yazi-flavors": "yazi-flavors"
       }
     },
     "rust-overlay": {
@@ -517,6 +557,22 @@
         "type": "github"
       }
     },
+    "tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774363414,
+        "narHash": "sha256-a9iRWue7DB7s/wNdxqqB51Jya5P9X6sDftqhdmKggU0=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "type": "github"
+      }
+    },
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
@@ -535,6 +591,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "yazi-flavors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787401728,
+        "narHash": "sha256-NGnfrQdsnQITKCZ0oh6DCxeCR2ozJoPAZetsi3ghHAI=",
+        "owner": "yazi-rs",
+        "repo": "flavors",
+        "rev": "20b47bfd78880c2674899597fd26bc01b21ff48c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yazi-rs",
+        "repo": "flavors",
         "type": "github"
       }
     }

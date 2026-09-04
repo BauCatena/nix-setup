@@ -12,6 +12,8 @@ in
 
   config = mkIf cfg.enable {
 
+    environment.systemPackages = with pkgs; [ bibata-cursors ];
+
     bautinix = {
       programs = {
         graphical = {

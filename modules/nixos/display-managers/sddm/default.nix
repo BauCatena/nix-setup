@@ -21,9 +21,18 @@ config = mkIf cfg.enable {
           sddm = {
             enable = true;
             wayland.enable = true;
+
+            setupScript = ''
+              ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
+              Xcursor.theme: Bibata-Modern-Classic
+              Xcursor.size: 24
+              EOF
+              '';
           };
-          sessionPackages = lib.mkForce[ pkgs.niri ];
           defaultSession = "niri";
+
+          sessionPackages = [ pkgs.niri ];
+
         };
       };
   };

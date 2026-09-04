@@ -35,7 +35,6 @@ in
         git
         zsh
         neovim
-        yazi
         netcat
         util-linux
         rsync

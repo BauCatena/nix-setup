@@ -67,7 +67,7 @@ pad=4x4 center
 [colors-dark]
  alpha=0.95
  foreground=d8dee9
- background=151619
+ background=191919
  regular0=384252  # black
  regular1=bf616a  # red
  regular2=a3be8c  # green
@@ -122,9 +122,6 @@ urls=0087bd
 # minimize=none
 # maximize=none
 # fullscreen=none
-# pipe-visible=[sh -c "xurls | fuzzel | xargs -r firefox"] none
-# pipe-scrollback=[sh -c "xurls | fuzzel | xargs -r firefox"] none
-# pipe-selected=[xargs -r firefox] none
 # show-urls-launch=Control+Shift+u
 # show-urls-copy=none
 

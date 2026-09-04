@@ -33,6 +33,11 @@ switch-events {
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+cursor {
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 24
+}
+
 gestures {
     // Native: 4-finger vertical swipe → overview (Super+Space also toggles).
     // Pinch-out (zoom out) → overview via libinput-gestures (see ~/.config/libinput-gestures.conf).

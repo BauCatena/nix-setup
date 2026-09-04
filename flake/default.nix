@@ -7,6 +7,9 @@ in
     ../lib
     ./home.nix
     ./config.nix
+    ./packages.nix
+    ./overlays.nix
+    ./docs.nix
     inputs.flake-parts.flakeModules.partitions
   ];
 

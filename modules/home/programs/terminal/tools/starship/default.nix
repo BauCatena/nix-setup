@@ -10,20 +10,26 @@ in
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
-      settings = {
-        format = "$directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$nodejs$bun$rust$golang$php[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)\n$character";
+      settings = lib.mkDefault {
+        format = " $username $hostname [] $directory[](fg:#769ff0 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$nodejs$bun$rust$golang$php[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)\n$character";
 
         directory = {
           style = "fg:#e3e5e5 bg:#769ff0";
           format = "[ $path ]($style)";
-          truncation_length = 3;
-          truncation_symbol = "…/";
+          truncation_length = 4;
           substitutions = {
             "Documents" = "󰈙 ";
             "Downloads" = " ";
             "Music" = " ";
             "Pictures" = " ";
           };
+        };
+        username = {
+          format = "[$user]($style)";
+        };
+
+        hostname = {
+          format = "@[$hostname]($style)";
         };
 
         git_branch = {

@@ -31,9 +31,10 @@ in
         name = hostname;
         value = self.lib.system.mkSystem {
           inherit inputs system hostname;
-          username = "khaneliman";
+          username = "bauti";
           nixosModules = allNixosModules;
           matchingHomes = matchingHomes system hostname;
+          overlays = builtins.attrValues self.overlays;
         };
       }
     ) (filterNixOSSystems allSystems);

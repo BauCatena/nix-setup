@@ -20,6 +20,7 @@ in
   imports = [
     ./gtk.nix
     ./qt.nix
+    inputs.catppuccin.nixosModules.catppuccin
   ];
 
   options.bautinix.theme.catppuccin = {
