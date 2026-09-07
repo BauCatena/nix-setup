@@ -49,7 +49,7 @@ in
         };
       };
       services = {
-        awww.enable = false;
+        awww.enable = true;
       };
       system = { xdg.enable = true; };
     };

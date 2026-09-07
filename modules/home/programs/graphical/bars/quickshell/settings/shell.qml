@@ -1934,20 +1934,41 @@ ShellRoot {
         }
     }
 
-    Item {
-        id: wallpaperHost
-        property bool pendingOpen: false
-        property alias loader: wallpaperLazy
-        LazyLoader {
-            id: wallpaperLazy
-            active: wallpaperHost.pendingOpen || (item && (item.show || item.animHeight > 36))
-            onActiveChanged: { if (active && wallpaperHost.pendingOpen && item) item.show = true }
-            WallpaperSwitcher {
-                shellRoot: root
-                onShowChanged: if (!show) wallpaperHost.pendingOpen = false
+Item {
+    id: wallpaperHost
+    property bool pendingOpen: false
+    property bool keepOpen: false   // mirrors item state, but isn't a live binding to item
+    property alias loader: wallpaperLazy
+
+    LazyLoader {
+        id: wallpaperLazy
+        // only depends on plain bools on wallpaperHost — no reference to `item`
+        active: wallpaperHost.pendingOpen || wallpaperHost.keepOpen
+
+        onActiveChanged: {
+            if (active && wallpaperHost.pendingOpen && item) {
+                item.show = true
+            }
+            if (!active) {
+                wallpaperHost.pendingOpen = false
+                wallpaperHost.keepOpen = false
+            }
+        }
+
+        WallpaperSwitcher {
+            id: wallpaperSwitcher
+            shellRoot: root
+
+            onShowChanged: {
+                if (!show) wallpaperHost.pendingOpen = false
+                wallpaperHost.keepOpen = show || animHeight > 36
+            }
+            onAnimHeightChanged: {
+                wallpaperHost.keepOpen = show || animHeight > 36
             }
         }
     }
+}
 
     Item {
         id: wifiHost

@@ -39,11 +39,12 @@ PanelWindow {
     }
 
     function applyCurrent() {
-        var path = currentPath();
-        if (!path) return;
-        pExec.command = [scriptsPath + "/set_wallpaper.sh", path];
-        pExec.running = true;
-        show = false;
+      if (pExec.running) { console.log("[set_wallpaper] already running, ignoring"); return; }
+      var path = currentPath();
+      if (!path) return;
+      pExec.command = [scriptsPath + "/set_wallpaper.sh", path];
+      pExec.running = true;
+      show = false;
     }
 
     function moveGallery(delta) {
@@ -107,7 +108,11 @@ PanelWindow {
         onStarted: { wallpapers = []; }
     }
 
-    Process { id: pExec }
+    Process {
+        id: pExec
+        stdout: SplitParser { onRead: data => console.log("[wallpaper]", data) }
+        stderr: SplitParser { onRead: data => console.log("[wallpaper][err]", data) }
+    }
 
     Item {
         anchors.fill: parent

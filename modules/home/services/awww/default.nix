@@ -22,6 +22,7 @@ in
       Service = {
         ExecStart = "${pkgs.awww}/bin/awww-daemon";
         Restart = "on-failure";
+        RestartSec = "1";
       };
 
       Install = {
