@@ -1,4 +1,5 @@
 return {
-    "calops/hmts.nvim",
-    version = "*",
+  "calops/hmts.nvim",
+  version = "*",
+  enabled = false,
 }

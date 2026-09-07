@@ -18,7 +18,7 @@ in
       fg = nord.palette.nord13.hex;
       bold = true;
       italic = true;
-      underline = true;
+      reversed = true;
     };
     find_position = {
       fg = nord.palette.nord15.hex;
@@ -77,6 +77,33 @@ in
       fg = nord.palette.nord7.hex;
       bg = nord.palette.nord1.hex;
     };
+    sep_outer = {
+      open = "▐";
+      close = "";
+    };
+    sep_inner = {
+      open = "▐";
+      close = "";
+    };
+
+  };
+
+  indicator = {
+
+    parent = {
+      reversed = true;
+    };
+
+    preview = {
+      dim = true;
+      underline = true;
+    };
+
+    padding = {
+      open = "▐";
+      close = "";
+    };
+
   };
 
   mode = {
@@ -110,6 +137,15 @@ in
   };
 
   status = {
+   sep_right = {
+      open = "";
+      close = "▌";
+    };
+   sep_left = {
+      open = "▐";
+      close = "";
+    };
+
     perm_sep = {
       fg = nord.palette.nord3.hex;
     };
@@ -182,7 +218,7 @@ in
     };
     hovered = {
       fg = nord.palette.nord15.hex;
-      underline = true;
+      reversed = true;
     };
   };
 

@@ -10,11 +10,14 @@ in
   };
 
   config = mkIf cfg.enable {
+
     home.packages = with pkgs; [
       neovim
       pyright            # Provides `pyright-langserver`
       lua-language-server # Provides `lua-language-server`
       gcc
+      luarocks
+      lazygit
     ];
 
     xdg.configFile."nvim" = {

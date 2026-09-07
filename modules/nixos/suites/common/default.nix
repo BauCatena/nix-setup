@@ -21,7 +21,7 @@ in
 
     environment = {
 
-      # defaultPackages = lib.mkForce [ ];
+       defaultPackages = lib.mkForce [ ];
 
       systemPackages = with pkgs; [
         coreutils
@@ -42,11 +42,14 @@ in
         btop
         tldr
     	  tree
+        nix-ld
         unzip
         wget
         xclip
       ];
     };
+
+    programs.nix-ld.enable = true;
 
     bautinix = {
       programs = {

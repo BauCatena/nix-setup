@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hostname, ... }:
+{ config, lib, pkgs, inputs, hostname, ... }:
 let
   inherit (lib) mkIf mkDefault;
 
@@ -11,22 +11,23 @@ in
 
   config = mkIf cfg.enable {
 
-  bautinix.suites.desktop.enable = true;
-
     bautinix = {
         programs = {
           terminal = {
             tools = {
-              aircrack-ng.enable = true;  # NOTE add a if bluetooth or wireless is enable, also enable this to avoid unnecesary pc pkgs.
+              aircrack-ng = mkIf config.bautinix.hardware.bluetooth.enable {
+                enable = true;
+              };
               bettercap.enable = true;
               hashcat.enable = true;
               metasploit.enable = true;
               nmap.enable = true;
               snort.enable = true;
               tcpdump.enable = true;
+              macchanger.enable = true;
             };
           };
-          graphical = { # Enable when desktop = true
+          graphical = mkIf config.bautinix.suites.desktop.enable {
             apps = {
               wireshark.enable = true;
               burpsuite.enable = true;
