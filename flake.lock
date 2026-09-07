@@ -251,7 +251,13 @@
       }
     },
     "hyprfm": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quill": "quill",
+        "quill-icons": "quill-icons"
+      },
       "locked": {
         "lastModified": 1788214579,
         "narHash": "sha256-XLtuK4sTfYuKUKKmR7B1FI+RY0SCNVwZ6Ifhn0PVL2E=",
@@ -385,6 +391,40 @@
       "original": {
         "owner": "cachix",
         "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
+    "quill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787841127,
+        "narHash": "sha256-OhtKC8pL2tABEpvIo+DJUlXXz7wuVvxGA84FRW8aVaY=",
+        "owner": "soyeb-jim285",
+        "repo": "quill",
+        "rev": "ad1785f108ea47b8950cbebcd6dd557ce84e4879",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soyeb-jim285",
+        "repo": "quill",
+        "rev": "ad1785f108ea47b8950cbebcd6dd557ce84e4879",
+        "type": "github"
+      }
+    },
+    "quill-icons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776191081,
+        "narHash": "sha256-ezwie0hSHNT0m65dgTgwwh16vfb/vAshcNaccQChnzM=",
+        "owner": "soyeb-jim285",
+        "repo": "quill-icons",
+        "rev": "10db5facf6a560e60d2693ccd1909267ef436002",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soyeb-jim285",
+        "repo": "quill-icons",
+        "rev": "10db5facf6a560e60d2693ccd1909267ef436002",
         "type": "github"
       }
     },

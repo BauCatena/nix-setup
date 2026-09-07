@@ -8,7 +8,7 @@ binds {
     Super+Shift+F { fullscreen-window; }
     Super+Shift+Space { spawn-sh "$HOME/.config/niri/scripts/float_center.sh"; }
 
-    Super+E { spawn-sh "$HOME/.config/niri/scripts/yazi.sh"; }
+    Super+E { spawn-sh "$HOME/.config/niri/scripts/run.sh hyprfm"; }
     Super+B { spawn-sh "$HOME/.config/niri/scripts/run.sh firefox"; }
     Super+R repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_app_launcher.sh"; }
     Super+D repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/open_app_launcher.sh"; }

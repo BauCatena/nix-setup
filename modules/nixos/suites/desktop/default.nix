@@ -22,6 +22,9 @@ in
             brightnessctl.enable = true;
             polkit_gnome.enable = true;
           };
+          apps = {
+            hyprfm.enable = true;
+          };
           wms = {
             niri.enable = true;
           };

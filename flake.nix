@@ -33,12 +33,13 @@
 
     yazi-flavors = {
       url = "github:yazi-rs/flavors";
+      inputs.nixpkgs.follows = "nixpkgs";
       flake = false;
     };
 
     hyprfm = {
       url = "github:soyeb-jim285/hyprfm";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     tokyonight = {
