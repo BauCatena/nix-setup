@@ -65,7 +65,7 @@ in
       };
 
       Fonts = {
-        fixed = mkOpt types.str ''"${fontCfg.monaspace.families.krypton},12"'' "Fixed font type";
+        fixed = mkOpt types.str ''"${fontCfg.sans},12"'' "Fixed font type";
         general = mkOpt types.str ''"Lexend,12"'' "General font type";
       };
 

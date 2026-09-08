@@ -2,10 +2,10 @@
 let
   inherit (lib) mkIf mkEnableOption mkOption types;
 
-  cfg = config.bautinix.system.fonts;
+  cfg = config.bautinix.fonts;
 in
 {
-  options.bautinix.system.fonts = {
+  options.bautinix.fonts = {
     enable = mkEnableOption "Enable system font configuration";
     packages = mkOption {
       type = types.listOf types.package;
@@ -13,6 +13,9 @@ in
       description = "List of font packages to install system-wide.";
     };
   };
+   imports = [
+    (lib.getFile "modules/common/fonts/default.nix")
+  ];
 
   config = mkIf cfg.enable {
     fonts = {

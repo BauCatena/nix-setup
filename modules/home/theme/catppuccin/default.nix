@@ -16,7 +16,6 @@ let
     ;
 
   inherit (lib.bautinix) disabled enabled;
-  inherit (inputs) yazi-flavors;
 
   cfg = config.bautinix.theme.catppuccin;
 
@@ -385,23 +384,6 @@ let
               end
             '';
 
-            yazi = {
-              flavors = {
-                dark = "${yazi-flavors}/catppuccin-macchiato.yazi";
-                light = "${yazi-flavors}/catppuccin-latte.yazi";
-              };
-              theme = lib.mkForce (
-                {
-                  flavor = {
-                    dark = "dark";
-                    light = "light";
-                  };
-                }
-                // (import ./yazi/filetype.nix)
-                // (import ./yazi/manager.nix)
-                // (import ./yazi/theme.nix)
-              );
-            };
           };
 
           xdg.configFile = mkMerge [

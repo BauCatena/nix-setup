@@ -22,14 +22,14 @@
         };
       nord = {
         enable = true;
-        variant.type = "default";
+        variant = "default";
       };
     };
     suites = {
         common.enable = true;
         desktop.enable = true;
         cibersecurity.enable = true;
-      };
+    };
 
     system = {
 
@@ -47,7 +47,7 @@
       networking = {
         enable = true;
         optimizeTcp = true;      # BBR congestion control & TCP hardening
-        manager = "networkmanager"; # Or keep NetworkManager if preferred
+        manager = "networkmanager";
       };
 
       xkb.enable = true;

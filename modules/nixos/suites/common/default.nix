@@ -19,38 +19,6 @@ in
         sleep = 100; # ms between scans (lower = more aggressive dedup, slightly more CPU)
      };
 
-    environment = {
-
-       defaultPackages = lib.mkForce [ ];
-
-      systemPackages = with pkgs; [
-        coreutils
-        curl
-        fd
-        file
-        findutils
-        killall
-        lsof
-        pciutils
-        git
-        zsh
-        neovim
-        netcat
-        util-linux
-        rsync
-        dnsutils
-        btop
-        tldr
-    	  tree
-        nix-ld
-        unzip
-        wget
-        xclip
-      ];
-    };
-
-    programs.nix-ld.enable = true;
-
     bautinix = {
       programs = {
         terminal = {
@@ -88,8 +56,8 @@ in
 
       system = {
         hostname.enable = mkDefault true; # it worked
-        fonts.enable = mkDefault true;
       };
+      fonts.enable = mkDefault true;
     };
   };
 }

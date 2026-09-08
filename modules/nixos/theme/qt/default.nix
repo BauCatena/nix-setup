@@ -19,8 +19,7 @@ let
   qtctFormat = pkgs.formats.ini {
     listToValue = values: concatStringsSep ", " values;
   };
-
-  # Elevated Qt apps cannot read the user's Home Manager theme files.
+   # Elevated Qt apps cannot read the user's Home Manager theme files.
   qtctSettings = {
     Appearance = {
       custom_palette = false;
@@ -30,7 +29,7 @@ let
     };
 
     Fonts = {
-      fixed = ''"${fontCfg.monaspace.families.krypton},12"'';
+      fixed = ''"${fontCfg.sans},12"'';
       general = ''"Lexend,12"'';
     };
 
@@ -95,8 +94,7 @@ in
           cfg.theme.package
           qt6Packages.qtstyleplugin-kvantum
           systemKvantumQt5
-        ]
-        ++ lib.optional config.bautinix.suites.wlroots.enable kdePackages.qtwayland;
+        ];
     };
 
     qt = {

@@ -37,6 +37,7 @@ in
 
     services = {
       displayManager = {
+
         inherit (cfg) defaultSession;
         gdm = {
           # GDM documentation

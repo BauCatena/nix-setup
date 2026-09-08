@@ -1,8 +1,8 @@
 { config, lib, pkgs, osConfig ? { }, ... }:
 let
   cfg = config.bautinix.programs.terminal.tools.tmux;
-  seshCfg = config.khanelinix.programs.terminal.tools.sesh;
-  userShell = lib.attrByPath [ "users" "users" config.khanelinix.user.name "shell" ] (lib.attrByPath [
+  seshCfg = config.bautinix.programs.terminal.tools.sesh;
+  userShell = lib.attrByPath [ "users" "users" config.bautinix.user.name "shell" ] (lib.attrByPath [
     "home"
     "sessionVariables"
     "SHELL"

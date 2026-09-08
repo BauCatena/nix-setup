@@ -68,6 +68,14 @@ in
   };
 
   tabs = {
+    sep_outer = {
+     open = "▐";
+     close = "";
+    };
+    sep_inner = {
+      open = "▐";
+      close = "";
+    };
     active = {
       fg = nord.palette.nord0.hex;
       bg = nord.palette.nord7.hex;
@@ -77,19 +85,13 @@ in
       fg = nord.palette.nord7.hex;
       bg = nord.palette.nord1.hex;
     };
-    sep_outer = {
-      open = "▐";
-      close = "";
-    };
-    sep_inner = {
-      open = "▐";
-      close = "";
-    };
-
   };
 
   indicator = {
-
+    padding = {
+      open = "▐";
+      close = "";
+    };
     parent = {
       reversed = true;
     };
@@ -98,12 +100,6 @@ in
       dim = true;
       underline = true;
     };
-
-    padding = {
-      open = "▐";
-      close = "";
-    };
-
   };
 
   mode = {
@@ -137,7 +133,7 @@ in
   };
 
   status = {
-   sep_right = {
+    sep_right = {
       open = "";
       close = "▌";
     };
@@ -145,7 +141,6 @@ in
       open = "▐";
       close = "";
     };
-
     perm_sep = {
       fg = nord.palette.nord3.hex;
     };

@@ -6,7 +6,7 @@ let
 in
 {
   options.bautinix.suites.desktop = {
-    enable = lib.mkEnableOption "desktop terminal suite";
+    enable = lib.mkEnableOption "desktop suite";
   };
 
   config = mkIf cfg.enable {
@@ -18,7 +18,6 @@ in
         terminal = {
           tools = {
             cava.enable = true;
-            cmatrix.enable = true;
           };
           emulators = {
             foot.enable = true;

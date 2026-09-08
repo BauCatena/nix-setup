@@ -1,0 +1,3 @@
+[submodule "modules/home/programs/graphical/desktops/plasma/settings"]
+	path = modules/home/programs/graphical/desktops/plasma/settings
+	url = https://github.com/p-connor/plasma-drawer.git

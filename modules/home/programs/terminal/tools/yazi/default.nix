@@ -63,6 +63,7 @@ in
       // lib.optionalAttrs config.bautinix.theme.catppuccin.enable {
         inherit (pkgs.yaziPlugins) yatline-catppuccin;
       };
+
     };
   };
 }

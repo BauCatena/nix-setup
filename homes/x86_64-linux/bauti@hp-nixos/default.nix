@@ -36,5 +36,8 @@ in
       roles = {
         desktop.enable = true;
       };
+    suites = {
+      candy.enable = true;
+    };
   };
 }
