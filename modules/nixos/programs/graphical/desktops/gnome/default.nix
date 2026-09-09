@@ -16,11 +16,11 @@ let
     mkOpt
     ;
 
-  cfg = config.bautinix.programs.graphical.desktop.gnome;
+  cfg = config.bautinix.programs.graphical.desktops.gnome;
   gdmHome = config.users.users.gdm.home;
 in
 {
-  options.bautinix.programs.graphical.desktop.gnome = with types; {
+  options.bautinix.programs.graphical.desktops.gnome = with types; {
     enable = lib.mkEnableOption "using Gnome as the desktop environment";
     color-scheme = mkOpt (enum [
       "light"

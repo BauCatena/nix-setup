@@ -12,7 +12,7 @@ input {
         natural-scroll
         tap
     }
-
+    focus-follows-mouse
     mod-key "Super"
 }
 

@@ -76,7 +76,7 @@ in
           theme = {
             wallpaper = {
               theme = mkDefault "nord";
-              primary = mkDefault "nixos.png";
+              primary = mkDefault "ign-0011.png";
               secondary = mkDefault "Abstract-Nord.png";
               lock = mkDefault "Abstract-Nord.png";
               list = mkDefault [
@@ -85,7 +85,6 @@ in
                 "Minimal-Nord.png"
                 "arctic-landscape.png"
                 "chemical_nord.png"
-                "ign-0001.png"
                 "ign-0011.png"
                 "nixos.png"
               ];

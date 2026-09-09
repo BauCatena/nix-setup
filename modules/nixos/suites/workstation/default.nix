@@ -12,13 +12,12 @@ in
   config = mkIf cfg.enable {
     bautinix = lib.mkForce {
       display-managers = {
-        gdm.enable = true;
-        sddm.enable = false;
+        sddm.enable = true;
       };
       programs = {
         graphical = {
-          desktop = {
-            gnome  = {
+          desktops = {
+            plasma  = {
               enable = true;
             };
           };

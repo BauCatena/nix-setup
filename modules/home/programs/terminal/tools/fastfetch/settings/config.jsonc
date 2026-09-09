@@ -5,48 +5,111 @@
     "preserveAspectRatio": true,
     "padding": {
       "top": 0,
-      "left": 0
+      "left": 0,
     },
     "color": {
-        "1": "#5b87b0",
-        "2": "#89d5e0",
-        "3": "#5b87b0",
-        "4": "#89d5e0",
-        "5": "#5b87b0", 
-        "6": "#89d5e0" 
-    }
+      "1": "#5b87b0",
+      "2": "#89d5e0",
+      "3": "#5b87b0",
+      "4": "#89d5e0",
+      "5": "#5b87b0",
+      "6": "#89d5e0",
+    },
   },
   "display": {
     "separator": " ",
-    "color": { "keys": "white", "title": "white" }
+    "color": { "keys": "white", "title": "white" },
   },
   "modules": [
-    "title",
-    { "type": "separator", "string": "━━━━━━━━━━━━━━━" },
-
-    // --- RAMO OS ---
-    { "type": "custom", "format": " OS", "outputColor": "white" },
-    { "type": "kernel",   "key": " ├─ 󰒋", "keyColor": "white" },
-    { "type": "uptime",   "key": " ├─ 󱎫", "keyColor": "white" },
-    { "type": "shell",    "key": " └─ 󰈺", "keyColor": "white" },
-
     "break",
+    { "type": "custom", "format": "{##727272}{{" },
+    {
+      "type": "os",
+      "key": "  {##575757}system.{##7E97AB}os         {##727272}= ",
+      "format": "{##88afa2}\"{name} {version} ({codename})\"{##727272};",
+    },
 
-    // --- RAMO WM ---
-    { "type": "custom", "format": "󱂬 WM", "outputColor": "white" },
-    { "type": "wm",       "key": " ├─ 󱂬", "keyColor": "white" },
-    { "type": "terminal", "key": " └─ 󰆍", "keyColor": "white" },
-
+    {
+      "type": "locale",
+      "key": "  {##575757}system.{##7E97AB}locale     {##727272}= ",
+      "format": "{##88afa2}\"{result}\"{##727272};",
+    },
+    {
+      "type": "uptime",
+      "key": "  {##575757}system.{##7E97AB}uptime     {##727272}= ",
+      "format": "{##88afa2}\"{days} days, {hours} hours, {minutes} mins\"{##727272};",
+    },
     "break",
+    {
+      "type": "cpu",
+      "key": "  {##575757}hardware.{##7E97AB}cpu      {##727272}= ",
+      "format": "{##88afa2}\"{name} ({cores-logical}) @ {freq-max}\"{##727272};",
+    },
+    {
+      "type": "gpu",
+      "key": "  {##575757}hardware.{##7E97AB}gpu      {##727272}= ",
+      "format": "{##88afa2}\"{name}\"{##727272};",
+    },
+    // The <10/>9 field widths pin the `#` comment column: fastfetch renders a
+    // size as a bare integer once it fits in the base prefix ("0 B" vs
+    // "5.49 GiB"), so any spacing tuned against the current values drifts as
+    // soon as a figure crosses a prefix or a digit boundary.
+    {
+      "type": "memory",
+      "key": "  {##575757}hardware.{##7E97AB}ram      {##727272}= ",
+      "format": "{##88afa2}\"{used<10} / {total>9}\"{##727272};  {##575757}# {percentage}",
+    },
 
-    // --- RAMO PC ---
-    { "type": "custom", "format": "󰌢 PC", "outputColor": "white" },
-    { "type": "host",     "key": " ├─ 󰌢", "keyColor": "white" },
-    { "type": "cpu",      "key": " ├─ 󰻠", "keyColor": "white" },
-    { "type": "gpu",      "key": " ├─ 󰢮", "keyColor": "white" },
-    { "type": "memory",   "key": " ├─ 󰍛", "keyColor": "white" },
-    { "type": "swap",     "key": " ├─ 󰓡", "keyColor": "white" },
-    { "type": "disk",     "key": " ├─ 󰋊", "keyColor": "white" },
-    { "type": "battery",  "key": " └─ 󰁹", "keyColor": "white" }
-  ]
+    {
+      "type": "disk",
+      "folders": "/",
+      "key": "  {##575757}hardware.{##7E97AB}disk0    {##727272}= ",
+      "format": "{##88afa2}\"{size-used<10} / {size-total>9}\"{##727272};  {##575757}# {size-percentage}",
+    },
+    {
+      "type": "disk",
+      "folders": "/srv/media",
+      "key": "  {##575757}hardware.{##7E97AB}disk1    {##727272}= ",
+      "format": "{##88afa2}\"{size-used<10} / {size-total>9}\"{##727272};  {##575757}# {size-percentage}",
+    },
+    "break",
+    {
+      "type": "de",
+      "key": "  {##575757}desktop.{##7E97AB}de        {##727272}= ",
+      "format": "{##88afa2}\"{pretty-name} {version}\"{##727272};",
+    },
+    {
+      "type": "wm",
+      "key": "  {##575757}desktop.{##7E97AB}wm        {##727272}= ",
+      "format": "{##88afa2}\"{pretty-name} ({protocol-name})\"{##727272};",
+    },
+    {
+      "type": "display",
+      "key": "  {##575757}desktop.{##7E97AB}display   {##727272}= ",
+      "format": "{##88afa2}\"{width}x{height} @ {refresh-rate}Hz\"{##727272};",
+    },
+    {
+      "type": "localip",
+      "key": "  {##575757}desktop.{##7E97AB}localIp   {##727272}= ",
+      "format": "{##88afa2}\"{ipv4}\"{##727272};",
+    },
+    "break",
+    {
+      "type": "shell",
+      "key": "  {##575757}terminal.{##7E97AB}shell    {##727272}= ",
+      "format": "{##88afa2}\"{pretty-name} {version}\"{##727272};",
+    },
+    {
+      "type": "terminal",
+      "key": "  {##575757}terminal.{##7E97AB}term     {##727272}= ",
+      "format": "{##88afa2}\"{pretty-name}\"{##727272};",
+    },
+    {
+      "type": "packages",
+      "key": "  {##575757}terminal.{##7E97AB}packages {##727272}= ",
+      "format": "{##727272}[ {##88afa2}\"{nix-system} nix-system\" \"{nix-user} nix-user\"{##727272} ];",
+    },
+    { "type": "custom", "format": "{##727272}}" },
+    "break",
+  ],
 }

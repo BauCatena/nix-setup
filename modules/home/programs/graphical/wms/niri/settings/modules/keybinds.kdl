@@ -64,15 +64,15 @@ binds {
     Super+Up { focus-window-up; }
     Super+Down { focus-window-down; }
 
-    Super+Shift+Left { move-column-left; }
-    Super+Shift+Right { move-column-right; }
-    Super+Shift+Up { move-window-up; }
-    Super+Shift+Down { move-window-down; }
+    Super+Ctrl+Left { move-column-left; }
+    Super+Ctrl+Right { move-column-right; }
+    Super+ctrl+Up { move-window-up; }
+    Super+Ctrl+Down { move-window-down; }
 
-    Alt+Right repeat=true { set-column-width "+30"; }
-    Alt+Left repeat=true { set-column-width "-30"; }
-    Alt+Up repeat=true { set-window-height "-30"; }
-    Alt+Down repeat=true { set-window-height "+30"; }
+    Super+Shift+Right repeat=true { set-column-width "+30"; }
+    Super+Shift+Left repeat=true { set-column-width "-30"; }
+    Super+Shift+Up repeat=true { set-window-height "-30"; }
+    Super+Shift+Down repeat=true { set-window-height "+30"; }
 
     Super+1 { focus-workspace 1; }
     Super+2 { focus-workspace 2; }
@@ -85,16 +85,16 @@ binds {
     Super+9 { focus-workspace 9; }
     Super+0 { focus-workspace 10; }
 
-    Super+Shift+1 { move-window-to-workspace 1; }
-    Super+Shift+2 { move-window-to-workspace 2; }
-    Super+Shift+3 { move-window-to-workspace 3; }
-    Super+Shift+4 { move-window-to-workspace 4; }
-    Super+Shift+5 { move-window-to-workspace 5; }
-    Super+Shift+6 { move-window-to-workspace 6; }
-    Super+Shift+7 { move-window-to-workspace 7; }
-    Super+Shift+8 { move-window-to-workspace 8; }
-    Super+Shift+9 { move-window-to-workspace 9; }
-    Super+Shift+0 { move-window-to-workspace 10; }
+    Super+Ctrl+1 { move-window-to-workspace 1; }
+    Super+Ctrl+2 { move-window-to-workspace 2; }
+    Super+Ctrl+3 { move-window-to-workspace 3; }
+    Super+Ctrl+4 { move-window-to-workspace 4; }
+    Super+Ctrl+5 { move-window-to-workspace 5; }
+    Super+Ctrl+6 { move-window-to-workspace 6; }
+    Super+Ctrl+7 { move-window-to-workspace 7; }
+    Super+Ctrl+8 { move-window-to-workspace 8; }
+    Super+Ctrl+9 { move-window-to-workspace 9; }
+    Super+Ctrl+0 { move-window-to-workspace 10; }
 
     Super+Alt+S { spawn-sh "$HOME/.config/niri/scripts/toggle_special.sh magic"; }
     Super+Alt+Shift+S { move-window-to-workspace "magic"; }

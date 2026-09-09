@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf getExe' mkForce stringAfter;
+  inherit (lib) mkIf getExe' mkForce stringAfter mkDefault types;
 
   cfg = config.bautinix.display-managers.sddm;
 
@@ -13,6 +13,18 @@ in
 {
   options.bautinix.display-managers.sddm = {
     enable = lib.mkEnableOption "sddm";
+
+    defaultSession = lib.mkOption {
+      type = types.str;
+      default = "plasma";
+      description = "The default desktop session to launch.";
+    };
+
+    autoLogin = lib.mkOption {
+      type = types.bool;
+      default = false;
+      description = "Wheter to autolog or not.";
+    };
   };
 
 config = mkIf cfg.enable {
@@ -29,7 +41,12 @@ config = mkIf cfg.enable {
               EOF
               '';
           };
-          defaultSession = "niri";
+          defaultSession = cfg.defaultSession;
+
+          autoLogin = {
+            enable = cfg.autoLogin;
+            user = "bauti";
+          };
 
           sessionPackages = [ pkgs.niri ];
 

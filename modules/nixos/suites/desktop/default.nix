@@ -28,6 +28,7 @@ in
           wms = {
             niri.enable = true;
           };
+          desktops.plasma.enable = true;
         };
       };
       display-managers = {

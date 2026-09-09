@@ -41,7 +41,13 @@
       url = "github:soyeb-jim285/hyprfm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
     tokyonight = {
       flake = false;
       url = "github:folke/tokyonight.nvim";
