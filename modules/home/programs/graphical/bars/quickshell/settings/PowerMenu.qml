@@ -140,7 +140,7 @@ PanelWindow {
     
     Process { id: pShutdown; command: ["systemctl", "poweroff"] }
     Process { id: pReboot; command: ["systemctl", "reboot"] }
-    Process { id: pSuspend; command: ["sh", "-c", "swaylock -c ~/.config/niri/swaylock.conf & sleep 1 && systemctl suspend"] }
-    Process { id: pLock; command: ["swaylock", "-c", Quickshell.env("HOME") + "/.config/niri/swaylock.conf"] }
+    Process { id: pSuspend; command: ["sh", "-c", "swaylock & sleep 1 && systemctl suspend"] }
+    Process { id: pLock; command: ["sh", "-c", "swaylock & sleep 1"] }
     Process { id: pLogout; command: ["niri", "msg", "action", "quit", "skip-confirmation=true"] }
 }

@@ -34,6 +34,13 @@ in
       swaylock.settings =
         mkIf config.bautinix.programs.graphical.screenlockers.swaylock.enable
           (force-attrs {
+            screenshots = true;
+            effect-blur = "3x2";
+            clock = true;
+            indicator = true;
+            indicator-radius = 100;
+            font = "Victor Mono";
+
             key-hl-color = palette.nord9.hex;
             bs-hl-color = palette.nord11.hex;
             caps-lock-key-hl-color = palette.nord12.hex;
@@ -64,7 +71,7 @@ in
             text-caps-lock-color = palette.nord5.hex;
             text-ver-color = palette.nord5.hex;
             text-wrong-color = palette.nord5.hex;
-          });
+      });
     };
   };
 }

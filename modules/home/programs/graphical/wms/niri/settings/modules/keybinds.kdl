@@ -29,7 +29,7 @@ binds {
     Super+S repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/screenshot_screen.sh"; }
     Super+Shift+S repeat=false allow-inhibiting=false { spawn-sh "bash $HOME/.config/niri/scripts/wallpaper_region.sh"; }
 
-    Super+F12 { spawn-sh "$HOME/.config/niri/scripts/run.sh swaylock -c $HOME/.config/niri/swaylock.conf"; }
+    Super+F12 { spawn-sh "$HOME/.config/niri/scripts/run.sh swaylock "; }
     Super+Shift+F12 { spawn-sh "$HOME/.config/niri/scripts/run.sh brightnessctl s 0"; }
     Super+Shift+Print { spawn-sh "$HOME/.config/niri/scripts/screenshot_region.sh"; }
 

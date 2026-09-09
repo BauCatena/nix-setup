@@ -43,7 +43,7 @@ in
           bars = { quickshell.enable = true; };
           browsers = { firefox.enable = true; };
           launchers = { tofi.enable = true; };
-          screenlockers = { swaylock-effects.enable = true; };
+          screenlockers = { swaylock.enable = true; };
           wms = { niri.enable = true; };
         };
       };

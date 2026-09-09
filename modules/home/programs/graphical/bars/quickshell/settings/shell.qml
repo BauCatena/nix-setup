@@ -552,8 +552,8 @@ ShellRoot {
     Process { id: pBtOff; command: ["sh", "-c", "export PATH=\"" + root.nixPath + ":$PATH\"; rfkill block bluetooth"] }
     Process { id: pCcShutdown; command: ["systemctl", "poweroff"] }
     Process { id: pCcReboot; command: ["systemctl", "reboot"] }
-    Process { id: pCcSuspend; command: ["sh", "-c", "swaylock -c " + Quickshell.env("HOME") + "/.config/niri/swaylock.conf & sleep 1 && systemctl suspend"] }
-    Process { id: pCcLock; command: ["swaylock", "-c", Quickshell.env("HOME") + "/.config/niri/swaylock.conf"] }
+    Process { id: pCcSuspend; command: ["sh", "-c", "swaylock  & sleep 1 && systemctl suspend"] }
+    Process { id: pCcLock; command: ["sh", "-c", "swaylock & sleep 1"] }
     Process {
         id: pToggleBatteryMode
         command: [Quickshell.env("HOME") + "/.local/bin/battery_mode.sh"]

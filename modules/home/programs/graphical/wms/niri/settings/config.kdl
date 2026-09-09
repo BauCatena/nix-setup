@@ -26,8 +26,8 @@ include "modules/autostart.kdl"
 include "modules/keybinds.kdl"
 
 switch-events {
-    lid-close { spawn "sh" "-c" "$HOME/.config/niri/scripts/run.sh swaylock -c $HOME/.config/niri/swaylock.conf"; }
-    lid-open { spawn "sh" "-c" "$HOME/.config/niri/scripts/run.sh swaylock -c $HOME/.config/niri/swaylock.conf"; }
+    lid-close { spawn "sh" "-c" "$HOME/.config/niri/scripts/run.sh swaylock"; }
+    lid-open { spawn "sh" "-c" "$HOME/.config/niri/scripts/run.sh swaylock"; }
 }
 
 prefer-no-csd
