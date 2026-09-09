@@ -23,7 +23,12 @@ in
     bautinix = {
       suites = {
         common.enable = true;
-        cibersecurity.enable = true;
+        cibersecurity = {
+          enable = true;
+          wireless.enable = true;
+          web.enable = true;
+
+        };
         desktop.enable = true;
       };
 
