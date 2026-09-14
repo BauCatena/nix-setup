@@ -15,7 +15,7 @@ in
         graphical = {
           desktop = {
             gnome = {
-              enable = true;
+              enable = false;
             };
           };
         };

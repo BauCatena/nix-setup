@@ -23,6 +23,15 @@ in
   # 2. Your custom framework options
   bautinix = {
 
+      # NOTE: so far only on workstation
+      services = {
+        sops = {
+          enable = true;
+          defaultSopsFile = lib.getFile "secrets/bautinix/bauti/default.yaml";
+          sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+        };
+      };
+
     user = {
       name = "bauti";
       fullName = "Bautista";
@@ -38,6 +47,7 @@ in
       };
     suites = {
       candy.enable = true;
+      workstation.enable = true;
     };
   };
 }

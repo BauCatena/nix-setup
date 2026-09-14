@@ -130,11 +130,7 @@ in
         };
 
         initContent = lib.mkMerge [
-        (lib.mkOrder 5000 ''
-            if [[ -o interactive ]]; then
-              fastfetch
-            fi
-          '')
+          # NOTE: I know myself, if fastfetch does not work on kitty, add fastfetch here.
           (lib.mkOrder 50 ''
             if [[ -n "''${NIXPKGS_REVIEW_ROOT:-}" ]] || [[ -n "''${IN_NIX_SHELL:-}" && "''${PWD:-}" == "''${XDG_CACHE_HOME:-''${HOME}/.cache}/nixpkgs-review/"* ]]; then
               return

@@ -1,5 +1,12 @@
-window-rule{
+window-rule {
    geometry-corner-radius 12
+   opacity 0.8
+   draw-border-with-background false
+
+   focus-ring {
+     off
+   }
+
    clip-to-geometry true
    background-effect {
      blur true

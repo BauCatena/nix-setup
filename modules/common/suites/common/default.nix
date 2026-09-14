@@ -34,7 +34,6 @@ in
         btop
         tldr
     	  tree
-        nix-ld
         unzip
         wget
         xclip

@@ -3,7 +3,7 @@ set -uo pipefail # drop -e, or scope it carefully — don't let killall/pgrep ki
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/env.sh"
 
-WALLPAPER="${1:-$HOME/dotfiles/packages/wallpapers/assets/nord/nixos.png}"
+WALLPAPER="${1:-$HOME/nix-setup/packages/wallpapers/assets/nord/nixos.png}"
 PERSIST=1
 
 if [ "${1:-}" = "--no-persist" ]; then

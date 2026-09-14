@@ -4,7 +4,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=env.sh
 source "$SCRIPT_DIR/env.sh"
 
-WALL_DIR="$HOME/dotfiles/packages/wallpapers/assets/nord"
+WALL_DIR="$HOME/nix-setup/packages/wallpapers/assets/${THEME}"
 [ -d "$WALL_DIR" ] || {
   notify-send -a niri "Wallpaper" "Missing $WALL_DIR" 2>/dev/null
   exit 1

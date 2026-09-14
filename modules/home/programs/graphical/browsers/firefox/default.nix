@@ -11,10 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Paquetes globales que instala el módulo
-    home.packages = with pkgs; [
-      firefox
-    ];
 
     programs.firefox = {
       enable = true;

@@ -62,8 +62,8 @@ in
           esac
 
           patchedInodes="''${patchedInodes}''${inode}|"
-          if grep -Fq "  border-spacing: 6px;" "$css"; then
-            substituteInPlace "$css" --replace-fail "  border-spacing: 6px;" ""
+          if grep -Fq "  border-spacing: 1px;" "$css"; then
+            substituteInPlace "$css" --replace-fail "  border-spacing: 1px;" ""
           fi
         done
       '';

@@ -44,12 +44,16 @@ in
       };
       verbose = true;
 
+      sharedModules = [
+        inputs.sops-nix.homeManagerModules.sops
+      ];
+
       users.${config.bautinix.user.name} = lib.mkMerge [
         config.bautinix.home.extraOptions
         {
           imports = 
             lib.file.importModulesRecursive ../../home
-            ++ [ (../../../homes/x86_64-linux + "/bauti@hp-nixos") ];
+++ [ (../../../homes/x86_64-linux + "/${config.bautinix.user.name}@${config.networking.hostName}") ];
 
           home.sessionPath = [
             "/run/wrappers/bin"

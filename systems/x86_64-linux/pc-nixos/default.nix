@@ -8,7 +8,7 @@
     [
       ./hardware-configuration.nix
     ];
-
+  services.xserver.videoDrivers = [ "nvidia" ];
   bautinix = {
     nix.enable = true;
 
@@ -25,19 +25,28 @@
         variant = "default";
       };
     };
+
+
     suites = {
         common.enable = true;
         desktop.enable = true;
         cibersecurity.enable = true;
     };
 
+    security = {
+        sops = {
+          enable = true;
+          sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+          defaultSopsFile = lib.getFile "secrets/bauti/default.yaml";
+      };
+    };
     system = {
 
       boot = {
         enable = true;
         loader = "systemd-boot";
         silentBoot = true;
-        secureBoot = true;
+	# secureBoot = true;
         plymouth = false;
       };
 
@@ -58,7 +67,7 @@
     audio.enable = true;
     cpu.amd.enable = true;
     opengl.enable = true;
-    gpu.nvidia.enable = true;
+    gpu.nvidia.enable = lib.mkForce true;
     power.enable = true;
     storage.btrfs.enable = true;
     tpm.enable = true;

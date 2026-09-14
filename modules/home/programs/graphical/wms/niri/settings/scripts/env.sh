@@ -8,3 +8,4 @@ export VISUAL=nvim
 export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP:-niri}"
 export XDG_SESSION_TYPE="${XDG_SESSION_TYPE:-wayland}"
 export XDG_SESSION_DESKTOP="${XDG_SESSION_DESKTOP:-niri}"
+export WALLPAPERS="$HOME/.local/share/nix-setup/wallpapers"

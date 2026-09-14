@@ -10,6 +10,10 @@ let
 
   cfg = config.bautinix.programs.terminal.tools.yazi;
 
+  theme = lib.toLower (config.bautinix.theme.wallpaper.theme);
+
+  palette = import ../../../../theme/${theme}/colors.nix;
+  schemas = import ./schemas/modules.nix { inherit palette; };
 in
 {
   options.bautinix.programs.terminal.tools.yazi = {
@@ -56,14 +60,8 @@ in
       }
       // lib.optionalAttrs ( true ) {
         inherit (pkgs.yaziPlugins) restore;
-      }
-      // lib.optionalAttrs config.bautinix.theme.nord.enable {
-        inherit (pkgs.yaziPlugins) nord;
-      }
-      // lib.optionalAttrs config.bautinix.theme.catppuccin.enable {
-        inherit (pkgs.yaziPlugins) yatline-catppuccin;
       };
-
+      settings = lib.mkDefault schemas.default;
     };
   };
 }

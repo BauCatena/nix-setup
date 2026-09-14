@@ -11,7 +11,7 @@ in
     wireless.enable = lib.mkEnableOption "wireless toolkit";
     social.enable = lib.mkEnableOption "social toolkit";
     web.enable = lib.mkEnableOption "web toolkit";
-    blue-team.enable = lib.mkEnableOption "defensive toolkit";
+    threat-intelligence.enable = lib.mkEnableOption "defensive toolkit";
     bruteforce.enable = lib.mkEnableOption "bruteforce decoding toolkit";
   };
 
@@ -34,8 +34,9 @@ in
       ] ++ lib.optionals cfg.social.enable [
         social-engineer-toolkit
         maltego
-      ] ++ lib.optionals cfg.blue-team.enable [
+      ] ++ lib.optionals cfg.threat-intelligence.enable [
         snort
+        dnstwist
       ] ++ lib.optionals cfg.web.enable [
         burpsuite
         gobuster

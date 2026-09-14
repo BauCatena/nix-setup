@@ -10,11 +10,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      quickshell
-    ];
 
     programs.quickshell.enable = true;
+    programs.quickshell.package = pkgs.symlinkJoin {
+      name = "quickshell-wrapped";
+      paths = [ pkgs.quickshell ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/quickshell \
+          --set QT_QUICK_CONTROLS_STYLE "Basic" \
+          --set QT_QPA_PLATFORMTHEME ""
+        '';
+      };
 
     xdg.configFile."quickshell".source = ./settings;
   };

@@ -3,6 +3,10 @@
 layout {
     background-color "transparent"
     always-center-single-column
+
+    focus-ring {
+      off
+    }
 }
 
 animations {

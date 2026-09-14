@@ -31,11 +31,12 @@ in
           enable = true;
           wireless.enable = true;
           web.enable = true;
-          blue-team.enable = true;
+          threat-intelligence.enable = true;
           bruteforce.enable = true;
           social.enable = true;
         };
         desktop.enable = true;
+        workstation.enable = true;
       };
     };
   };

@@ -41,36 +41,36 @@ in
             indicator-radius = 100;
             font = "Victor Mono";
 
-            key-hl-color = palette.nord9.hex;
-            bs-hl-color = palette.nord11.hex;
-            caps-lock-key-hl-color = palette.nord12.hex;
-            caps-lock-bs-hl-color = palette.nord11.hex;
+            key-hl-color = palette.color9.hex;
+            bs-hl-color = palette.color11.hex;
+            caps-lock-key-hl-color = palette.color12.hex;
+            caps-lock-bs-hl-color = palette.color11.hex;
 
-            separator-color = palette.nord0.hex;
+            separator-color = palette.color0.hex;
 
-            inside-color = palette.nord1.hex;
-            inside-clear-color = palette.nord1.hex;
-            inside-caps-lock-color = palette.nord1.hex;
-            inside-ver-color = palette.nord1.hex;
-            inside-wrong-color = palette.nord1.hex;
+            inside-color = palette.color1.hex;
+            inside-clear-color = palette.color1.hex;
+            inside-caps-lock-color = palette.color1.hex;
+            inside-ver-color = palette.color1.hex;
+            inside-wrong-color = palette.color1.hex;
 
-            ring-color = palette.nord2.hex;
-            ring-clear-color = palette.nord9.hex;
-            ring-caps-lock-color = palette.nord12.hex;
-            ring-ver-color = palette.nord2.hex;
-            ring-wrong-color = palette.nord11.hex;
+            ring-color = palette.color2.hex;
+            ring-clear-color = palette.color9.hex;
+            ring-caps-lock-color = palette.color12.hex;
+            ring-ver-color = palette.color2.hex;
+            ring-wrong-color = palette.color11.hex;
 
-            line-color = palette.nord9.hex;
-            line-clear-color = palette.nord9.hex;
-            line-caps-lock-color = palette.nord12.hex;
-            line-ver-color = palette.nord0.hex;
-            line-wrong-color = palette.nord11.hex;
+            line-color = palette.color9.hex;
+            line-clear-color = palette.color9.hex;
+            line-caps-lock-color = palette.color12.hex;
+            line-ver-color = palette.color0.hex;
+            line-wrong-color = palette.color11.hex;
 
-            text-color = palette.nord5.hex;
-            text-clear-color = palette.nord5.hex;
-            text-caps-lock-color = palette.nord5.hex;
-            text-ver-color = palette.nord5.hex;
-            text-wrong-color = palette.nord5.hex;
+            text-color = palette.color5.hex;
+            text-clear-color = palette.color5.hex;
+            text-caps-lock-color = palette.color5.hex;
+            text-ver-color = palette.color5.hex;
+            text-wrong-color = palette.color5.hex;
       });
     };
   };

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkOption types;
   mkOpt =
@@ -16,5 +16,9 @@ in
       "cat_pacman.png"
       "cat-sound.png"
     ] "Wallpaper names used for wallpaper lists.";
+  };
+
+  config = {
+    home.sessionVariables.THEME = lib.mkDefault config.bautinix.theme.wallpaper.theme;
   };
 }

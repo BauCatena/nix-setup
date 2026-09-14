@@ -3,6 +3,8 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.bautinix.programs.terminal.tools.fastfetch;
+
+  schemas = import ./schemas/modules.nix;
 in
 {
   options.bautinix.programs.terminal.tools.fastfetch = {
@@ -10,10 +12,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      fastfetch
-    ];
 
-    xdg.configFile."fastfetch".source = ./settings;
+    programs.fastfetch = {
+      enable = true;
+
+      settings = lib.mkDefault schemas.default;
+    };
   };
 }

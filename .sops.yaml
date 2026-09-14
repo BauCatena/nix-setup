@@ -1,0 +1,7 @@
+keys:
+  - &bauti age1qwxcwgrf2rlthvzg3ywzfvgahe0h6rzt2vqddcny49dvmvv6fg3sqr5dyc
+creation_rules:
+  - path_regex: secrets/bauti/.*\.yaml$
+    key_groups:
+      - age:
+          - *bauti

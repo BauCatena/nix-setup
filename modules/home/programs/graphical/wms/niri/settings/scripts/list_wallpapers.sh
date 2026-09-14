@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-WALL_DIR="${HOME}/dotfiles/packages/wallpapers/assets/nord"
+WALL_DIR="${HOME}/nix-setup/packages/wallpapers/assets/${THEME}"
 [ -d "$WALL_DIR" ] || exit 0
 
 for f in "$WALL_DIR"/*; do

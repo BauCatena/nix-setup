@@ -12,6 +12,11 @@ in
 
   config = mkIf cfg.enable {
 
+    programs.nix-ld = {
+
+      enable = true;
+    };
+
      zramSwap.enable = true;
 
       hardware.ksm = {
@@ -40,7 +45,6 @@ in
         usbguard.enable = mkDefault true;
         keyring.enable = mkDefault true;
         polkit.enable = mkDefault true;
-        sops.enable = mkDefault true;
       };
 
       services = {

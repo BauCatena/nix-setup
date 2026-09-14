@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    (lib.getFile "modules/common/fonts/default.nix")
+    ../../../common/fonts/default.nix
   ];
 
   options.bautinix.home.fonts = with types; {

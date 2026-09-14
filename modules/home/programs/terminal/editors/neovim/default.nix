@@ -21,7 +21,7 @@ in
     ];
 
     xdg.configFile."nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/bauti/dotfiles/modules/home/programs/terminal/editors/neovim/settings";
+      source = config.lib.file.mkOutOfStoreSymlink "/home/bauti/nix-setup/modules/home/programs/terminal/editors/neovim/settings";
       recursive = true;
     };
   };

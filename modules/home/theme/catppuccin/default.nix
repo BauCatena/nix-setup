@@ -84,7 +84,6 @@ let
 {
   imports = [
     ./gtk.nix
-    ./starship.nix
     ./qt.nix
     inputs.catppuccin.homeModules.catppuccin
   ];

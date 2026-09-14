@@ -14,6 +14,11 @@ in
       display-managers = {
         sddm.enable = true;
       };
+      services = {
+        printing = {
+          enable = true;
+        };
+      };
       programs = {
         graphical = {
           desktops = {

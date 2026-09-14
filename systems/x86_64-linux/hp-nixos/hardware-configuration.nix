@@ -12,7 +12,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
+  boot.kernelParams = [ "video=HDMI-A-1:1920x1080@100" ];
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/048d607d-c347-4fe0-9421-465effc086f3";
       fsType = "btrfs";
