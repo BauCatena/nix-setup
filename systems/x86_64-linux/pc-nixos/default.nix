@@ -40,6 +40,13 @@
           defaultSopsFile = lib.getFile "secrets/bauti/default.yaml";
       };
     };
+
+    services = {
+      tailscale = {
+        enable = true;
+      };
+    };
+
     system = {
 
       boot = {
