@@ -22,7 +22,7 @@ in
     theme = mkOpt types.str "catppuccin-macchiato" "base16 theme file name";
 
     cursor = {
-      name = mkOpt types.str "catppuccin-macchiato-blue-cursors" "The name of the cursor theme to apply.";
+      name = mkOpt types.str "Bibata-Modern-Ice" "The name of the cursor theme to apply.";
       package = mkOpt types.package (
           pkgs.bibata-cursors
       ) "The package to use for the cursor theme.";

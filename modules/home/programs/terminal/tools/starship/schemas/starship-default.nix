@@ -8,10 +8,6 @@
     truncation_length = 4;
     truncation_symbol = "…/";
     substitutions = {
-      "Documents" = "󰈙 ";
-      "Downloads" = " ";
-      "Music" = " ";
-      "Pictures" = " ";
       "~" = " ";
     };
   };

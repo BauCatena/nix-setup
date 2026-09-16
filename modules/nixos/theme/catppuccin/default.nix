@@ -89,7 +89,7 @@ in
         name = "catppuccin";
         inherit (cfg) package;
 
-        cursor = {
+        cursor = lib.mkDefault {
           name = "catppuccin-${cfg.flavor}-${cfg.accent}-cursors";
           package =
               pkgs.catppuccin-cursors."${cfg.flavor}${lib.toUpper (lib.substring 0 1 cfg.accent)}${

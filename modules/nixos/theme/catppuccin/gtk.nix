@@ -13,7 +13,7 @@ in
     bautinix = {
       theme = {
         gtk = {
-          theme = {
+          theme = lib.mkDefault {
             name = "catppuccin-macchiato-blue-standard";
             package = pkgs.catppuccin-gtk.override {
               accents = [ "blue" ];

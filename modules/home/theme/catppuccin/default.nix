@@ -220,61 +220,26 @@ let
               inherit (cfg) accent;
             };
             nvim = enabled;
-            tmux = enabled;
+            # tmux = enabled;
             # NOTE: uses remote url import
             # I already have a local file
             # vesktop = enabled;
-            zsh-syntax-highlighting = enabled;
             # keep-sorted end
           }
           // lib.optionalAttrs ( true ) {
-            foot = enabled;
-            hyprland = mkIf config.bautinix.programs.graphical.wms.hyprland.enable {
-              enable = true;
-              inherit (cfg) accent;
-            };
+              # foot = enabled;
             kvantum = {
               enable = true;
               inherit (cfg) accent;
             };
-            sway = enabled;
-            waybar = enabled;
           };
         })
 
         {
           home = {
-            file = mkMerge [
-              (
-                let
-                  warpPkg = pkgs.fetchFromGitHub {
-                    owner = "catppuccin";
-                    repo = "warp";
-                    rev = "11295fa7aed669ca26f81ff44084059952a2b528";
-                    hash = "sha256-ym5hwEBtLlFe+DqMrXR3E4L2wghew2mf9IY/1aynvAI=";
-                  };
-
-                  warpStyle = "${warpPkg.outPath}/themes/catppuccin_macchiato.yml";
-                in
-                mkIf config.bautinix.programs.terminal.emulators.warp.enable {
-                  ".warp/themes/catppuccin_macchiato.yaml".source = warpStyle;
-                  ".local/share/warp-terminal/themes/catppuccin_macchiato.yaml".source = warpStyle;
-                }
-              )
-              (mkIf pkgs.stdenv.hostPlatform.isDarwin {
-                # TODO: use packaged version
-                "Library/Application Support/BetterDiscord/themes/catppuccin-macchiato.theme.css".source =
-                  ./catppuccin-macchiato.theme.css;
-              })
-            ];
-
             pointerCursor = {
               enable = true;
               inherit (config.bautinix.theme.gtk.cursor) name package size;
-            };
-
-            sessionVariables = mkIf {
-              CURSOR_THEME = config.bautinix.theme.gtk.cursor.name;
             };
           };
 
@@ -286,12 +251,6 @@ let
             fzf.colors = mkIf config.bautinix.programs.terminal.tools.fzf.enable fzfColors;
 
             gh-dash.settings = mkIf config.bautinix.programs.terminal.tools.gh.enable ghDashTheme;
-
-            ghostty.settings = mkIf pkgs.stdenv.hostPlatform.isDarwin {
-              macos-icon = "custom-style";
-              macos-icon-ghost-color = palette.colors.${cfg.accent}.hex;
-              macos-icon-screen-color = "${palette.colors.surface0.hex},${palette.colors.base.hex}";
-            };
 
             satty.settings = mkIf config.bautinix.programs.graphical.addons.satty.enable {
               color-palette = {
@@ -354,17 +313,7 @@ let
               dark.name = "catppuccin-macchiato";
             };
 
-            tmux.plugins = [
-              {
-                plugin = pkgs.tmuxPlugins.catppuccin;
-                extraConfig = /* Bash */ ''
-                  set -g @catppuccin_flavour '${cfg.flavor}'
-                  set -g @catppuccin_host 'on'
-                  set -g @catppuccin_user 'on'
-                '';
-              }
-            ];
-
+            
             vesktop.vencord = {
               settings.enabledThemes = [
                 "catppuccin.css"
@@ -384,74 +333,6 @@ let
             '';
 
           };
-
-          xdg.configFile = mkMerge [
-            (mkIf (config.bautinix.programs.graphical.apps.discord.enable)
-              {
-                # TODO: use packaged version
-                "ArmCord/themes/Catppuccin-Macchiato-BD".source = ./Catppuccin-Macchiato-BD;
-                "BetterDiscord/themes/catppuccin-macchiato.theme.css".source = ./catppuccin-macchiato.theme.css;
-              }
-            )
-
-            (mkIf config.bautinix.programs.graphical.bars.sketchybar.enable {
-              "sketchybar/helpers/colors.lua".text = ''
-                #!/usr/bin/env lua
-
-                local colors = {
-                  base = 0xff24273a,
-                  mantle = 0xff1e2030,
-                  crust = 0xff181926,
-                  text = 0xffcad3f5,
-                  subtext0 = 0xffb8c0e0,
-                  subtext1 = 0xffa5adcb,
-                  surface0 = 0xff363a4f,
-                  surface1 = 0xff494d64,
-                  surface2 = 0xff5b6078,
-                  overlay0 = 0xff6e738d,
-                  overlay1 = 0xff8087a2,
-                  overlay2 = 0xff939ab7,
-                  blue = 0xff8aadf4,
-                  lavender = 0xffb7bdf8,
-                  sapphire = 0xff7dc4e4,
-                  sky = 0xff91d7e3,
-                  teal = 0xff8bd5ca,
-                  green = 0xffa6da95,
-                  yellow = 0xffeed49f,
-                  peach = 0xfff5a97f,
-                  maroon = 0xffee99a0,
-                  red = 0xffed8796,
-                  mauve = 0xffc6a0f6,
-                  pink = 0xfff5bde6,
-                  flamingo = 0xfff0c6c6,
-                  rosewater = 0xfff4dbd6,
-                }
-
-                colors.random_cat_color = {
-                  colors.blue,
-                  colors.lavender,
-                  colors.sapphire,
-                  colors.sky,
-                  colors.teal,
-                  colors.green,
-                  colors.yellow,
-                  colors.peach,
-                  colors.maroon,
-                  colors.red,
-                  colors.mauve,
-                  colors.pink,
-                  colors.flamingo,
-                  colors.rosewater,
-                }
-
-                colors.getRandomCatColor = function()
-                  return colors.random_cat_color[math.random(1, #colors.random_cat_color)]
-                end
-
-                return colors
-              '';
-            })
-          ];
         }
       ]
     ))

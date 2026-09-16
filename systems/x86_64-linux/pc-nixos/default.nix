@@ -31,6 +31,7 @@ in
 
     programs.terminal.tools.ssh = {
       enable = true;
+
     };
 
     suites = {

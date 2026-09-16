@@ -10,9 +10,6 @@ in
 
   config = mkIf cfg.enable {
 
-    bautinix.theme = {
-      nord.enable = true;
-    };
     xdg.configFile."niri".source = ./settings;
   };
 }
