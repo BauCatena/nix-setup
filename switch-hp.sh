@@ -1,6 +1,2 @@
-#!/usr/bin/env bash
-# Rebuild hp-nixos bypassing parent ~/dotfiles git filter (use path: flake ref).
-set -euo pipefail
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-exec sudo nixos-rebuild switch --flake "path:${DIR}#hp-nixos" "$@"
-exec home-manager switch --flake .#bauti@hp-nixos
+sudo nixos-rebuild switch --flake .#hp-nixos
+home-manager switch --flake .#bauti@hp-nixos

@@ -113,11 +113,6 @@ in
       format = "{#${cValue}}\"{pretty-name}\"{#${cGray}};";
     }
     {
-      type = "packages";
-      key = "  {#${cDarkGray}}terminal.{#${cBlue}}packages {#${cGray}}= ";
-      format = "{#${cGray}}[ {#${cValue}}\"{nix-system} nix-system\" \"{nix-user} nix-user\"{#${cGray}} ];";
-    }
-    {
       type = "custom";
       format = "{#${cGray}}}";
     }

@@ -61,8 +61,8 @@ binds {
 
     Super+Left { focus-column-left; }
     Super+Right { focus-column-right; }
-    Super+Up { focus-window-up; }
-    Super+Down { focus-window-down; }
+    Super+Up { focus-workspace-up; }
+    Super+Down { focus-workspace-down; }
 
     Super+Ctrl+Left { move-column-left; }
     Super+Ctrl+Right { move-column-right; }

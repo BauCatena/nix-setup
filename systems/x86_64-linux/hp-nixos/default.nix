@@ -31,6 +31,12 @@
         cibersecurity.enable = true;
     };
 
+    services = {
+      tailscale = {
+        enable = true;
+      };
+    };
+
     system = {
 
       boot = {
