@@ -59,7 +59,7 @@ in
       };
 
       system = {
-        hostname.enable = mkDefault true; # it worked
+        hostname.enable = true;
       };
       fonts.enable = mkDefault true;
     };

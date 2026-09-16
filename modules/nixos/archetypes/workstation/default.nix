@@ -19,7 +19,7 @@ in
 
     environment.systemPackages = with pkgs; [
       networkmanager
-      dhcpc
+      dhcpcd
     ];
     bautinix = {
       display-managers.sddm = {

@@ -22,8 +22,6 @@ in
   };
   # 2. Your custom framework options
   bautinix = {
-
-      # NOTE: so far only on workstation
       services = {
         sops = {
           enable = true;

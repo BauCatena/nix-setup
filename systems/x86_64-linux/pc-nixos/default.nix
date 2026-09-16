@@ -3,6 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, lib, ... }:
+let
+  magicDnsSuffix = "tailb71378.ts.net";
+in 
 {
   imports =
     [
@@ -26,6 +29,9 @@
       };
     };
 
+    programs.terminal.tools.ssh = {
+      enable = true;
+    };
 
     suites = {
         common.enable = true;
@@ -84,7 +90,10 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+
+  };
 
   environment.systemPackages = with pkgs; [
       home-manager

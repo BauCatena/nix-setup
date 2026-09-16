@@ -1,23 +1,157 @@
-{ config, pkgs, lib, ... }:
-
+{
+  config,
+  inputs,
+  hostname,
+  lib,
+  pkgs,
+  osConfig ? { },
+  ...
+}:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    hasSuffix
+    types
+    mkIf
+    ;
+  inherit (lib.bautinix) mkOpt;
 
-  cfg = config.bautinix.programs.terminal.tools.ssh; 
+  cfg = config.bautinix.programs.terminal.tools.ssh;
+
+  user = config.users.users.${config.bautinix.user.name};
+  userId = toString user.uid;
+
+  discoveredHosts =
+    let
+      allHosts =
+        let
+          parsedHosts = inputs.self.lib.file.parseSystemConfigurations (inputs.self + "/systems");
+        in
+        inputs.self.lib.file.filterNixOSSystems parsedHosts;
+    in
+    lib.mapAttrs (_name: host: {
+      hostname = "${host.hostname}.local";
+      system = "nixos";
+      username = config.bautinix.user.name;
+    }) (lib.filterAttrs (name: _: name != hostname) allHosts);
+
+  # Per-host SSH overrides are maintained in a dedicated hosts map
+  # (modules/nixos/programs/terminal/tools/ssh/hosts.nix) to keep aliases
+  # cheap to evaluate and avoid per-host module edits.
+  hostOverrides = import (inputs.self.lib.file.getFile "modules/nixos/programs/terminal/tools/ssh/hosts.nix");
+  otherHosts = lib.mapAttrs (
+    name: _host:
+    discoveredHosts.${name}
+    // lib.optionalAttrs (builtins.hasAttr name hostOverrides) hostOverrides.${name}
+  ) discoveredHosts;
+
+  # The default aliases use ".local" (mDNS), which only resolves on the same
+  # LAN. When Tailscale is available, also emit "<name>-ts" aliases on the
+  # MagicDNS name so hosts stay reachable when roaming.
+  # Keep in sync with modules/nixos/programs/terminal/tools/ssh/default.nix.
+  magicDnsSuffix = "tailb71378.ts.net";
+  tailscaleEnabled = osConfig.bautinix.services.tailscale.enable or false;
+
+  hostUserPublicKeys = lib.mapAttrsToList (_: host: host.userPublicKey) (
+    lib.filterAttrs (_: host: host ? userPublicKey) hostOverrides
+  );
+
+  authorizedKeys = hostUserPublicKeys;
 in
 {
-  options.bautinix.programs.terminal.tools.ssh = {
-    enable = mkEnableOption "openssh";
+  options.bautinix.programs.terminal.tools.ssh = with types; {
+    enable = lib.mkEnableOption "ssh support";
+    authorizedKeys = mkOpt (listOf str) authorizedKeys "The public keys to apply.";
+    port = mkOpt port 2222 "The port to listen on (in addition to 22).";
   };
 
   config = mkIf cfg.enable {
-    # Paquetes globales que instala el módulo
-    home.packages = with pkgs; [
-      openssh
-    ];
-
     programs.ssh = {
       enable = true;
-    }; 
+      enableDefaultConfig = false;
+
+      settings =
+        let
+          otherHostsConfig = lib.mapAttrs (
+            _name: remote:
+            let
+              remoteUserId = toString (remote.uid or (1000));
+            in
+            {
+              HostName = remote.hostname;
+              User = remote.username;
+              # mDNS answers AAAA first with rotating IPv6 temporary addresses
+              # that avahi withdraws every few minutes; ssh then fails with "No
+              # route to host" without retrying IPv4.
+              AddressFamily = "inet";
+              ForwardAgent = true;
+              RemoteForward = lib.optionals (config.services.gpg-agent.enable && (remote.gpgAgent or false)) [
+                "/run/user/${remoteUserId}/gnupg/S.gpg-agent /run/user/${userId}/gnupg/S.gpg-agent.extra"
+                "/run/user/${remoteUserId}/gnupg/S.gpg-agent.ssh /run/user/${userId}/gnupg/S.gpg-agent.ssh"
+              ];
+            }
+            // lib.optionalAttrs (remote.system == "nixos") {
+              Port = cfg.port;
+            }
+          ) otherHosts;
+
+          tailscaleHostsConfig = lib.mapAttrs' (
+            name: hostConfig:
+            lib.nameValuePair "${name}-ts" (
+              hostConfig
+              // {
+                HostName = "${name}.${magicDnsSuffix}";
+              }
+            )
+          ) otherHostsConfig;
+        in
+        {
+          "*" = {
+            AddKeysToAgent = "yes";
+            ControlMaster = "auto";
+            ControlPath = "${config.home.homeDirectory}/.ssh/controlmasters/%C";
+            ControlPersist = "10m";
+            ForwardAgent = false;
+            ServerAliveInterval = 30;
+            ServerAliveCountMax = 2;
+            StreamLocalBindUnlink = true;
+            ConnectTimeout = 5;
+          };
+        }
+        // otherHostsConfig
+        // lib.optionalAttrs tailscaleEnabled tailscaleHostsConfig;
+    };
+
+    home = {
+      packages = [ pkgs.findutils ];
+
+      shellAliases = {
+        ssh-list-perm-user = ''find ${config.home.homeDirectory}/.ssh -exec stat -c "%a %n" {} \;'';
+
+        ssh-perm-user = lib.concatStrings [
+          ''find ${config.home.homeDirectory}/.ssh -type f -exec chmod 600 {} \;;''
+          ''find ${config.home.homeDirectory}/.ssh -type d -exec chmod 700 {} \;;''
+          ''find ${config.home.homeDirectory}/.ssh -type f -name "*.pub" -exec chmod 644 {} \;''
+        ];
+
+        ssh-list-perm-system = ''sudo find /etc/ssh -exec stat -c "%a %n" {} \;'';
+
+        ssh-perm-system = lib.concatStrings [
+          ''sudo find /etc/ssh -type f -exec chmod 600 {} \;;''
+          ''sudo find /etc/ssh -type d -exec chmod 700 {} \;;''
+          ''sudo find /etc/ssh -type f -name "*.pub" -exec chmod 644 {} \;''
+        ];
+      }
+      // builtins.listToAttrs (
+        map (hostName: {
+          name = "ssh-${hostName}";
+          value = ''ssh ${hostName} -t "tmux new-session -A -s main"'';
+        }) (builtins.attrNames otherHosts)
+      );
+
+      file = {
+        ".ssh/authorized_keys".text = builtins.concatStringsSep "\n" cfg.authorizedKeys;
+        ".ssh/controlmasters/.keep".text = "";
+      };
+    };
   };
 }
