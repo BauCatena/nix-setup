@@ -26,7 +26,8 @@ in
     
     authorizedKeys = mkOpt (listOf str) [
       # PASTE YOUR PUBLIC SSH KEY HERE DIRECTLY FOR NOW
-      " ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMePfD8yLb9mn4Sb6x2yvyznLAjpCw/3ZCNNAFJY11Ke bauti@pc-nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMePfD8yLb9mn4Sb6x2yvyznLAjpCw/3ZCNNAFJY11Ke bauti@pc-nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuwtxC1L+4ighcF94U8eO+U+MYku3MrIGRBv0M3c6QW bauti@hp-nixos"
     ] "The public keys to apply.";
 
     extraConfig = mkOpt str "" "Extra configuration to apply.";
