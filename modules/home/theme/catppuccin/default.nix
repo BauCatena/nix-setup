@@ -252,68 +252,6 @@ let
 
             gh-dash.settings = mkIf config.bautinix.programs.terminal.tools.gh.enable ghDashTheme;
 
-            satty.settings = mkIf config.bautinix.programs.graphical.addons.satty.enable {
-              color-palette = {
-                palette = [
-                  palette.colors.red.hex
-                  palette.colors.peach.hex
-                  palette.colors.yellow.hex
-                  palette.colors.green.hex
-                  palette.colors.teal.hex
-                  palette.colors.blue.hex
-                  palette.colors.mauve.hex
-                  palette.colors.pink.hex
-                ];
-
-                custom = [
-                  palette.colors.red.hex
-                  palette.colors.maroon.hex
-                  palette.colors.peach.hex
-                  palette.colors.yellow.hex
-                  palette.colors.green.hex
-                  palette.colors.teal.hex
-                  palette.colors.sky.hex
-                  palette.colors.sapphire.hex
-                  palette.colors.blue.hex
-                  palette.colors.lavender.hex
-                  palette.colors.mauve.hex
-                  palette.colors.pink.hex
-                  palette.colors.flamingo.hex
-                  palette.colors.rosewater.hex
-                ];
-              };
-            };
-
-            ncspot.settings = {
-              theme = {
-                background = "#24273A";
-                primary = "#CAD3F5";
-                secondary = "#1E2030";
-                title = "#8AADF4";
-                playing = "#8AADF4";
-                playing_selected = "#B7BDF8";
-                playing_bg = "#181926";
-                highlight = "#C6A0F6";
-                highlight_bg = "#494D64";
-                error = "#CAD3F5";
-                error_bg = "#ED8796";
-                statusbar = "#181926";
-                statusbar_progress = "#CAD3F5";
-                statusbar_bg = "#8AADF4";
-                cmdline = "#CAD3F5";
-                cmdline_bg = "#181926";
-                search_match = "#f5bde6";
-              };
-            };
-
-            opencode.tui.theme = lib.mkForce "catppuccin";
-            vicinae.settings.theme = lib.mkForce {
-              name = "catppuccin-macchiato";
-              light.name = "catppuccin-latte";
-              dark.name = "catppuccin-macchiato";
-            };
-
-            
             vesktop.vencord = {
               settings.enabledThemes = [
                 "catppuccin.css"
@@ -321,17 +259,6 @@ let
               # TODO: use packaged version
               themes.catppuccin = ./Catppuccin-Macchiato-BD/src.css;
             };
-
-            wezterm.extraConfig = /* Lua */ ''
-              function scheme_for_appearance(appearance)
-                if appearance:find "Dark" then
-                  return "Catppuccin Macchiato"
-                else
-                  return "Catppuccin Frappe"
-                end
-              end
-            '';
-
           };
         }
       ]

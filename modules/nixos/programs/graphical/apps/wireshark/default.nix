@@ -11,9 +11,11 @@ in
   };
   # FIXME: wireshark does not work. It return specific permission error.
   config = mkIf cfg.enable {
-    # Paquetes globales que instala el módulo
-    environment.systemPackages = with pkgs; [
-      wireshark
-    ];
+
+    users.users.bauti.extraGroups = [ "wireshark" ];
+
+    programs.wireshark = {
+      enable = true;
     };
+  };
 }

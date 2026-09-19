@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [ bibata-cursors ];
+    environment.systemPackages = with pkgs; [ bibata-cursors vlc ];
 
     bautinix = {
       programs = {

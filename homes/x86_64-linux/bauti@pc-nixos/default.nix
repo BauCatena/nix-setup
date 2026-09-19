@@ -37,7 +37,9 @@ in
 
     theme = {
         stylix.enable = true;
-        nord.enable = true;
+        nord = {
+          enable = true;
+        };
       };
 
       roles = {

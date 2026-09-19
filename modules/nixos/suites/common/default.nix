@@ -9,7 +9,6 @@ in
     enable = lib.mkEnableOption "common configuration";
   };
 
-
   config = mkIf cfg.enable {
 
     programs.nix-ld = {

@@ -1,5 +1,5 @@
 {
-  colors = {
+  palette = {
     rosewater = {
       hex = "#f4dbd6";
       rgb = "rgb(244, 219, 214)";

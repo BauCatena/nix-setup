@@ -1,7 +1,7 @@
-{ ... }:
+{ lib, ... }:
 
 {
-  environment.sessionVariables = {
+  environment.sessionVariables = lib.mkForce {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";

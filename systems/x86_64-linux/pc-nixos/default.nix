@@ -25,7 +25,6 @@ in
         };
       nord = {
         enable = true;
-        variant = "default";
       };
     };
 
