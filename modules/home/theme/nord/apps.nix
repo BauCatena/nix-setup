@@ -31,7 +31,15 @@ in
         theme = lib.mkForce (import ./yazi/theme.nix { inherit (import ./colors.nix) palette; });
       };
 
-      swaylock.settings =
+        starship = {
+        settings = mkDefault (
+          let
+            schemas = import ./starship/modules.nix { inherit palette; };
+          in
+          schemas.default
+        );
+
+      };      swaylock.settings =
         mkIf config.bautinix.programs.graphical.screenlockers.swaylock.enable
           (force-attrs {
             screenshots = true;

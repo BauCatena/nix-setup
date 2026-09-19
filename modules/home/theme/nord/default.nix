@@ -16,25 +16,28 @@ let
 
   cfg = config.bautinix.theme.nord;
   palette = import ./colors.nix;
+
+  nord = { inherit palette; };
+
   t3codeTheme = import ../t3code.nix {
     appearance = "dark";
     id = "bautinix-nord";
     name = "Nord";
-    accent = palette.palette.color10.hex;
-    accentForeground = palette.palette.color6.hex;
-    border = palette.palette.color3.hex;
-    canvas = palette.palette.color0.hex;
-    chrome = palette.palette.color0.hex;
-    error = palette.palette.color11.hex;
-    secondary = palette.palette.color8.hex;
-    statusForeground = palette.palette.color0.hex;
-    success = palette.palette.color14.hex;
-    surface = palette.palette.color1.hex;
-    surfaceOverlay = palette.palette.color3.hex;
-    surfaceRaised = palette.palette.color2.hex;
-    text = palette.palette.color6.hex;
-    textMuted = palette.palette.color4.hex;
-    warning = palette.palette.color13.hex;
+    accent = nord.palette.nord10.hex;
+    accentForeground = nord.palette.nord6.hex;
+    border = nord.palette.nord3.hex;
+    canvas = nord.palette.nord0.hex;
+    chrome = nord.palette.nord0.hex;
+    error = nord.palette.nord11.hex;
+    secondary = nord.palette.nord8.hex;
+    statusForeground = nord.palette.nord0.hex;
+    success = nord.palette.nord14.hex;
+    surface = nord.palette.nord1.hex;
+    surfaceOverlay = nord.palette.nord3.hex;
+    surfaceRaised = nord.palette.nord2.hex;
+    text = nord.palette.nord6.hex;
+    textMuted = nord.palette.nord4.hex;
+    warning = nord.palette.nord13.hex;
   };
 
   stylixAvailable = options ? stylix;
