@@ -34,7 +34,6 @@
     yazi-flavors = {
       url = "github:yazi-rs/flavors";
       inputs.nixpkgs.follows = "nixpkgs";
-      flake = false;
     };
 
     hyprfm = {

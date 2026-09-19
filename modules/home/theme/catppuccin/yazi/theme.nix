@@ -1,6 +1,6 @@
 let
   catppuccin = import ../colors.nix;
-  colors = catppuccin.colors;
+  colors = catppuccin.palette;
 in
 {
   mgr = {

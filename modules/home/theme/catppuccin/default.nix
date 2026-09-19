@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  options,
   ...
 }:
 let
@@ -10,19 +11,18 @@ let
     mkEnableOption
     mkDefault
     mkIf
-    mkMerge
     mkOption
     types
     ;
 
-  inherit (lib.bautinix) disabled enabled;
-
   cfg = config.bautinix.theme.catppuccin;
 
+  inherit (inputs) yazi-flavors;
   palette = import ./colors.nix;
   inherit (palette) colors;
   catppuccinColors =
     (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${cfg.flavor}.colors;
+
   t3codeTheme = import ../t3code.nix {
     appearance = if cfg.flavor == "latte" then "light" else "dark";
     id = "bautinix-catppuccin-${cfg.flavor}";
@@ -43,46 +43,12 @@ let
     textMuted = catppuccinColors.subtext0.hex;
     warning = catppuccinColors.yellow.hex;
   };
-  fzfColors = {
-    "bg+" = colors.surface0.hex;
-    bg = colors.base.hex;
-    border = colors.overlay0.hex;
-    fg = colors.text.hex;
-    "fg+" = colors.text.hex;
-    header = colors.${cfg.accent}.hex;
-    hl = colors.${cfg.accent}.hex;
-    "hl+" = colors.${cfg.accent}.hex;
-    info = colors.${cfg.accent}.hex;
-    label = colors.text.hex;
-    marker = colors.${cfg.accent}.hex;
-    pointer = colors.${cfg.accent}.hex;
-    prompt = colors.${cfg.accent}.hex;
-    selected-bg = colors.surface1.hex;
-    spinner = colors.rosewater.hex;
-  };
-  ghDashTheme = {
-    theme.colors = {
-      background.selected = colors.surface0.hex;
-      border = {
-        faint = colors.surface0.hex;
-        primary = colors.${cfg.accent}.hex;
-        secondary = colors.surface1.hex;
-      };
-      text = {
-        error = colors.red.hex;
-        faint = colors.subtext1.hex;
-        inverted = colors.crust.hex;
-        primary = colors.text.hex;
-        secondary = colors.${cfg.accent}.hex;
-        success = colors.green.hex;
-        warning = colors.yellow.hex;
-      };
-    };
-  };
-
-  in
+  
+  stylixAvailable = options ? stylix;
+in
 {
   imports = [
+    ./apps.nix
     ./gtk.nix
     ./qt.nix
     inputs.catppuccin.homeModules.catppuccin
@@ -164,14 +130,29 @@ let
             theme = {
               wallpaper = {
                 theme = mkDefault "catppuccin";
-                primary = mkDefault "flatppuccin_macchiato.png";
-                secondary = mkDefault "cat-sound.png";
-                lock = mkDefault "flatppuccin_macchiato.png";
+                primary = mkDefault "catppuccin-pacman.jpg";
+                secondary = mkDefault "catppuccin-floyd.png";
+                lock = mkDefault "catppuccin-space.png";
                 list = mkDefault [
                   "flatppuccin_macchiato.png"
                   "cat_pacman.png"
                   "cat-sound.png"
                 ];
+              };
+              stylix = {
+                enable = true;
+                theme = lib.mkDefault "catppuccin-macchiato";
+
+                cursor = {
+                  name = "Bibata-Modern-Ice";
+                  package = pkgs.bibata-cursors;
+                  size = 24;
+                };
+
+                icon = {
+                  name = "Papirus-Dark";
+                  package = pkgs.papirus-icon-theme;
+                };
               };
             };
           };
@@ -196,71 +177,25 @@ let
             };
 
             t3code.clientSettings.declarativeTheme = t3codeTheme;
-
           };
-        }
-        (lib.optionalAttrs (inputs ? catppuccin && inputs.catppuccin ? homeModules) {
-          catppuccin = {
-            # enable + autoEnable are pinned unconditionally above; here we only
-            # cherry-pick the ports that should receive catppuccin styling.
-            accent = "blue";
-            flavor = "macchiato";
 
-            # keep-sorted start block=yes
-            atuin = enabled;
-            bat = enabled;
-            btop = enabled;
-            cava = enabled;
-            # Static local settings avoid upstream generated palette imports during eval.
-            fzf = disabled;
-            # Static local settings avoid upstream generated YAML conversion during eval.
-            kitty = enabled;
-            lazygit = {
-              enable = true;
-              inherit (cfg) accent;
-            };
-            nvim = enabled;
-            # tmux = enabled;
-            # NOTE: uses remote url import
-            # I already have a local file
-            # vesktop = enabled;
-            # keep-sorted end
-          }
-          // lib.optionalAttrs ( true ) {
-              # foot = enabled;
-            kvantum = {
-              enable = true;
-              inherit (cfg) accent;
-            };
-          };
-        })
-
-        {
           home = {
+            sessionVariables = {
+              CURSOR_THEME = config.bautinix.theme.gtk.cursor.name;
+            };
             pointerCursor = {
               enable = true;
               inherit (config.bautinix.theme.gtk.cursor) name package size;
             };
           };
-
-          programs = {
-            # Additional program settings that don't follow the common pattern
-            # Codex bundles the catppuccin syntax themes upstream.
-            codex.settings.tui.theme = "catppuccin-${cfg.flavor}";
-
-            fzf.colors = mkIf config.bautinix.programs.terminal.tools.fzf.enable fzfColors;
-
-            gh-dash.settings = mkIf config.bautinix.programs.terminal.tools.gh.enable ghDashTheme;
-
-            vesktop.vencord = {
-              settings.enabledThemes = [
-                "catppuccin.css"
-              ];
-              # TODO: use packaged version
-              themes.catppuccin = ./Catppuccin-Macchiato-BD/src.css;
-            };
-          };
         }
+
+        (lib.optionalAttrs stylixAvailable {
+          stylix.image = lib.bautinix.theme.wallpaperPath {
+            inherit config pkgs;
+            name = config.bautinix.theme.wallpaper.primary;
+          };
+        })
       ]
     ))
   ];

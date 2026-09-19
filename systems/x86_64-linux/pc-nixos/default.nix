@@ -21,9 +21,9 @@ in
     theme = {
       stylix = {
           enable = true;
-          theme = "nord";
+          theme = "catppuccin-macchiato";
         };
-      nord = {
+      catppuccin = {
         enable = true;
       };
     };

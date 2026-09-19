@@ -36,8 +36,11 @@ in
     };
 
     theme = {
-        stylix.enable = true;
-        nord = {
+        stylix = {
+          enable = true;
+        # theme = "catppuccin-macchiato";
+        };
+        catppuccin = {
           enable = true;
         };
       };
