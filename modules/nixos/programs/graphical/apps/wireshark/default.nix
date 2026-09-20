@@ -9,13 +9,16 @@ in
   options.bautinix.programs.graphical.apps.wireshark = {
     enable = mkEnableOption "wireshark";
   };
-  # FIXME: wireshark does not work. It return specific permission error.
   config = mkIf cfg.enable {
 
-    users.users.bauti.extraGroups = [ "wireshark" ];
+    # NOTE: Wireshark only works when launching from terminal as sudo
+    # sudo wireshark
+
+    bautinix.user.extraGroups = [ "wireshark" ];
 
     programs.wireshark = {
       enable = true;
+      package = pkgs.wireshark;
     };
   };
 }

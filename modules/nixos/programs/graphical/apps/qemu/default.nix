@@ -24,7 +24,7 @@ in
 
     programs.dconf.enable = true;
 
-    users.users.bauti.extraGroups = [ "libvirtd" "wheel" ];
+    bautinix.user.extraGroups = [ "libvirtd" "wheel" ];
 
     environment.systemPackages = with pkgs; [
       qemu
