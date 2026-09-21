@@ -31,6 +31,7 @@ let
           hostname
           username
           ;
+        overlays = builtins.attrValues self.overlays;
         modules = [ configPath ];
       };
     };

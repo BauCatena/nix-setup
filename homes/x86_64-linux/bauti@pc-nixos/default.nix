@@ -22,13 +22,29 @@ in
   };
   # 2. Your custom framework options
   bautinix = {
-      services = {
-        sops = {
-          enable = true;
-          defaultSopsFile = lib.getFile "secrets/bautinix/bauti/default.yaml";
-          sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+    programs = {
+      graphical = {
+        browsers = {
+          firefox = {
+            extensions.installMethod = "policy";
+            gpuAcceleration = true;
+            hardwareDecoding = true;
+            settings = {
+              "media.av1.enabled" = false;
+              "media.hardwaremediakeys.enabled" = true;
+            };
+          };
         };
       };
+    };
+
+    services = {
+      sops = {
+        enable = true;
+        defaultSopsFile = lib.getFile "secrets/bautinix/bauti/default.yaml";
+        sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+      };
+    };
 
     user = {
       name = "bauti";

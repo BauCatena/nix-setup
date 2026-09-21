@@ -139,6 +139,7 @@ let
         "nixpkgs-unstable"
         "nixpkgs-master"
         "home-manager"
+        "sops-nix"
         "nix-rosetta-builder"
       ],
     }:
@@ -163,6 +164,9 @@ let
         nixpkgs = mkPatchedFlakeInput "nixpkgs" { };
         nixpkgs-unstable = mkPatchedFlakeInput "nixpkgs-unstable" { };
         nixpkgs-master = mkPatchedFlakeInput "nixpkgs-master" { };
+        sops-nix = mkPatchedFlakeInput "sops-nix" {
+          nixpkgs = nixpkgs-unstable;
+        };
         home-manager = mkPatchedFlake {
           pkgs = bootstrapPkgs;
           inputName = "home-manager";
@@ -198,6 +202,9 @@ let
     }
     // optionalAttrs (enabled "home-manager") {
       inherit (patched) home-manager;
+    }
+   // optionalAttrs (enabled "sops-nix") {
+      inherit (patched) sops-nix;
     }
     // optionalAttrs (enabled "nix-rosetta-builder") {
       inherit (patched) nix-rosetta-builder;

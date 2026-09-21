@@ -3,6 +3,7 @@
   system,
   hostname,
   username,
+  overlays ? [ ],
   extraInputPatches ? { },
   modules ? [ ],
   ...
@@ -133,7 +134,7 @@ let
 in
 home-manager.lib.homeManagerConfiguration {
   pkgs = import nixpkgs {
-    inherit system;
+    inherit system overlays;
     config.allowUnfree = true;
   };
   extraSpecialArgs = {

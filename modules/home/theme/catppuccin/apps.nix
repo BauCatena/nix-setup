@@ -68,6 +68,13 @@ in
             );
           };
 
+          firefox.policies.ExtensionSettings = mkIf config.bautinix.programs.graphical.browsers.firefox.enable {
+            "${pkgs.firefox-addons.catppuccin-mocha-mauve.addonId}" = {
+              installation_mode = "force_installed";
+              install_url = "file://${pkgs.firefox-addons.catppuccin-mocha-mauve}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${pkgs.firefox-addons.catppuccin-mocha-mauve.addonId}.xpi";
+            };
+          };
+
           fzf.colors = mkIf config.bautinix.programs.terminal.tools.fzf.enable fzfColors;
 
             tmux.plugins = [

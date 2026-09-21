@@ -33,13 +33,15 @@
 
     yazi-flavors = {
       url = "github:yazi-rs/flavors";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
     };
 
     hyprfm = {
       url = "github:soyeb-jim285/hyprfm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {
@@ -47,6 +49,12 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tokyonight = {
       flake = false;
       url = "github:folke/tokyonight.nvim";

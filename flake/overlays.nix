@@ -43,6 +43,7 @@ in
   flake = {
     overlays = dynamicOverlaysSet // {
       default = bautinixPackagesOverlay;
+      firefox-addons = inputs.firefox-addons.overlays.default;
     };
   };
 }
