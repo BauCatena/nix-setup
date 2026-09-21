@@ -15,7 +15,7 @@ in
     bautinix.services.udisks2.enable = true;
  
       environment.systemPackages = [
-        (inputs.hyprfm.packages.${pkgs.system}.default.overrideAttrs (old: {
+        (inputs.hyprfm.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
           postPatch = (old.postPatch or "") + ''
             echo "import QtQuick; Item {}" > src/qml/icons/IconColumns3.qml
           '';
