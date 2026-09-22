@@ -8,8 +8,7 @@ in
     enable = lib.mkEnableOption "btop";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable {  
     programs.btop.enable = true;
-
   };
 }

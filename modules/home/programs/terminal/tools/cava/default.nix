@@ -10,12 +10,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      cava
-    ];
-
     programs.cava.enable = true;
-
-    xdg.configFile.cava.source = ./settings;
   };
 }

@@ -9,7 +9,7 @@ in
     enable = mkEnableOption "Enable system font configuration";
     packages = mkOption {
       type = types.listOf types.package;
-      default = [ ];
+      default = lib.mkForce [ ];
       description = "List of font packages to install system-wide.";
     };
   };

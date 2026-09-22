@@ -51,7 +51,7 @@ in
     ./apps.nix
     ./gtk.nix
     ./qt.nix
-    inputs.catppuccin.homeModules.catppuccin
+    # inputs.catppuccin.homeModules.catppuccin
   ];
 
   options.bautinix.theme.catppuccin = {

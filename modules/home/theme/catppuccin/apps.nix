@@ -43,8 +43,15 @@ in
           flavor = "macchiato";
 
           # keep-sorted start block=yes
-          # NOTE: uses remote url import
-          # I already have a local file
+          atuin = enabled;
+          bat = enabled;
+          btop = enabled;
+          cava = enabled;
+          foot = enabled;
+          fzf = disabled;
+          kitty = enabled;
+          nvim = enabled;
+          tmux = enabled;
           # keep-sorted end
         }
         // lib.optionalAttrs (true) {
