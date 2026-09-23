@@ -33,12 +33,6 @@ in
 
     };
 
-    suites = {
-        common.enable = true;
-        desktop.enable = true;
-        cibersecurity.enable = true;
-    };
-
     security = {
         sops = {
           enable = true;
