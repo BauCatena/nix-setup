@@ -15,10 +15,6 @@ in
       enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      vim
-    ];
-
      zramSwap.enable = true;
 
       hardware.ksm = {
