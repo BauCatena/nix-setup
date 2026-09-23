@@ -54,6 +54,9 @@ in
         earlyoom.enable = mkDefault true;
         logrotate.enable = mkDefault true;
         udisks2.enable = mkDefault true;
+        syncthing = {
+          enable = true;
+        };
       };
 
       system = {
