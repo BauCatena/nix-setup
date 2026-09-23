@@ -75,6 +75,18 @@ in
         ];
 
         bautinix = {
+          programs = {
+            graphical = {
+              browsers = {
+                firefox.policies.ExtensionSettings = mkIf config.bautinix.programs.graphical.browsers.firefox.enable {
+                  "${pkgs.firefox-addons.kristofferhagen-nord-theme.addonId}" = {
+                    installation_mode = "force_installed";
+                    install_url = "file://${pkgs.firefox-addons.kristofferhagen-nord-theme}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${pkgs.firefox-addons.kristofferhagen-nord-theme.addonId}.xpi";
+                  };
+                };
+              };
+            };
+          };
           theme = {
             wallpaper = {
               theme = mkDefault "nord";
@@ -91,6 +103,7 @@ in
                 "nixos.png"
               ];
             };
+
             stylix = {
               enable = true;
               theme = "nord";
