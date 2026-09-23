@@ -37,9 +37,7 @@ in
         unzip
         wget
         xclip
-        # NOTE: REMOVE LATER
       ];
     };
-    programs.nix-ld.enable = true;
   };
 }
