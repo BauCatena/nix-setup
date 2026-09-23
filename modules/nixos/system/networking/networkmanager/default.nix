@@ -22,8 +22,8 @@ in
         plugins = with pkgs; [
           networkmanager-l2tp
           networkmanager-openvpn
-          networkmanager-sstp
-          networkmanager-vpnc
+          # networkmanager-sstp # FIXME: - CVE-2026-91838
+          # networkmanager-vpnc # FIXME: - CVE-2026-91840 - CVE-2026-91841
         ];
         
         unmanaged = [
