@@ -14,7 +14,6 @@ let
   inherit (lib.bautinix) mkOpt;
 
   cfg = config.bautinix.theme.qt;
-  fontCfg = config.bautinix.fonts;
 
   qtctFormat = pkgs.formats.ini {
     listToValue = values: concatStringsSep ", " values;
@@ -29,7 +28,7 @@ let
     };
 
     Fonts = {
-      fixed = ''"${fontCfg.sans},12"'';
+      fixed = ''"${config.bautinix.stacks.ui},12"'';
       general = ''"Lexend,12"'';
     };
 
