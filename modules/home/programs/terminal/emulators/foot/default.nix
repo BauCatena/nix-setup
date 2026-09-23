@@ -4,9 +4,6 @@ let
   inherit (lib) mkIf mkEnableOption;
 
   cfg = config.bautinix.programs.terminal.emulators.foot;
-  defaultMonoList = config.fonts.fontconfig.defaultFonts.monospace;
-  primaryMonoFont = if defaultMonoList != [] then builtins.head config.fonts.fontconfig.defaultFonts.monospace else "JetBrainsMono Nerd Font";
-
 in
 {
   options.bautinix.programs.terminal.emulators.foot = {
@@ -22,8 +19,8 @@ in
 
           term = "xterm-256color";
           pad = "1x1 center";
-          font = "${primaryMonoFont}:size=12";
-          font-bold = "${primaryMonoFont}:size=12";
+          font = "${config.bautinix.fonts.stacks.terminal}:size=12";
+          font_bold = "${config.bautinix.fonts.stacks.terminal}:size=12";
 
           };
         colors-light = {
