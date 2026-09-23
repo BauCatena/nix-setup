@@ -27,7 +27,6 @@ in
         autoLogin = true;
       };
       suites = {
-        common.enable = true;
         cibersecurity = {
           enable = true;
           wireless.enable = true;
@@ -36,6 +35,7 @@ in
           bruteforce.enable = true;
           social.enable = true;
         };
+        common.enable = true;
         desktop.enable = true;
         workstation.enable = true;
       };
