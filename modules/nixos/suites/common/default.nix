@@ -5,16 +5,19 @@ let
   cfg = config.bautinix.suites.common;
 in
 {
-  options.bautinix.suites.common = {
-    enable = lib.mkEnableOption "common configuration";
-  };
+  imports = [
+    (lib.getFile "modules/common/suites/common/default.nix")
+  ];
 
   config = mkIf cfg.enable {
 
     programs.nix-ld = {
-
       enable = true;
     };
+
+    environment.systemPackages = with pkgs; [
+      vim
+    ];
 
      zramSwap.enable = true;
 
@@ -59,6 +62,8 @@ in
 
       system = {
         hostname.enable = true;
+        locale.enable = true;
+        time.enable = true;
       };
       fonts.enable = mkDefault true;
     };

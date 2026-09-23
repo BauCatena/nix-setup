@@ -37,6 +37,7 @@ in
         unzip
         wget
         xclip
+        vim
       ];
     };
   };
