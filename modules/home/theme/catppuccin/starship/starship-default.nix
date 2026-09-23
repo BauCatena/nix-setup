@@ -34,32 +34,32 @@ in
 
   nodejs = {
     symbol = "";
-    style = "bg:${catppuccin.palette.surface2.hex}";
-    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.green.hex} bg:${catppuccin.palette.surface2.hex})]($style)";
+    style = "bg:${catppuccin.palette.yellow.hex}";
+    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.green.hex} bg:${catppuccin.palette.yellow.hex})]($style)";
   };
 
   bun = {
     symbol = "";
-    style = "bg:${catppuccin.palette.surface2.hex}";
-    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.yellow.hex} bg:${catppuccin.palette.surface2.hex})]($style)";
+    style = "bg:${catppuccin.palette.yellow.hex}";
+    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.yellow.hex} bg:${catppuccin.palette.yellow.hex})]($style)";
   };
 
   rust = {
     symbol = "";
-    style = "bg:${catppuccin.palette.surface2.hex}";
-    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.peach.hex} bg:${catppuccin.palette.surface2.hex})]($style)";
+    style = "bg:${catppuccin.palette.yellow.hex}";
+    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.peach.hex} bg:${catppuccin.palette.yellow.hex})]($style)";
   };
 
   golang = {
     symbol = "";
-    style = "bg:${catppuccin.palette.surface2.hex}";
-    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.blue.hex} bg:${catppuccin.palette.surface2.hex})]($style)";
+    style = "bg:${catppuccin.palette.yellow.hex}";
+    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.blue.hex} bg:${catppuccin.palette.yellow.hex})]($style)";
   };
 
   php = {
     symbol = "";
-    style = "bg:${catppuccin.palette.surface2.hex}";
-    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.lavender.hex} bg:${catppuccin.palette.surface2.hex})]($style)";
+    style = "bg:${catppuccin.palette.yellow.hex}";
+    format = "[[ $symbol ($version) ](fg:${catppuccin.palette.lavender.hex} bg:${catppuccin.palette.yellow.hex})]($style)";
   };
 
   time = {
