@@ -23,10 +23,13 @@ in
 
       user = "${config.bautinix.user.name}";
       dataDir = "/home/${config.bautinix.user.name}/.local/share/syncthing";
-      # configDir = "/home/${config.bautinix.user.name}/.config/syncthing";
+      configDir = "/home/${config.bautinix.user.name}/.config/syncthing";
 
       openDefaultPorts = true;
-
+      guiAddress = "127.0.0.1:8384" ;
     };
+
+  networking.firewall.allowedTCPPorts = [ 8384 ];
+
   };
 }
