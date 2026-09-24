@@ -8,6 +8,7 @@ in
   options.bautinix.suites.cibersecurity = {
     enable = lib.mkEnableOption "cibersecurity configuration";
 
+    pentest.enable = lib.mkEnableOption "pentesting toolkit";
     network.enable = lib.mkEnableOption "netorking toolkit";
     wifi.enable = lib.mkEnableOption "wifi toolkit";
     social.enable = lib.mkEnableOption "social toolkit";
