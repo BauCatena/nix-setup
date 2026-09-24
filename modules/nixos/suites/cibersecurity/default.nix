@@ -17,7 +17,6 @@ in
 
   config = mkIf cfg.enable {
 
-    bautinix.programs.graphical.apps.qemu.enable = true;
 
     environment.systemPackages = with pkgs; [
       crunch
