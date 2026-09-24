@@ -26,7 +26,9 @@ in
         common.enable = true;
         cibersecurity = {
           enable = true;
-          wireless.enable = true;
+          pentest.enable = true;
+          network.enable = true;
+          wifi.enable = true;
           web.enable = true;
 
         };

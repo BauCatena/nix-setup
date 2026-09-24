@@ -29,7 +29,8 @@ in
       suites = {
         cibersecurity = {
           enable = true;
-          wireless.enable = true;
+          pentest.enable = true;
+          network.enable = true;
           web.enable = true;
           threat-intelligence.enable = true;
           bruteforce.enable = true;

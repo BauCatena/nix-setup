@@ -20,15 +20,16 @@ in
     bautinix.programs.graphical.apps.qemu.enable = true;
 
     environment.systemPackages = with pkgs; [
-      metasploit
       crunch
-    ] ++ lib.optionals cfg.wireless.enable [
+    ] ++ lib.optionals cfg.pentest.enable [
+        metasploit
+      ] ++ lib.optionals cfg.network.enable [
         bettercap
         nmap
         tcpdump
         macchanger
         wireshark
-      ] ++ lib.optionals (cfg.wireless.enable && config.bautinix.hardware.bluetooth.enable) [
+      ] ++ lib.optionals cfg.wifi.enable  [
         aircrack-ng
         airgeddon
       ] ++ lib.optionals cfg.bruteforce.enable [
