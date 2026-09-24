@@ -11,6 +11,8 @@ in
 
   config = mkIf cfg.enable {
     bautinix = lib.mkForce {
+
+    programs.graphical.apps.qemu.enable = true;
       display-managers = {
         sddm.enable = true;
       };
