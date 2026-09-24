@@ -16,6 +16,12 @@ in
 
     suites = {
       common.enable = true;
+      cibersecurity = {
+        enable = true;
+        threat-intelligence.enable = true;
+        network.enable = true;
+      };
+
     };
     theme = {
       stylix = {
