@@ -31,7 +31,7 @@ in
     ] "The public keys to apply.";
 
     extraConfig = mkOpt str "" "Extra configuration to apply.";
-    port = mkOpt port 2222 "The port to listen on (in addition to 22).";
+    port = mkOpt port 22222 "The port to listen on (in addition to 22).";
   };
 
   config = mkIf cfg.enable {
