@@ -139,18 +139,17 @@ in
       // cfg.hosts;
 
       firewall = {
+
         allowedUDPPorts = [
           # mDNS
           5353
-        ];
-        allowedTCPPorts = [
-          443
-          8080
         ];
         checkReversePath = mkDefault false;
         logReversePathDrops = true;
         logRefusedConnections = true;
       };
+
+      trustedInterfaces = [ "tailscale0" ];
 
       nameservers = [
         "1.1.1.1"
