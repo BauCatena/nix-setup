@@ -14,6 +14,11 @@ in
   bautinix = {
     nix.enable = true;
 
+    virtualisation.podman = {
+      enable = true;
+      onBoot = false;
+    };
+
     suites = {
       common.enable = true;
       cibersecurity = {
