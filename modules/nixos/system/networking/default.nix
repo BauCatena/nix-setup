@@ -140,6 +140,7 @@ in
 
       firewall = {
 
+      trustedInterfaces = [ "tailscale0" ];
         allowedUDPPorts = [
           # mDNS
           5353
@@ -149,7 +150,6 @@ in
         logRefusedConnections = true;
       };
 
-      trustedInterfaces = [ "tailscale0" ];
 
       nameservers = [
         "1.1.1.1"

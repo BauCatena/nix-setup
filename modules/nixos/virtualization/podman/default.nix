@@ -19,6 +19,7 @@ in
   config = mkIf cfg.enable {
 
     bautinix = {
+      linger = true;
       user.extraGroups = [ "docker" "podman" ];
       home.extraOptions = {
         home.shellAliases = {
