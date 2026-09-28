@@ -9,7 +9,7 @@ let
 
   cfg = config.bautinix.services.syncthing;
   username = config.bautinix.user.name;
-  syncRoot = "/home/${username}/syncthing";
+  syncRoot = "/srv/syncthing";
 in
 {
   options.bautinix.services.syncthing = {
@@ -18,8 +18,13 @@ in
 
   config = mkIf cfg.enable {
 
+    system.activationScripts.setupSyncthingDirs = ''
+      mkdir -p ${syncRoot}/{data,root,readonly,everything,obsidian}
+      chown -R ${username}:${username} ${syncRoot}
+    '';
+
     sops.secrets.syncthing_gui_password = { owner = username; };
-    
+
     services.syncthing = {
       enable = true;
       user = username;
@@ -47,6 +52,7 @@ in
             id = "D4JLFS2-VW2FKLH-MFTYFQ2-VE5TYRH-T5XOGCP-W6WECZN-MU7WBHL-QI2QTQA";
             addresses = [ "tcp://100.113.124.111:48232" ];
           };
+          # NOTE: add phone device
         };
 
         folders = {
@@ -65,6 +71,18 @@ in
             path = "${syncRoot}/everything";
             id = "everything";
             devices = [ "pc-nixos" "lab-nixos" ];
+          };
+          "obsidian" = {
+            path = "${syncRoot}/obsidian";
+            id = "obsidian-vault";
+            devices = [ "pc-nixos" "lab-nixos" ];
+            versioning = {
+              type = "staggered";
+              params = {
+                cleanInterval = "3600";
+                maxAge = "31536000";
+              };
+            };
           };
         };
       };
