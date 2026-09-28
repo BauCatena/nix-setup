@@ -38,7 +38,6 @@ in
         wget
         xclip
         vim
-        wl-clipboard
       ];
     };
   };
