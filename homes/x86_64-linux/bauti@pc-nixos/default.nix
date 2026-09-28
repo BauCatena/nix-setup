@@ -49,6 +49,7 @@ in
     user = {
       name = "bauti";
       fullName = "Bautista";
+      email = "catenabautista@gmail.com";
     };
 
     theme = {
