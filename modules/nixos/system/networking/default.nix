@@ -139,8 +139,8 @@ in
       // cfg.hosts;
 
       firewall = {
-
-      trustedInterfaces = [ "tailscale0" ];
+        enable = true;
+        trustedInterfaces = [ "tailscale0" ];
         allowedUDPPorts = [
           # mDNS
           5353
