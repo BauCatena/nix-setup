@@ -165,6 +165,13 @@ in
                 zle -N history-beginning-search-backward-end history-search-end
                 zle -N history-beginning-search-forward-end  history-search-end
               fi
+
+              # Copy stdin to your local system clipboard via OSC 52 over SSH
+              function clipcopy() {
+                  local data
+                  data=$(cat | base64 | tr -d '\n')
+                  printf '\e]52;c;%s\a' "$data"
+              }
             ''
           ))
 
