@@ -130,6 +130,10 @@ in
             prune = true;
           };
 
+          "gpg.ssh" = {
+            allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
+          };
+
           # TODO: verify still works
           "gpg \"ssh\"".program = mkIf cfg._1password (
             let
@@ -182,6 +186,7 @@ in
           key = cfg.signingKey;
           format = "ssh";
           inherit (cfg) signByDefault;
+
         };
       };
 
