@@ -57,7 +57,7 @@ in
       # Upstream does not send usage or logs to Tailscale with this set.
       disableUpstreamLogging = true;
       openFirewall = true;
-      permitCertUid = "root";
+      # permitCertUid = "root";
       # "both" also enables the IPv4 and IPv6 forwarding sysctls that subnet
       # routing and exit nodes need.
       useRoutingFeatures = "both";
