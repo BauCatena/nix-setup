@@ -20,7 +20,7 @@ in
 
     system.activationScripts.setupSyncthingDirs = ''
       mkdir -p ${syncRoot}/{data,root,readonly,everything,obsidian}
-      chown -R ${username}:${username} ${syncRoot}
+      chown -R ${username}: ${syncRoot}
     '';
 
     sops.secrets.syncthing_gui_password = { owner = username; };
