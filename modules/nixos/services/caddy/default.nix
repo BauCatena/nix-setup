@@ -17,8 +17,8 @@ in
     services.caddy = {
       enable = true;
 
-      virtualHosts."home.${domain}".extraConfig = ''
-        reverse_proxy 127.0.0.1:3000
+      virtualHosts."home.${domain}:60000".extraConfig = ''
+        reverse_proxy 192.168.122.93:3000
       '';
     };
   };
