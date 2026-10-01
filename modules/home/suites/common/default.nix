@@ -49,6 +49,7 @@ in
           enable = true;
         };
       };
+      system = { xdg.enable = false; };
     };
   };
 }
