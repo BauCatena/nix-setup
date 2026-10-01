@@ -34,15 +34,6 @@ in
       email = "catenabautista@gmail.com";
     };
 
-    theme = {
-        stylix = {
-          enable = true;
-        };
-        catppuccin = {
-          enable = true;
-        };
-      };
-
     suites = {
       common.enable = true;
     };

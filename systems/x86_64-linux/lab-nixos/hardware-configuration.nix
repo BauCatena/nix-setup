@@ -21,13 +21,13 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/527206cf-41e7-423b-affe-536acb877693";
       fsType = "btrfs";
-      options = [ "subvol=home" ];
+      options = [ "subvol=home" "compress=zstd" "noatime"];
     };
 
   fileSystems."/nix" =
     { device = "/dev/disk/by-uuid/527206cf-41e7-423b-affe-536acb877693";
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/boot" =
