@@ -10,6 +10,7 @@ in
   imports =
     [
       ./hardware-configuration.nix
+      ./storages.nix
     ];
   bautinix = {
     nix.enable = true;
@@ -29,10 +30,6 @@ in
 
     };
     theme = {
-      stylix = {
-          enable = true;
-          theme = "catppuccin-macchiato";
-        };
       catppuccin = {
         enable = true;
       };
