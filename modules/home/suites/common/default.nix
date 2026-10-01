@@ -49,7 +49,7 @@ in
           enable = true;
         };
       };
-      system = { xdg.enable = false; };
+      system = { xdg.enable = lib.mkDefault false; };
     };
   };
 }
