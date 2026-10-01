@@ -9,7 +9,7 @@ let
 
   cfg = config.bautinix.services.syncthing;
   username = config.bautinix.user.name;
-  syncRoot = "/srv/syncthing";
+  syncRoot = "/srv/storage/syncthing";
 in
 {
   options.bautinix.services.syncthing = {
