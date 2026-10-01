@@ -30,7 +30,7 @@ in
     bautinix.home.extraOptions = {
       home.file = mkAliasDefinitions options.bautinix.home.file;
       xdg.configFile = mkAliasDefinitions options.bautinix.home.configFile; 
-      xdg.enable = lib.mkDefault true;
+      xdg.enable = config.bautinix.suites.desktop.enable;
       home.stateVersion = lib.mkOptionDefault config.system.stateVersion;
     };
 
