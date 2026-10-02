@@ -11,6 +11,7 @@ let
   inherit (lib.bautinix) mkOpt;
 
   cfg = config.bautinix.services.tailscale;
+  tailPort = 45000;
 in
 {
   options.bautinix.services.tailscale = with types; {
@@ -41,7 +42,8 @@ in
 
     networking = {
       firewall = {
-        allowedTCPPorts = [ 45000 ];
+        allowedTCPPorts = [ tailPort ];
+        allowedUDPPorts = [ tailPort ];
         trustedInterfaces = [ config.services.tailscale.interfaceName ];
         # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
         checkReversePath = "loose";
@@ -54,6 +56,8 @@ in
       # Tailscale documentation
       # See: https://tailscale.com/kb/
       enable = true;
+
+      port = tailPort;
       # Upstream does not send usage or logs to Tailscale with this set.
       disableUpstreamLogging = true;
       openFirewall = true;
