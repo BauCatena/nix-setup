@@ -52,15 +52,10 @@ in
             id = "D4JLFS2-VW2FKLH-MFTYFQ2-VE5TYRH-T5XOGCP-W6WECZN-MU7WBHL-QI2QTQA";
             addresses = [ "tcp://100.113.124.111:48232" ];
           };
-          # NOTE: add phone device
+          # TODO: add phone device
         };
 
         folders = {
-          "root" = {
-            path = "${syncRoot}/root";
-            id = "root";
-            devices = [ "pc-nixos" "lab-nixos" ];
-          };
           "read-only" = {
             path = "${syncRoot}/readonly";
             id = "readOnly";
