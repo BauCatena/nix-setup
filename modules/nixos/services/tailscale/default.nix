@@ -42,7 +42,6 @@ in
 
     networking = {
       firewall = {
-        allowedTCPPorts = [ tailPort ];
         allowedUDPPorts = [ tailPort ];
         trustedInterfaces = [ config.services.tailscale.interfaceName ];
         # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
