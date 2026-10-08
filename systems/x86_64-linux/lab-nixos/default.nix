@@ -86,6 +86,8 @@ in
 
   };
 
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
   environment.systemPackages = with pkgs; [
       home-manager
   ];
