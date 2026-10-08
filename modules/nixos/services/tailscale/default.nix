@@ -11,7 +11,7 @@ let
   inherit (lib.bautinix) mkOpt;
 
   cfg = config.bautinix.services.tailscale;
-  tailPort = 45000;
+  tailPort = 45812;
 in
 {
   options.bautinix.services.tailscale = with types; {
