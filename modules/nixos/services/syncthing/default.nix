@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
 
     system.activationScripts.setupSyncthingDirs = ''
-      mkdir -p ${syncRoot}/{data,root,readonly,everything,obsidian}
+      mkdir -p ${syncRoot}/{data,readonly,everything,obsidian}
       chown -R ${username}: ${syncRoot}
     '';
 
@@ -31,7 +31,6 @@ in
 
       dataDir = "${syncRoot}/data";
       configDir = "/home/${username}/.config/syncthing";
-      guiAddress = "127.0.0.1:8384";
 
       guiPasswordFile = config.sops.secrets.syncthing_gui_password.path;
 
