@@ -3,9 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, lib, ... }:
-let
-  magicDnsSuffix = "tailb71378.ts.net";
-in 
 {
   imports =
     [
@@ -45,6 +42,9 @@ in
       caddy.enable = true;
       tailscale = {
         enable = true;
+      };
+      syncthing = {
+        isClient = true;
       };
     };
 
