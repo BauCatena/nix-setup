@@ -21,7 +21,7 @@ in
   config = mkIf cfg.enable {
 
     system.activationScripts.setupSyncthingDirs = ''
-      mkdir -p ${syncRoot}/{data,readonly,everything,obsidian}
+      mkdir -p ${syncRoot}/{readonly,everything,obsidian}
       chown -R ${username}: ${syncRoot}
     '';
 
