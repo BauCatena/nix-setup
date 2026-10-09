@@ -47,12 +47,12 @@ in
         devices = {
           lab-nixos = {
             name = "lab-nixos";
-            id = "7S6HATB-QZHADNN-WNRL65U-PASUOO3-DA6OJ3E-RQ4OI7W-DN3OEDP-BOKSQA4";
+            id = "VQGDOL3-XUBJQ5T-UPGINWQ-TPUQ53J-2TX2A2K-URCAHAI-2WUQVS4-B5KDFAO";
             addresses = [ "tcp://100.97.207.53:48232" ];
           };
           pc-nixos = {
             name = "pc-nixos";
-            id = "JSXBQPM-XWEWAHV-M5VNN7A-VUD2AIX-6B7GTBB-STHF6VC-Z25P5HD-QLORAAQ";
+            id = "TFNVM5W-E4GOZHW-QJQMSDE-2WCZ5CV-JZYEQCW-A3N3QO3-25HSVRU-ZZ5MVQF";
             addresses = [ "tcp://100.113.124.111:48232" ];
             autoAcceptFolders = true;
           };
