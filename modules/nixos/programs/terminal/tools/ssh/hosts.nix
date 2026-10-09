@@ -14,5 +14,11 @@
     gpgAgent = true;
     publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuwtxC1L+4ighcF94U8eO+U+MYku3MrIGRBv0M3c6QW";
   };
-
+  lab-nixos = {
+    hostname = "lab-nixos.local";
+    username = "bauti";
+    system = "nixos";
+    gpgAgent = true;
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuwtxC1L+4ighcF94U8eO+U+MYku3MrIGRBv0M3c6QW";
+  };
 }
