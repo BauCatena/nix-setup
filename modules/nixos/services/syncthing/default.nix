@@ -56,6 +56,12 @@ in
             addresses = [ "tcp://100.113.124.111:48232" ];
             autoAcceptFolders = true;
           };
+          iphone = {
+            name = "iphone";
+            id = "CNJ4ZKQ-RKKBHUB-TYKIS4U-M4RM2WV-BL4D37I-EBON7FP-QYXTMRG-AAF4VQL";
+            addresses = [ "tcp://100.66.8.125:22000" ];
+            autoAcceptFolders = true;
+          };
           # TODO: add phone device
         };
 
@@ -75,7 +81,6 @@ in
             path = "${syncRoot}/obsidian";
             id = "obsidian-vault";
             devices = [ "pc-nixos" "lab-nixos" ];
-            type = if cfg.isClient then "receiveonly" else "sendonly";
             versioning = {
               type = "staggered";
               params = {
