@@ -23,6 +23,9 @@ in
       };
       programs = {
         graphical = {
+          apps = {
+            steam.enable = true;
+          };
           desktops = {
             plasma  = {
               enable = true;
