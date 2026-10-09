@@ -62,25 +62,24 @@ in
             addresses = [ "tcp://100.66.8.125:22000" ];
             autoAcceptFolders = true;
           };
-          # TODO: add phone device
         };
 
         folders = {
           "read-only" = {
             path = "${syncRoot}/readonly";
             id = "readOnly";
-            devices = [ "pc-nixos" "lab-nixos" ];
+            devices = [ "pc-nixos" "lab-nixos" "iphone" ];
             type = if cfg.isClient then "receiveonly" else "sendonly";
           };
           "everything" = {
             path = "${syncRoot}/everything";
             id = "everything";
-            devices = [ "pc-nixos" "lab-nixos" ];
+            devices = [ "pc-nixos" "lab-nixos" "iphone" ];
           };
           "obsidian" = {
             path = "${syncRoot}/obsidian";
             id = "obsidian-vault";
-            devices = [ "pc-nixos" "lab-nixos" ];
+            devices = [ "pc-nixos" "lab-nixos" "iphone" ];
             versioning = {
               type = "staggered";
               params = {
