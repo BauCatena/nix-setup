@@ -14,6 +14,8 @@ in
 {
   options.bautinix.services.syncthing = {
     enable = mkEnableOption "syncthing";
+
+    isClient = mkEnableOption "whether the device client or server";
   };
 
   config = mkIf cfg.enable {
@@ -44,12 +46,15 @@ in
 
         devices = {
           lab-nixos = {
+            name = "lab-nixos";
             id = "7S6HATB-QZHADNN-WNRL65U-PASUOO3-DA6OJ3E-RQ4OI7W-DN3OEDP-BOKSQA4";
             addresses = [ "tcp://100.97.207.53:48232" ];
           };
           pc-nixos = {
-            id = "D4JLFS2-VW2FKLH-MFTYFQ2-VE5TYRH-T5XOGCP-W6WECZN-MU7WBHL-QI2QTQA";
+            name = "pc-nixos";
+            id = "JSXBQPM-XWEWAHV-M5VNN7A-VUD2AIX-6B7GTBB-STHF6VC-Z25P5HD-QLORAAQ";
             addresses = [ "tcp://100.113.124.111:48232" ];
+            autoAcceptFolders = true;
           };
           # TODO: add phone device
         };
@@ -59,17 +64,19 @@ in
             path = "${syncRoot}/readonly";
             id = "readOnly";
             devices = [ "pc-nixos" "lab-nixos" ];
-            type = "receiveonly";
+            type = if cfg.isClient then "receiveonly" else "sendonly";
           };
           "everything" = {
             path = "${syncRoot}/everything";
             id = "everything";
             devices = [ "pc-nixos" "lab-nixos" ];
+            type = if cfg.isClient then "receiveonly" else "sendonly";
           };
           "obsidian" = {
             path = "${syncRoot}/obsidian";
             id = "obsidian-vault";
             devices = [ "pc-nixos" "lab-nixos" ];
+            type = if cfg.isClient then "receiveonly" else "sendonly";
             versioning = {
               type = "staggered";
               params = {
