@@ -70,7 +70,6 @@ in
             path = "${syncRoot}/everything";
             id = "everything";
             devices = [ "pc-nixos" "lab-nixos" ];
-            type = if cfg.isClient then "receiveonly" else "sendonly";
           };
           "obsidian" = {
             path = "${syncRoot}/obsidian";
