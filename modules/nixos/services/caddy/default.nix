@@ -18,7 +18,11 @@ in
       enable = true;
 
       virtualHosts."home.${domain}:60001".extraConfig = ''
-        reverse_proxy 192.168.122.93:3000
+        reverse_proxy https://100.97.207.53:443 {
+          transport http {
+            tls_insecure_skip_verify
+          }
+        }
       '';
     };
   };

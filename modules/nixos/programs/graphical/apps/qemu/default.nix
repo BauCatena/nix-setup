@@ -31,7 +31,10 @@ in
       qemu
       virt-manager
       virt-viewer
-      spice-vdagent 
+      spice-vdagent
+      packer
+      vagrant
+      ansible
     ];
   };
 }
