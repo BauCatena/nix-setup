@@ -19,7 +19,7 @@ in
 
           term = "xterm-256color";
           pad = "1x1 center";
-          font = "${config.bautinix.fonts.stacks.terminal}:size=12";
+          font = lib.mkForce "${config.bautinix.fonts.stacks.terminal}:size=12";
 
           };
         colors-light = {
