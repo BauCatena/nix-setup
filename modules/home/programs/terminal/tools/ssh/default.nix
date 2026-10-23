@@ -61,7 +61,7 @@ in
   options.bautinix.programs.terminal.tools.ssh = with types; {
     enable = lib.mkEnableOption "ssh support";
     authorizedKeys = mkOpt (listOf str) authorizedKeys "The public keys to apply.";
-    port = mkOpt port 2222 "The port to listen on (in addition to 22).";
+    port = mkOpt port 22222 "The port to listen on (in addition to 22).";
   };
 
   config = mkIf cfg.enable {
