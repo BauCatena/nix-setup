@@ -20,6 +20,7 @@ in
     environment.systemPackages = with pkgs; [
       networkmanager
       dhcpcd
+      osu-lazer
     ];
     bautinix = {
       display-managers.sddm = {
