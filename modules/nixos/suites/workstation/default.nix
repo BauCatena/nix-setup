@@ -13,7 +13,6 @@ in
     bautinix = lib.mkForce {
 
     programs.graphical.apps.qemu.enable = true;
-    programs.graphical.apps.virtualbox.enable = true;
       display-managers = {
         sddm.enable = true;
       };
