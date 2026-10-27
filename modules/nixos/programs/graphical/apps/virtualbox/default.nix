@@ -12,8 +12,9 @@ in
 
   config = mkIf cfg.enable {
 
-    programs.virtualbox = {
-      enable = true;
+    virtualisation.virtualbox = {
+      host.enable = true;
+      # guest.enable = true;
     };
   };
 }
