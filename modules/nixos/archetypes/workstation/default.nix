@@ -20,6 +20,7 @@ in
     environment.systemPackages = with pkgs; [
       networkmanager
       dhcpcd
+      osu-lazer # i didnt know nixpkgs could have a game
     ];
     bautinix = {
       display-managers.sddm = {
