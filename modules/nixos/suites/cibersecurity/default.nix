@@ -39,7 +39,11 @@ in
         social-engineer-toolkit
         maltego
       ] ++ lib.optionals cfg.threat-intelligence.enable [
-        snort
+        (pkgs.autopsy.overrideAttrs (oldAttrs: {
+          postPatch = (oldAttrs.postPatch or "") + ''
+            sed -i 's/\r$//' etc/autopsy.conf
+          '';
+        }))
         dnstwist
       ] ++ lib.optionals cfg.web.enable [
         burpsuite
